@@ -117,7 +117,7 @@ class ElectroLinkApp extends StatelessWidget {
       //     ),
       //   ],
         child: MaterialApp.router(
-          routerConfig: AppRouter._router,
+          routerConfig: AppRouter.router,
           locale: DevicePreview.locale(context),
           builder: EasyLoading.init(
             builder: (context, widget) {
@@ -129,7 +129,5 @@ class ElectroLinkApp extends StatelessWidget {
           themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
         ),
-      ),
-    );
   }
 }

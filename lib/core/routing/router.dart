@@ -13,7 +13,7 @@ class AppRouter {
 
   static final GoRouter _router = GoRouter(
     initialLocation:
-        isFirstTime ? '/${AppRoutes.splash}' : '/${AppRoutes.mainLayout}',
+    isFirstTime ? '/${AppRoutes.splash}' : '/${AppRoutes.mainLayout}',
 
     debugLogDiagnostics: true,
     redirect: (context, state) async {
@@ -23,7 +23,9 @@ class AppRouter {
       GoRoute(
         path: '/${AppRoutes.splash}',
         name: AppRoutes.splash,
-        builder: (context, state) => const SplashScreen(),
+        builder: (context, state) => const SplashScreen(
+          nextRouteName: AppRoutes.onboarding,
+        ),
       ),
       // Onboarding route
       GoRoute(
@@ -33,4 +35,6 @@ class AppRouter {
       ),
     ],
   );
+
+  static GoRouter get router => _router;
 }

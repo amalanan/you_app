@@ -1,59 +1,84 @@
 import 'package:flutter/material.dart';
 
-/// Design system colors exported from Figma
+/// YOU App Design System Colors
 class AppColors {
   AppColors._();
 
-  // ==================== Basic Colors (Your Design System) ====================
+  // ==================== Basic Colors ====================
+
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF101010);
-  static const Color placeholders = Color(0xFFC7C7C7);
-  static const Color border = Color(0xFFE4E4E4);
-  static const Color icons = Color(0xFF828282);
-  static const Color text = Color(0xFF3D3D3D);
-  static const Color titles = Color(0xFF212121);
-  static const Color hint = Color(0xFF828282);
-  static const Color greyFillButton = Color(0xFFF9FAFB);
 
-  // ==================== Main Colors ====================
-  static const Color mainColor = Color(0xFF2563EB);
-  static const Color mainColor40 = Color(0x662563EB);
-  static const Color mainColor20 = Color(0x332563EB);
-  static const Color mainColor10 = Color(0x1A2563EB);
-  static const Color mainColor5 = Color(0x0D2563EB);
+  static const Color placeholders = Color(0xFFB8B8B8);
+  static const Color border = Color(0xFFE0E1DF);
 
-  // ==================== Secondary Colors ====================
-  static const Color secondaryColor = Color(0xFF14B8A6);
-  static const Color secondaryColor40 = Color(0x6614B8A6);
-  static const Color secondaryColor20 = Color(0x3314B8A6);
-  static const Color secondaryColor10 = Color(0x1A14B8A6);
-  static const Color secondaryColor5 = Color(0x0D14B8A6);
+  static const Color icons = Color(0xFF656665);
+  static const Color text = Color(0xFF414442);
+  static const Color titles = Color(0xFF202321);
+  static const Color hint = Color(0xFF858785);
 
-  // ==================== Status Colors ====================
-  static const Color warning = Color(0xFFFACC15);
-  static const Color warning20 = Color(0x33FACC15);
-  static const Color warning10 = Color(0x1AFACC15);
+  static const Color greyFillButton = Color(0xFFF1F2F0);
 
-  static const Color success = Color(0xFF22C55E);
-  static const Color success20 = Color(0x3322C55E);
-  static const Color success10 = Color(0x1A22C55E);
+  // ==================== YOU App Main Palette ====================
 
-  static const Color error = Color(0xFFEF4444);
-  static const Color error20 = Color(0x33EF4444);
-  static const Color error10 = Color(0x1AEF4444);
+  /// Primary - YOU Green
+  static const Color primary = Color(0xFF518D70);
 
-  static const Color neutral = Color(0xFF6B7280);
-  static const Color neutralWithoutTransparent = Color(0xFFD9DBDE);
-  static const Color neutral20 = Color(0x336B7280);
-  static const Color neutral10 = Color(0x1A6B7280);
-  static const Color neutral5 = Color(0x0D6B7280);
+  static const Color primary40 = Color(0x66518D70);
+  static const Color primary20 = Color(0x33518D70);
+  static const Color primary10 = Color(0x1A518D70);
+  static const Color primary5 = Color(0x0D518D70);
 
-  // ==================== Light Theme Colors (Your Design System) ====================
-  /// Light theme - uses your exact Figma colors
+  /// Secondary - YOU Lavender Gray
+  static const Color secondary = Color(0xFF7E7E92);
+
+  static const Color secondary40 = Color(0x667E7E92);
+  static const Color secondary20 = Color(0x337E7E92);
+  static const Color secondary10 = Color(0x1A7E7E92);
+  static const Color secondary5 = Color(0x0D7E7E92);
+
+  /// Tertiary - YOU Mauve
+  static const Color tertiary = Color(0xFFAA97A6);
+
+  static const Color tertiary40 = Color(0x66AA97A6);
+  static const Color tertiary20 = Color(0x33AA97A6);
+  static const Color tertiary10 = Color(0x1AAA97A6);
+  static const Color tertiary5 = Color(0x0DAA97A6);
+
+  /// Neutral
+  static const Color neutral = Color(0xFF656665);
+
+  static const Color neutral40 = Color(0x66656665);
+  static const Color neutral20 = Color(0x33656665);
+  static const Color neutral10 = Color(0x1A656665);
+  static const Color neutral5 = Color(0x0D656665);
+
+  static const Color neutralWithoutTransparent = Color(0xFFD9DAD8);
+
+  // ==================== Semantic / Status Colors ====================
+
+  /// Success → Primary Green
+  static const Color success = Color(0xFF518D70);
+  static const Color success20 = Color(0x33518D70);
+  static const Color success10 = Color(0x1A518D70);
+
+  /// Warning
+  static const Color warning = Color(0xFFD6A84F);
+  static const Color warning20 = Color(0x33D6A84F);
+  static const Color warning10 = Color(0x1AD6A84F);
+
+  /// Error
+  /// Based on the red used for destructive actions in the design.
+  static const Color error = Color(0xFFC62828);
+  static const Color error20 = Color(0x33C62828);
+  static const Color error10 = Color(0x1AC62828);
+
+  // ==================== Light Theme ====================
+
   static AppColorScheme light = AppColorScheme(
-    // Use your original color names
-    background: white,
-    surface: white,
+    background: Color(0xFFF4F4F2),
+    surface: Color(0xFFFAFAF8),
+
     titles: titles,
     text: text,
     hint: hint,
@@ -61,81 +86,118 @@ class AppColors {
     border: border,
     icons: icons,
     greyFillButton: greyFillButton,
-    // Main colors with variants
-    mainColor: mainColor,
-    mainColor40: mainColor40,
-    mainColor20: mainColor20,
-    mainColor10: mainColor10,
-    mainColor5: mainColor5,
-    // Secondary colors with variants
-    secondaryColor: secondaryColor,
-    secondaryColor40: secondaryColor40,
-    secondaryColor20: secondaryColor20,
-    secondaryColor10: secondaryColor10,
-    secondaryColor5: secondaryColor5,
-    // Status colors with variants
-    error: error,
-    error20: error20,
-    error10: error10,
-    warning: warning,
-    warning20: warning20,
-    warning10: warning10,
+
+    // Primary
+    primary: primary,
+    primary40: primary40,
+    primary20: primary20,
+    primary10: primary10,
+    primary5: primary5,
+
+    // Secondary
+    secondary: secondary,
+    secondary40: secondary40,
+    secondary20: secondary20,
+    secondary10: secondary10,
+    secondary5: secondary5,
+
+    // Tertiary
+    tertiary: tertiary,
+    tertiary40: tertiary40,
+    tertiary20: tertiary20,
+    tertiary10: tertiary10,
+    tertiary5: tertiary5,
+
+    // Success
     success: success,
     success20: success20,
     success10: success10,
+
+    // Warning
+    warning: warning,
+    warning20: warning20,
+    warning10: warning10,
+
+    // Error
+    error: error,
+    error20: error20,
+    error10: error10,
+
+    // Neutral
     neutral: neutral,
+    neutral40: neutral40,
     neutral20: neutral20,
     neutral10: neutral10,
     neutral5: neutral5,
     neutralWithoutTransparent: neutralWithoutTransparent,
   );
 
-  // ==================== Dark Theme Colors (Inverted for Dark Mode) ====================
-  /// Dark theme - same color names, different values
+  // ==================== Dark Theme ====================
+
   static AppColorScheme dark = AppColorScheme(
-    background: Color(0xFF121212),
-    surface: Color(0xFF1E1E1E),
-    titles: Color(0xFFE5E5E5), // Light for dark bg
-    text: Color(0xFFB3B3B3), // Light for dark bg
-    hint: Color(0xFF808080), // Light for dark bg
-    placeholders: Color(0xFF666666), // Light for dark bg
-    border: Color(0xFF3D3D3D), // Dark border
-    icons: Color(0xFFB3B3B3), // Light icons
-    greyFillButton: Color(0xFF2A2A2A), // Dark fill
-    // Main colors with variants
-    mainColor: Color(0xFF3B82F6), // Brighter for dark bg
-    mainColor40: Color(0x663B82F6),
-    mainColor20: Color(0x333B82F6),
-    mainColor10: Color(0x1A3B82F6),
-    mainColor5: Color(0x0D3B82F6),
-    // Secondary colors with variants
-    secondaryColor: secondaryColor, // Keep same
-    secondaryColor40: secondaryColor40,
-    secondaryColor20: secondaryColor20,
-    secondaryColor10: secondaryColor10,
-    secondaryColor5: secondaryColor5,
-    // Status colors with variants
-    error: Color(0xFFF87171), // Lighter error
-    error20: Color(0x33F87171),
-    error10: Color(0x1AF87171),
-    warning: Color(0xFFFCD34D), // Lighter warning
-    warning20: Color(0x33FCD34D),
-    warning10: Color(0x1AFCD34D),
-    success: Color(0xFF4ADE80), // Lighter success
-    success20: Color(0x334ADE80),
-    success10: Color(0x1A4ADE80),
-    neutral: Color(0xFF9CA3AF), // Lighter neutral
-    neutral20: Color(0x339CA3AF),
-    neutral10: Color(0x1A9CA3AF),
-    neutral5: Color(0x0D9CA3AF),
-    neutralWithoutTransparent: Color(0xFF2A2A2A),
+    background: Color(0xFF171918),
+    surface: Color(0xFF222523),
+
+    titles: Color(0xFFF1F2EF),
+    text: Color(0xFFD0D2CF),
+    hint: Color(0xFF9EA19E),
+    placeholders: Color(0xFF777A77),
+    border: Color(0xFF3B3E3B),
+    icons: Color(0xFFB8BBB8),
+    greyFillButton: Color(0xFF2C302D),
+
+    // Primary
+    primary: Color(0xFF6FA98A),
+    primary40: Color(0x666FA98A),
+    primary20: Color(0x336FA98A),
+    primary10: Color(0x1A6FA98A),
+    primary5: Color(0x0D6FA98A),
+
+    // Secondary
+    secondary: Color(0xFF9696AA),
+    secondary40: Color(0x669696AA),
+    secondary20: Color(0x339696AA),
+    secondary10: Color(0x1A9696AA),
+    secondary5: Color(0x0D9696AA),
+
+    // Tertiary
+    tertiary: Color(0xFFBDAAB9),
+    tertiary40: Color(0x66BDAAB9),
+    tertiary20: Color(0x33BDAAB9),
+    tertiary10: Color(0x1ABDAAB9),
+    tertiary5: Color(0x0DBDAAB9),
+
+    // Success
+    success: Color(0xFF6FA98A),
+    success20: Color(0x336FA98A),
+    success10: Color(0x1A6FA98A),
+
+    // Warning
+    warning: Color(0xFFE0B968),
+    warning20: Color(0x33E0B968),
+    warning10: Color(0x1AE0B968),
+
+    // Error
+    error: Color(0xFFEF5350),
+    error20: Color(0x33EF5350),
+    error10: Color(0x1AEF5350),
+
+    // Neutral
+    neutral: Color(0xFFA5A8A5),
+    neutral40: Color(0x66A5A8A5),
+    neutral20: Color(0x33A5A8A5),
+    neutral10: Color(0x1AA5A8A5),
+    neutral5: Color(0x0DA5A8A5),
+    neutralWithoutTransparent: Color(0xFF3A3D3A),
   );
 }
 
-/// Theme-aware color scheme using your original color names
+
+/// Theme-aware color scheme for YOU App
 class AppColorScheme {
   final Color background;
   final Color surface;
+
   final Color titles;
   final Color text;
   final Color hint;
@@ -144,31 +206,48 @@ class AppColorScheme {
   final Color icons;
   final Color greyFillButton;
 
-  // Main colors with all variants
-  final Color mainColor;
-  final Color mainColor40;
-  final Color mainColor20;
-  final Color mainColor10;
-  final Color mainColor5;
+  // ==================== Primary ====================
 
-  // Secondary colors with all variants
-  final Color secondaryColor;
-  final Color secondaryColor40;
-  final Color secondaryColor20;
-  final Color secondaryColor10;
-  final Color secondaryColor5;
+  final Color primary;
+  final Color primary40;
+  final Color primary20;
+  final Color primary10;
+  final Color primary5;
 
-  // Status colors with variants
-  final Color error;
-  final Color error20;
-  final Color error10;
-  final Color warning;
-  final Color warning20;
-  final Color warning10;
+  // ==================== Secondary ====================
+
+  final Color secondary;
+  final Color secondary40;
+  final Color secondary20;
+  final Color secondary10;
+  final Color secondary5;
+
+  // ==================== Tertiary ====================
+
+  final Color tertiary;
+  final Color tertiary40;
+  final Color tertiary20;
+  final Color tertiary10;
+  final Color tertiary5;
+
+  // ==================== Status Colors ====================
+
   final Color success;
   final Color success20;
   final Color success10;
+
+  final Color warning;
+  final Color warning20;
+  final Color warning10;
+
+  final Color error;
+  final Color error20;
+  final Color error10;
+
+  // ==================== Neutral ====================
+
   final Color neutral;
+  final Color neutral40;
   final Color neutral20;
   final Color neutral10;
   final Color neutral5;
@@ -177,6 +256,7 @@ class AppColorScheme {
   AppColorScheme({
     required this.background,
     required this.surface,
+
     required this.titles,
     required this.text,
     required this.hint,
@@ -184,26 +264,39 @@ class AppColorScheme {
     required this.border,
     required this.icons,
     required this.greyFillButton,
-    required this.mainColor,
-    required this.mainColor40,
-    required this.mainColor20,
-    required this.mainColor10,
-    required this.mainColor5,
-    required this.secondaryColor,
-    required this.secondaryColor40,
-    required this.secondaryColor20,
-    required this.secondaryColor10,
-    required this.secondaryColor5,
-    required this.error,
-    required this.error20,
-    required this.error10,
-    required this.warning,
-    required this.warning20,
-    required this.warning10,
+
+    required this.primary,
+    required this.primary40,
+    required this.primary20,
+    required this.primary10,
+    required this.primary5,
+
+    required this.secondary,
+    required this.secondary40,
+    required this.secondary20,
+    required this.secondary10,
+    required this.secondary5,
+
+    required this.tertiary,
+    required this.tertiary40,
+    required this.tertiary20,
+    required this.tertiary10,
+    required this.tertiary5,
+
     required this.success,
     required this.success20,
     required this.success10,
+
+    required this.warning,
+    required this.warning20,
+    required this.warning10,
+
+    required this.error,
+    required this.error20,
+    required this.error10,
+
     required this.neutral,
+    required this.neutral40,
     required this.neutral20,
     required this.neutral10,
     required this.neutral5,
@@ -211,12 +304,21 @@ class AppColorScheme {
   });
 }
 
-/// Extension to easily access theme-aware colors from BuildContext
+
+/// Extension to access YOU colors through BuildContext.
+///
+/// Example:
+/// context.colors.primary
+/// context.colors.secondary
+/// context.colors.tertiary
+/// context.colors.titles
+/// context.colors.text
 extension AppColorsExtension on BuildContext {
-  /// Get the current color scheme based on theme
-  /// Usage: context.colors.titles, context.colors.text, etc.
   AppColorScheme get colors {
     final brightness = Theme.of(this).brightness;
-    return brightness == Brightness.light ? AppColors.light : AppColors.dark;
+
+    return brightness == Brightness.light
+        ? AppColors.light
+        : AppColors.dark;
   }
 }

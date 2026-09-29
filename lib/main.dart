@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'core/helpers/cache_helper.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:you_app/features/splash/pages/splash_screen.dart';
-
 import 'features/home/pages/home_screen.dart';
 
 void main() async {

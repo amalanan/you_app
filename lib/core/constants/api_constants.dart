@@ -1,3 +1,9 @@
+// abstract final class ApiEndpoints {
+//   static const baseUrl = 'https://api.example.com'; // TODO: replace
+//   static const login = '/auth/login';
+//   static const register = '/auth/register';
+// }
+
 class ApiEndpoints {
   static const String baseUrl = 'https://gsg-project-group-6.onrender.com';
 

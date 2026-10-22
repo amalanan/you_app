@@ -1,3 +1,37 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/material.dart';
+
+import 'core/constants/app_strings.dart';
+import 'core/routing/app_router.dart';
+import 'core/theme/app_theme.dart';
+import 'core/theme/theme_controller.dart';
+
+class YouApp extends StatelessWidget {
+  const YouApp({super.key, required this.themeController});
+
+  final ThemeController themeController;
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeController,
+      builder:
+          (_, mode, __) => MaterialApp.router(
+                  useInheritedMediaQuery: true,
+                  title: AppStrings.appName,
+                  debugShowCheckedModeBanner: false,
+                  theme: AppTheme.light,
+                  darkTheme: AppTheme.dark,
+                  themeMode: mode,
+                  routerConfig: AppRouter.router,
+                  locale: DevicePreview.locale(context),
+                  builder: DevicePreview.appBuilder,
+                ),
+
+    );
+  }
+}
+
 // import 'package:device_preview/device_preview.dart';
 // import 'package:dio/dio.dart';
 // import 'package:flutter/material.dart';

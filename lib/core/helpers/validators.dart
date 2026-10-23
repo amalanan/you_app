@@ -16,5 +16,5 @@ abstract final class Validators {
   }
 
   static String? Function(String?) confirmPassword(String Function() original) =>
-      (v) => v == original() ? null : AppStrings.passwordsDontMatch;
+          (v) => v == original() ? null : AppStrings.passwordsDontMatch;
 }

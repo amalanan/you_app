@@ -7,6 +7,9 @@ abstract final class ErrorHandler {
   /// Turn anything thrown into a [Failure].
   static Failure handle(Object error) {
     if (error is DioException) return _fromDio(error);
+    if (error is AuthException) {
+      return AuthFailure(error.message, cancelled: error.cancelled);
+    }
     if (error is NetworkException) return const NetworkFailure();
     if (error is ServerException) {
       return ServerFailure(

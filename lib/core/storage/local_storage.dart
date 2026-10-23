@@ -18,7 +18,7 @@ class LocalStorage {
   ThemeMode get themeMode {
     final saved = _prefs.getString(StorageKeys.themeMode);
     return ThemeMode.values.firstWhere(
-      (m) => m.name == saved,
+          (m) => m.name == saved,
       orElse: () => ThemeMode.system,
     );
   }

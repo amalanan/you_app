@@ -16,6 +16,11 @@ class ServerFailure extends Failure {
   final int? statusCode;
 }
 
+class AuthFailure extends Failure {
+  const AuthFailure(super.message, {this.cancelled = false});
+  final bool cancelled;
+}
+
 class CacheFailure extends Failure {
   const CacheFailure() : super(AppStrings.unknownError);
 }

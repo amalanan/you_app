@@ -11,6 +11,7 @@ import '../../../core/helpers/extensions.dart';
 import '../../../core/helpers/responsive.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/storage/local_storage.dart';
+import '../../auth/data/auth_repository.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -41,9 +42,15 @@ class _SplashPageState extends State<SplashPage>
 
   void _goNext() {
     if (!mounted) return;
-    // TODO: when auth is ready: token != null -> home, else -> login.
-    final seen = LocalStorage.instance.onboardingSeen;
-    context.go(seen ? AppRoutes.home : AppRoutes.onboarding);
+    final String route;
+    if (!LocalStorage.instance.onboardingSeen) {
+      route = AppRoutes.onboarding;
+    } else if (AuthRepository.instance.isLoggedIn) {
+      route = AppRoutes.home;
+    } else {
+      route = AppRoutes.login;
+    }
+    context.go(route);
   }
 
   @override

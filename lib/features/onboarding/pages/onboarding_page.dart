@@ -34,8 +34,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Future<void> _finish() async {
     await LocalStorage.instance.setOnboardingSeen(true);
     if (!mounted) return;
-    // TODO: go to sign-up / login once those screens exist.
-    context.go(AppRoutes.home);
+    context.go(AppRoutes.login); // كان AppRoutes.home
   }
 
   void _next() {

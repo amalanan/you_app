@@ -7,6 +7,8 @@ abstract final class AppStrings {
   static const next = 'Next';
   static const skip = 'Skip';
   static const startJourney = 'Start My Journey';
+  static const or = 'or';
+  static const signOut = 'Sign out';
 
   // Onboarding
   static const onboarding1Title = 'Meet yourself\ndifferently.';
@@ -19,6 +21,36 @@ abstract final class AppStrings {
   static const onboarding3Body =
       'Reflect on your experiences and watch your personal growth evolve over time.';
 
+  // Auth: shared fields
+  static const email = 'Email';
+  static const emailHint = 'you@example.com';
+  static const password = 'Password';
+  static const passwordHint = '••••••••';
+
+  // Auth: login
+  static const welcomeBack = 'Welcome back 👋';
+  static const continueJourney = 'Continue your journey';
+  static const forgotPassword = 'Forgot Password?';
+  static const logIn = 'Log In';
+  static const continueWithGoogle = 'Continue with Google';
+  static const noAccount = "Don't have an account? ";
+  static const createOne = 'Create one';
+  static const enterEmailFirst = 'Enter your email first';
+  static const resetLinkSent = 'Password reset link sent to your email';
+
+  // Auth: sign up
+  static const startYourJourney = 'Start your journey';
+  static const createYourAccount = 'Create your account';
+  static const name = 'Name';
+  static const nameHint = 'Your name';
+  static const confirmPassword = 'Confirm Password';
+  static const agreeTo = 'I agree to the ';
+  static const termsAndPrivacy = 'Terms & Privacy Policy';
+  static const mustAgree = 'Please accept the terms to continue';
+  static const createAccount = 'Create Account';
+  static const haveAccount = 'Already have an account? ';
+  static const logInLink = 'Log in';
+
   // Validation
   static const fieldRequired = 'This field is required';
   static const invalidEmail = 'Enter a valid email';
@@ -29,4 +61,9 @@ abstract final class AppStrings {
   static const networkError = 'No internet connection';
   static const serverError = 'Something went wrong on our side';
   static const unknownError = 'Unexpected error, please try again';
+  static const wrongCredentials = 'Incorrect email or password';
+  static const emailInUse = 'This email is already registered';
+  static const userDisabled = 'This account has been disabled';
+  static const googleUnavailable = 'Google sign-in is not available yet';
+  static const tooManyRequests = 'Too many attempts, try again later';
 }

@@ -18,6 +18,7 @@ abstract final class AppColors {
   static const lightText = Color(0xFF2B2B2B);
   static const lightBorder = Color(0xFFE3E6E4);
   static const lightMutedText = Color(0xFF656665);
+  static const lightHint = Color(0xFFB4B8B5);
 
   // Dark mode
   static const darkBackground = Color(0xFF2B2C2D);
@@ -25,6 +26,7 @@ abstract final class AppColors {
   static const darkText = Color(0xFFF2F2F2);
   static const darkBorder = Color(0xFF4A4B4C);
   static const darkMutedText = Color(0xFFB5B6B6);
+  static const darkHint = Color(0xFF8A8B8C);
 
   // Status
   static const error = Color(0xFFD64545);

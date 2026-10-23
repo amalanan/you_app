@@ -13,3 +13,11 @@ class CacheException implements Exception {
   const CacheException([this.message = '']);
   final String message;
 }
+
+/// Thrown by an AuthRepository. [message] is already user-friendly.
+/// [cancelled] = the user closed the sign-in sheet (not an error to show).
+class AuthException implements Exception {
+  const AuthException(this.message, {this.cancelled = false});
+  final String message;
+  final bool cancelled;
+}

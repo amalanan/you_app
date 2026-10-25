@@ -10,6 +10,7 @@ abstract final class AppColors {
   static const mint = Color(0xFFC4CBC5);
   static const grey = Color(0xFF656665);
   static const logoPurple = Color(0xFF9B8FE0);
+  static const warm = Color(0xFFC9C47A); // 'Self-Awareness' bar
   static const white = Color(0xFFFFFFFF);
 
   // Light mode
@@ -17,6 +18,7 @@ abstract final class AppColors {
   static const lightSurface = white;
   static const lightText = Color(0xFF2B2B2B);
   static const lightBorder = Color(0xFFE3E6E4);
+  static const lightCard = Color(0xFFF1F1EF);
   static const lightMutedText = Color(0xFF656665);
   static const lightHint = Color(0xFFB4B8B5);
 
@@ -25,6 +27,7 @@ abstract final class AppColors {
   static const darkSurface = Color(0xFF363738);
   static const darkText = Color(0xFFF2F2F2);
   static const darkBorder = Color(0xFF4A4B4C);
+  static const darkCard = Color(0xFF363738);
   static const darkMutedText = Color(0xFFB5B6B6);
   static const darkHint = Color(0xFF8A8B8C);
 

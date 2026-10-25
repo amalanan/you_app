@@ -7,8 +7,6 @@
 // /// paddingXL = 32.0;
 // /// padding2XL = 40.0;
 // /// paddingXXL = 48.0;
-// ///
-
 abstract final class AppSizes {
   // Spacing
   static const double xs = 4;
@@ -26,6 +24,8 @@ abstract final class AppSizes {
   // Components
   static const double buttonHeight = 52;
   static const double screenPadding = 24;
+  static const double bottomNavHeight = 80;
+  static const double iconBox = 40;
 }
 
 

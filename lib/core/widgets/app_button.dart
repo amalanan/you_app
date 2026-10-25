@@ -9,14 +9,19 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     this.secondary = false,
+    this.leadingIcon,
+    this.trailingIcon,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final bool isLoading;
 
-  /// Purple button (design: "Next", "Create Account"). Default is green.
+  /// Purple button (design: "Next", "Explore Scenario"). Default is green.
   final bool secondary;
+
+  final IconData? leadingIcon;
+  final IconData? trailingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +35,38 @@ class AppButton extends StatelessWidget {
         disabledBackgroundColor: color,
         disabledForegroundColor: AppColors.white,
       ),
-      child: isLoading
-          ? const SizedBox.square(
-        dimension: 22,
-        child: CircularProgressIndicator(
-          strokeWidth: 2.2,
-          color: AppColors.white,
-        ),
-      )
-          : Text(label),
+      child: isLoading ? const _Spinner() : _content(),
+    );
+  }
+
+  Widget _content() {
+    if (leadingIcon == null && trailingIcon == null) return Text(label);
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (leadingIcon != null) ...[
+          Icon(leadingIcon, size: 20),
+          const SizedBox(width: 8),
+        ],
+        Flexible(child: Text(label, overflow: TextOverflow.ellipsis)),
+        if (trailingIcon != null) ...[
+          const SizedBox(width: 8),
+          Icon(trailingIcon, size: 20),
+        ],
+      ],
+    );
+  }
+}
+
+class _Spinner extends StatelessWidget {
+  const _Spinner();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.square(
+      dimension: 22,
+      child: CircularProgressIndicator(strokeWidth: 2.2, color: AppColors.white),
     );
   }
 }

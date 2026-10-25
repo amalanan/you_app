@@ -51,6 +51,32 @@ abstract final class AppStrings {
   static const haveAccount = 'Already have an account? ';
   static const logInLink = 'Log in';
 
+  // Navigation
+  static const navHome = 'Home';
+  static const navJourney = 'Journey';
+  static const navAdd = 'Add';
+  static const navInsights = 'Insights';
+  static const navProfile = 'Profile';
+  static const comingSoon = 'Coming soon';
+
+  // Home
+  static const goodMorning = 'Good morning';
+  static const goodAfternoon = 'Good afternoon';
+  static const goodEvening = 'Good evening';
+  static const yourJourney = 'Your journey';
+  static String dayNumber(int n) => 'Day $n';
+  static const todaysScenario = "TODAY'S SCENARIO";
+  static String minutes(int n) => '$n min';
+  static const exploreScenario = 'Explore Scenario';
+  static const yourGrowth = 'YOUR GROWTH';
+  static const seeProgress = 'See progress';
+  static const decisionMaking = 'Decision Making';
+  static const learning = 'Learning';
+  static const selfAwareness = 'Self-Awareness';
+  static const somethingHappened = 'Something happened today?';
+  static const captureMoment = 'Capture a moment and reflect on it.';
+  static const addSituation = 'Add Situation';
+
   // Validation
   static const fieldRequired = 'This field is required';
   static const invalidEmail = 'Enter a valid email';

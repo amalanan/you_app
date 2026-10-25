@@ -1,7 +1,11 @@
 abstract final class AppAssets {
   static const _images = 'assets/images';
   static const _svgs = 'assets/svgs';
+
   static const logo = '$_images/logo.png';
+
+  static const navHome = '$_images/nav_home.png';
+  static const navProfile = '$_images/nav_profile.png';
 
   static const google = '$_images/google.png';
 
@@ -9,5 +13,5 @@ abstract final class AppAssets {
   static const onboarding2 = '$_images/onboarding_2.png';
   static const onboarding3 = '$_images/onboarding_3.png';
 
-  // static const emptyState = '$_svgs/empty_state.svg';
+// static const emptyState = '$_svgs/empty_state.svg';
 }

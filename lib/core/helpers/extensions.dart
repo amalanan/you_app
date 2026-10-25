@@ -12,6 +12,9 @@ extension ContextX on BuildContext {
   Color get mutedText =>
       isDark ? AppColors.darkMutedText : AppColors.lightMutedText;
 
+  /// Background of cards (scenario card, add-situation card...).
+  Color get cardColor => isDark ? AppColors.darkCard : AppColors.lightCard;
+
   Color get borderColor =>
       isDark ? AppColors.darkBorder : AppColors.lightBorder;
 

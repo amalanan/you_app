@@ -1,55 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
-import '../../../core/constants/app_strings.dart';
-import '../../../core/helpers/extensions.dart';
-import '../../../core/routing/app_routes.dart';
-import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/responsive_center.dart';
 import '../../auth/data/auth_repository.dart';
+import '../data/mock_home_data.dart';
+import '../widgets/add_situation_card.dart';
+import '../widgets/growth_section.dart';
+import '../widgets/home_header.dart';
+import '../widgets/journey_progress_section.dart';
+import '../widgets/today_scenario_card.dart';
 
-/// Placeholder: shows who is signed in + a sign out button.
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final auth = AuthRepository.instance;
+    // TODO: replace mockHomeData with real data.
+    const data = mockHomeData;
+    final name = AuthRepository.instance.currentName ?? '';
 
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 320),
-            child: Padding(
-              padding: const EdgeInsets.all(AppSizes.lg),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Hi ${auth.currentName ?? ''}'.trim(),
-                    style: context.text.headlineLarge,
-                  ),
-                  if (auth.currentEmail != null) ...[
-                    const SizedBox(height: AppSizes.xs),
-                    Text(
-                      auth.currentEmail!,
-                      style: context.text.bodyMedium
-                          ?.copyWith(color: context.mutedText),
-                    ),
-                  ],
-                  const SizedBox(height: AppSizes.lg),
-                  AppButton(
-                    label: AppStrings.signOut,
-                    secondary: true,
-                    onPressed: () async {
-                      await auth.signOut();
-                      if (context.mounted) context.go(AppRoutes.login);
-                    },
-                  ),
-                ],
-              ),
+        bottom: false, // the bottom nav handles the bottom inset
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.screenPadding,
+              AppSizes.md,
+              AppSizes.screenPadding,
+              AppSizes.lg,
             ),
+            children: [
+              HomeHeader(name: name),
+              const SizedBox(height: AppSizes.lg),
+              JourneyProgressSection(journey: data.journey),
+              const SizedBox(height: AppSizes.lg),
+              TodayScenarioCard(scenario: data.scenario),
+              const SizedBox(height: AppSizes.xl),
+              GrowthSection(growth: data.growth),
+              const SizedBox(height: AppSizes.sm),
+              const AddSituationCard(),
+            ],
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import '../../../core/models/growth_type.dart';
 import '../models/home_data.dart';
 
 /// TODO: replace with real data (repository / controller) later.

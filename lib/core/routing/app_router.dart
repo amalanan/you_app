@@ -6,12 +6,39 @@ import '../../features/home/pages/home_page.dart';
 import '../../features/main/pages/main_shell_page.dart';
 import '../../features/onboarding/pages/onboarding_page.dart';
 import '../../features/profile/pages/profile_page.dart';
+import '../../features/scenarios/logic/scenario_flow_controller.dart';
+import '../../features/scenarios/pages/confidence_page.dart';
+import '../../features/scenarios/pages/reflection_page.dart';
+import '../../features/scenarios/pages/result_page.dart';
+import '../../features/scenarios/pages/scenario_question_page.dart';
+import '../../features/scenarios/pages/scenarios_page.dart';
+import '../../features/situations/logic/situation_flow_controller.dart';
+import '../../features/situations/pages/add_situation_page.dart';
+import '../../features/situations/pages/situation_feelings_page.dart';
+import '../../features/situations/pages/situation_outcome_page.dart';
+import '../../features/situations/pages/situation_response_page.dart';
+import '../../features/situations/pages/situation_saved_page.dart';
+import '../../features/situations/pages/situation_type_page.dart';
 import '../../features/splash/pages/splash_page.dart';
 import '../constants/app_strings.dart';
 import '../widgets/placeholder_page.dart';
 import 'app_routes.dart';
 
 abstract final class AppRouter {
+  /// The scenario steps share one [ScenarioFlowController] passed as `extra`.
+  /// If it is missing (e.g. app restarted on that page), go back Home.
+  static String? _needsFlow(_, GoRouterState state) =>
+      state.extra is ScenarioFlowController ? null : AppRoutes.home;
+
+  static ScenarioFlowController _flow(GoRouterState state) =>
+      state.extra! as ScenarioFlowController;
+
+  static String? _needsSituationFlow(_, GoRouterState state) =>
+      state.extra is SituationFlowController ? null : AppRoutes.home;
+
+  static SituationFlowController _situationFlow(GoRouterState state) =>
+      state.extra! as SituationFlowController;
+
   static final router = GoRouter(
     initialLocation: AppRoutes.splash,
     routes: [
@@ -29,20 +56,30 @@ abstract final class AppRouter {
         builder: (_, __, shell) => MainShellPage(navigationShell: shell),
         branches: [
           StatefulShellBranch(routes: [
-            GoRoute(path: AppRoutes.home, builder: (_, __) => const HomePage()),
+            GoRoute(
+              path: AppRoutes.home,
+              builder: (_, __) => const HomePage(),
+              routes: [
+                // full path: /home/scenarios
+                GoRoute(
+                  path: 'scenarios',
+                  builder: (_, __) => const ScenariosPage(),
+                ),
+              ],
+            ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.journey,
               // TODO: replace with JourneyPage
-              builder: (_, __) => PlaceholderPage(title: AppStrings.navJourney),
+              builder: (_, __) => const PlaceholderPage(title: AppStrings.navJourney),
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.insights,
               // TODO: replace with InsightsPage
-              builder: (_, __) => PlaceholderPage(title: AppStrings.navInsights),
+              builder: (_, __) => const PlaceholderPage(title: AppStrings.navInsights),
             ),
           ]),
           StatefulShellBranch(routes: [
@@ -55,15 +92,59 @@ abstract final class AppRouter {
       ),
 
       // Opened on top of the tabs (no bottom nav).
+
+      // Add situation flow: what happened -> type -> feelings -> response
+      // -> outcome -> saved. The first page creates the controller.
       GoRoute(
         path: AppRoutes.addSituation,
-        // TODO: replace with AddSituationPage
-        builder: (_, __) => PlaceholderPage(title: AppStrings.addSituation),
+        builder: (_, __) => const AddSituationPage(),
       ),
       GoRoute(
-        path: AppRoutes.scenarios,
-        // TODO: replace with ScenariosPage
-        builder: (_, __) => PlaceholderPage(title: AppStrings.exploreScenario),
+        path: AppRoutes.situationType,
+        redirect: _needsSituationFlow,
+        builder: (_, state) => SituationTypePage(flow: _situationFlow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.situationFeelings,
+        redirect: _needsSituationFlow,
+        builder: (_, state) => SituationFeelingsPage(flow: _situationFlow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.situationResponse,
+        redirect: _needsSituationFlow,
+        builder: (_, state) => SituationResponsePage(flow: _situationFlow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.situationOutcome,
+        redirect: _needsSituationFlow,
+        builder: (_, state) => SituationOutcomePage(flow: _situationFlow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.situationSaved,
+        redirect: _needsSituationFlow,
+        builder: (_, state) => SituationSavedPage(flow: _situationFlow(state)),
+      ),
+
+      // Scenario flow: question -> confidence -> reflection -> result
+      GoRoute(
+        path: AppRoutes.scenarioQuestion,
+        redirect: _needsFlow,
+        builder: (_, state) => ScenarioQuestionPage(flow: _flow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.scenarioConfidence,
+        redirect: _needsFlow,
+        builder: (_, state) => ConfidencePage(flow: _flow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.scenarioReflection,
+        redirect: _needsFlow,
+        builder: (_, state) => ReflectionPage(flow: _flow(state)),
+      ),
+      GoRoute(
+        path: AppRoutes.scenarioResult,
+        redirect: _needsFlow,
+        builder: (_, state) => ResultPage(flow: _flow(state)),
       ),
     ],
   );

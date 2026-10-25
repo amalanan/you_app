@@ -4,8 +4,8 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/helpers/extensions.dart';
+import '../../../core/widgets/icon_box.dart';
 import '../models/home_data.dart';
-import 'icon_box.dart';
 
 /// "Your journey" + Day 12 + row of progress dots.
 class JourneyProgressSection extends StatelessWidget {

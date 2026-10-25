@@ -77,6 +77,76 @@ abstract final class AppStrings {
   static const captureMoment = 'Capture a moment and reflect on it.';
   static const addSituation = 'Add Situation';
 
+  // Scenarios
+  static const exploreScenarios = 'Explore Scenarios';
+  static const searchScenarios = 'Search scenarios';
+  static const noScenariosFound = 'No scenarios found';
+  static const filterAll = 'All';
+  static const filterDecisions = 'Decisions';
+  static const filterChallenges = 'Challenges';
+  static const filterChange = 'Change';
+  static const scenarioLabel = 'SCENARIO';
+  static String stepOf(int step) => '$step of 3';
+  static const whatWouldYouDo = 'What would you most likely do?';
+  static const continueLabel = 'Continue';
+  static const howConfident = 'How confident are you in your choice?';
+  static const notConfident = 'Not confident';
+  static const veryConfident = 'Very confident';
+  static const whyChoose = 'Why did you choose this?';
+  static const reasonHint = 'Tell us what was going through your mind...';
+  static const whatMattered = 'What mattered most to you?';
+  static const matterGrowth = 'Growth';
+  static const matterSecurity = 'Security';
+  static const matterFreedom = 'Freedom';
+  static const matterStability = 'Stability';
+  static const matterMoney = 'Money';
+  static const matterAvoidingFailure = 'Avoiding Failure';
+  static const matterOther = 'Other';
+  static const completeScenario = 'Complete Scenario';
+  static const insightTitle = 'A little insight about your response';
+  static const growthFromScenario = 'Your growth from this scenario';
+  static const oneResponseNote =
+      "One response doesn't define you. Your profile becomes clearer through patterns over time.";
+  static const viewMyGrowth = 'View My Growth';
+  static const backToHome = 'Back to Home';
+
+  // Situations (Add My Situation flow)
+  static const other = 'Other';
+  static const situationTitle = 'Something happened?';
+  static const situationSubtitle = 'Tell us about a moment you want to understand better.';
+  static const whatHappened = 'What happened?';
+  static const describeWhatHappened = 'Describe what happened...';
+  static const situationTypeTitle = 'What kind of situation was this?';
+  static const typeDecision = 'Decision';
+  static const typeChallenge = 'Challenge';
+  static const typeWork = 'Work';
+  static const typeStudy = 'Study';
+  static const typeRelationship = 'Relationship';
+  static const typePersonal = 'Personal';
+  static const typeUnexpected = 'Unexpected';
+  static const reflectOnIt = "Let's reflect on it.";
+  static const whatDidYouFeel = 'What did you feel?';
+  static const selectAllThatApply = 'Select all that apply';
+  static const feelExcited = 'Excited';
+  static const feelNervous = 'Nervous';
+  static const feelConfident = 'Confident';
+  static const feelConfused = 'Confused';
+  static const feelFrustrated = 'Frustrated';
+  static const feelDisappointed = 'Disappointed';
+  static const feelHopeful = 'Hopeful';
+  static const feelOverwhelmed = 'Overwhelmed';
+  static const feelCalm = 'Calm';
+  static const whatDidYouDo = 'What did you do?';
+  static const describeWhatYouDid = 'Describe what you did...';
+  static const howConfidentResponse = 'How confident were you about your response?';
+  static const whatHappenedAfterward = 'What happened afterward?';
+  static const describeWhatNext = 'Describe what happened next...';
+  static const whatDidYouLearn = 'What did you learn?';
+  static const lessonHint = 'What is the main lesson you learned from this?';
+  static const reflectionSaved = 'Reflection saved.';
+  static const whatWeNoticed = 'What we noticed';
+  static const growthFromReflection = 'Your growth from this reflection';
+
   // Validation
   static const fieldRequired = 'This field is required';
   static const invalidEmail = 'Enter a valid email';

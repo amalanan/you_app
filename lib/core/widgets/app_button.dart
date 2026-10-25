@@ -32,7 +32,7 @@ class AppButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         // keep the brand color while loading instead of turning grey
-        disabledBackgroundColor: color,
+        disabledBackgroundColor: isLoading ? color : color.withAlpha(110),
         disabledForegroundColor: AppColors.white,
       ),
       child: isLoading ? const _Spinner() : _content(),

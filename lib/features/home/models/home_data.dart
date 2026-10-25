@@ -1,4 +1,4 @@
-enum GrowthType { decisionMaking, learning, selfAwareness }
+import '../../../core/models/growth_type.dart';
 
 class GrowthScore {
   const GrowthScore(this.type, this.score);

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_durations.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/helpers/extensions.dart';
+import '../../../core/models/growth_type.dart';
 import '../../../core/routing/app_routes.dart';
+import '../../../core/widgets/icon_box.dart';
 import '../models/home_data.dart';
-import 'icon_box.dart';
 
 /// "YOUR GROWTH" + one row per skill.
 class GrowthSection extends StatelessWidget {
@@ -60,42 +60,20 @@ class _GrowthRow extends StatelessWidget {
 
   final GrowthScore item;
 
-  // name, icon, icon color, bar color for each skill
-  (String, IconData, Color, Color) get _style => switch (item.type) {
-        GrowthType.decisionMaking => (
-            AppStrings.decisionMaking,
-            Icons.balance,
-            AppColors.secondary,
-            AppColors.secondary,
-          ),
-        GrowthType.learning => (
-            AppStrings.learning,
-            Icons.psychology_outlined,
-            AppColors.secondary,
-            AppColors.secondary,
-          ),
-        GrowthType.selfAwareness => (
-            AppStrings.selfAwareness,
-            Icons.self_improvement,
-            AppColors.primary,
-            AppColors.warm,
-          ),
-      };
-
   @override
   Widget build(BuildContext context) {
-    final (name, icon, iconColor, barColor) = _style;
+    final type = item.type;
 
     return Row(
       children: [
-        IconBox(icon: icon, color: iconColor),
+        IconBox(icon: type.icon, color: type.iconColor),
         const SizedBox(width: AppSizes.md),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                name,
+                type.label,
                 style: context.text.bodyMedium
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
@@ -108,7 +86,7 @@ class _GrowthRow extends StatelessWidget {
                   value: value,
                   minHeight: 5,
                   borderRadius: BorderRadius.circular(3),
-                  color: barColor,
+                  color: type.barColor,
                   backgroundColor: context.borderColor,
                 ),
               ),

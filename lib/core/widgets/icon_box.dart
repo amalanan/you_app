@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/constants/app_sizes.dart';
+import '../constants/app_sizes.dart';
 
 /// Small rounded square with a softly tinted background.
 class IconBox extends StatelessWidget {

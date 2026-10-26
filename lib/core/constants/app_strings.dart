@@ -147,6 +147,53 @@ abstract final class AppStrings {
   static const whatWeNoticed = 'What we noticed';
   static const growthFromReflection = 'Your growth from this reflection';
 
+  // Journey
+  static String daysOfReflection(int n) => '$n days of reflection';
+  static const statReflections = 'Reflections';
+  static const statSituations = 'Situations';
+  static const statScenarios = 'Scenarios';
+
+  // Insights / My Growth
+  static const insightsTitle = 'Your Insights';
+  static const myGrowth = 'My Growth';
+  static const growthSubtitle = 'How are your changes over time?';
+  static const strongestSide = 'Your strongest side';
+  static const worthExploring = 'Worth exploring';
+  static const flexibility = 'Flexibility';
+  static const adaptation = 'Adaptation';
+  static const consistency = 'Consistency';
+  static const range7 = '7 days';
+  static const range30 = '30 days';
+  static const range3m = '3 months';
+  static const currentScore = 'Current score';
+  static const previousScore = 'Previous score';
+  static const change = 'Change';
+  static const whatDoesItMean = 'What does this mean?';
+  static const fromRecentExperiences = 'From your recent experiences';
+
+  // Profile
+  static String dayOfJourney(int n) => 'Day $n of your journey';
+  static const menuReflectionPrefs = 'Reflection Preferences';
+  static const menuNotifications = 'Notifications';
+  static const menuAppearance = 'Appearance';
+  static const menuPrivacyData = 'Privacy & Data';
+  static const menuTerms = 'Terms of Use';
+  static const menuPrivacyPolicy = 'Privacy Policy';
+  static const menuDeleteAccount = 'Delete Account';
+  static const logOut = 'Log out';
+  static const deleteAccountTitle = 'Delete account?';
+  static const deleteAccountBody = 'Your account and data will be removed permanently.';
+  static const cancel = 'Cancel';
+  static const delete = 'Delete';
+  static const notifDaily = 'Daily reminders';
+  static const notifMotivation = 'Motivation messages';
+  static const notifHabit = 'Habit reminders';
+  static const notifWeekly = 'Weekly report';
+  static const notifNewFeatures = 'New features';
+  static const themeSystem = 'System';
+  static const themeLight = 'Light';
+  static const themeDark = 'Dark';
+
   // Validation
   static const fieldRequired = 'This field is required';
   static const invalidEmail = 'Enter a valid email';

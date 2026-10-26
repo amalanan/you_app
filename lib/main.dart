@@ -10,11 +10,11 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.init();
   AuthRepository.instance = await LocalAuthRepository.create();
+  ThemeController.instance = ThemeController();
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => YouApp(themeController: ThemeController()),
-    ),
+      builder: (context) => YouApp(themeController: ThemeController.instance)),
   );
 }
 

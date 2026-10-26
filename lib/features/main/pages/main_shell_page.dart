@@ -33,7 +33,7 @@ class MainShellPage extends StatelessWidget {
 
     return PopScope(
       // Back on another tab returns to Home first, then exits.
-      canPop: index == 0,
+      canPop: index == 0 || context.canPop(),
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) navigationShell.goBranch(0);
       },
@@ -43,8 +43,7 @@ class MainShellPage extends StatelessWidget {
           items: _items,
           currentIndex: index,
           // tapping the current tab again goes back to that tab's first page
-          onTap:
-              (i) => navigationShell.goBranch(i, initialLocation: i == index),
+          onTap: (i) => navigationShell.goBranch(i, initialLocation: i == index),
           onAddTap: () => context.push(AppRoutes.addSituation),
         ),
       ),

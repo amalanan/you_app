@@ -91,7 +91,7 @@ class SituationSavedPage extends StatelessWidget {
                   ),
                   child: AppButton(
                     label: AppStrings.viewMyGrowth,
-                    onPressed: () => context.go(AppRoutes.insights),
+                    onPressed: () => context.go(AppRoutes.growth),
                   ),
                 ),
               ],

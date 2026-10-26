@@ -2,9 +2,15 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/pages/login_page.dart';
 import '../../features/auth/pages/sign_up_page.dart';
+import '../../features/home/insights/pages/growth_detail_page.dart';
+import '../../features/home/insights/pages/growth_page.dart';
+import '../../features/home/insights/pages/insights_page.dart';
 import '../../features/home/pages/home_page.dart';
+import '../../features/journey/pages/journey_page.dart';
 import '../../features/main/pages/main_shell_page.dart';
 import '../../features/onboarding/pages/onboarding_page.dart';
+import '../../features/profile/pages/appearance_page.dart';
+import '../../features/profile/pages/notifications_page.dart';
 import '../../features/profile/pages/profile_page.dart';
 import '../../features/scenarios/logic/scenario_flow_controller.dart';
 import '../../features/scenarios/pages/confidence_page.dart';
@@ -21,6 +27,7 @@ import '../../features/situations/pages/situation_saved_page.dart';
 import '../../features/situations/pages/situation_type_page.dart';
 import '../../features/splash/pages/splash_page.dart';
 import '../constants/app_strings.dart';
+import '../models/growth_type.dart';
 import '../widgets/placeholder_page.dart';
 import 'app_routes.dart';
 
@@ -69,23 +76,56 @@ abstract final class AppRouter {
             ),
           ]),
           StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.journey,
-              // TODO: replace with JourneyPage
-              builder: (_, __) => const PlaceholderPage(title: AppStrings.navJourney),
-            ),
+            GoRoute(path: AppRoutes.journey, builder: (_, __) => const JourneyPage()),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.insights,
-              // TODO: replace with InsightsPage
-              builder: (_, __) => const PlaceholderPage(title: AppStrings.navInsights),
+              builder: (_, __) => const InsightsPage(),
+              routes: [
+                // /insights/growth
+                GoRoute(
+                  path: 'growth',
+                  builder: (_, __) => const GrowthPage(),
+                  routes: [
+                    // /insights/growth/learning, /insights/growth/consistency ...
+                    GoRoute(
+                      path: ':type',
+                      builder: (_, state) => GrowthDetailPage(
+                        type: GrowthType.values.asNameMap()[state.pathParameters['type']] ??
+                            GrowthType.learning,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.profile,
               builder: (_, __) => const ProfilePage(),
+              routes: [
+                GoRoute(path: 'notifications', builder: (_, __) => const NotificationsPage()),
+                GoRoute(path: 'appearance', builder: (_, __) => const AppearancePage()),
+                // TODO: real pages for the 4 below
+                GoRoute(
+                  path: 'preferences',
+                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuReflectionPrefs),
+                ),
+                GoRoute(
+                  path: 'privacy',
+                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuPrivacyData),
+                ),
+                GoRoute(
+                  path: 'terms',
+                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuTerms),
+                ),
+                GoRoute(
+                  path: 'privacy-policy',
+                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuPrivacyPolicy),
+                ),
+              ],
             ),
           ]),
         ],

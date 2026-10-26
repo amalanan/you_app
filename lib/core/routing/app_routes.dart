@@ -10,8 +10,16 @@ abstract final class AppRoutes {
   static const insights = '/insights';
   static const profile = '/profile';
 
-  // Inside the Home tab (bottom nav stays visible)
+  // Inside the tabs (bottom nav stays visible)
   static const scenarios = '/home/scenarios';
+  static const growth = '/insights/growth';
+  static String growthDetail(String type) => '/insights/growth/$type';
+  static const profileNotifications = '/profile/notifications';
+  static const profileAppearance = '/profile/appearance';
+  static const profilePreferences = '/profile/preferences';
+  static const profilePrivacy = '/profile/privacy';
+  static const profileTerms = '/profile/terms';
+  static const profilePrivacyPolicy = '/profile/privacy-policy';
 
   // Full-screen pages (no bottom nav)
   static const addSituation = '/add-situation';

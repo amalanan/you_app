@@ -32,6 +32,12 @@ class LocalStorage {
   Future<void> setOnboardingSeen(bool value) =>
       _prefs.setBool(StorageKeys.onboardingSeen, value);
 
+  // Simple on/off settings (notification switches...)
+  bool getBool(String key, {bool defaultValue = true}) =>
+      _prefs.getBool(key) ?? defaultValue;
+
+  Future<void> setBool(String key, bool value) => _prefs.setBool(key, value);
+
   // Auth
   String? get token => _prefs.getString(StorageKeys.authToken);
 

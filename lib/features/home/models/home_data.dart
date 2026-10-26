@@ -1,11 +1,4 @@
-import '../../../core/models/growth_type.dart';
-
-class GrowthScore {
-  const GrowthScore(this.type, this.score);
-
-  final GrowthType type;
-  final int score; // 0 - 100
-}
+import '../../../core/models/growth_score.dart';
 
 class JourneyProgress {
   const JourneyProgress({

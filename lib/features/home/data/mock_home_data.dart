@@ -1,4 +1,5 @@
 import '../../../core/models/growth_type.dart';
+import '../../../core/models/growth_score.dart';
 import '../models/home_data.dart';
 
 /// TODO: replace with real data (repository / controller) later.
@@ -10,7 +11,7 @@ const mockHomeData = HomeData(
   ),
   growth: [
     GrowthScore(GrowthType.decisionMaking, 72),
-    GrowthScore(GrowthType.learning, 81),
-    GrowthScore(GrowthType.selfAwareness, 76),
+    GrowthScore(GrowthType.learning, 83),
+    GrowthScore(GrowthType.selfAwareness, 78),
   ],
 );

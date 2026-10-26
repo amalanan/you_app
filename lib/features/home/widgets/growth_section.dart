@@ -5,6 +5,7 @@ import '../../../core/constants/app_durations.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/helpers/extensions.dart';
+import '../../../core/models/growth_score.dart';
 import '../../../core/models/growth_type.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/widgets/icon_box.dart';

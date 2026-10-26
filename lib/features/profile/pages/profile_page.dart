@@ -5,57 +5,157 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/helpers/extensions.dart';
+import '../../../core/helpers/responsive.dart';
 import '../../../core/routing/app_routes.dart';
-import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/app_card.dart';
+import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/responsive_center.dart';
 import '../../auth/data/auth_repository.dart';
 
-/// Minimal for now: who you are + sign out.
+/// Profile tab: who you are + menu + log out.
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
+
+  // TODO: take the day from the real journey data.
+  static const _day = 12;
+
+  Future<void> _logOut(BuildContext context) async {
+    await AuthRepository.instance.signOut();
+    if (context.mounted) context.go(AppRoutes.login);
+  }
+
+  Future<void> _deleteAccount(BuildContext context) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text(AppStrings.deleteAccountTitle),
+        content: const Text(AppStrings.deleteAccountBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text(AppStrings.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: TextButton.styleFrom(foregroundColor: AppColors.error),
+            child: const Text(AppStrings.delete),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true) return;
+    // TODO: add deleteAccount() to AuthRepository, call it, then go to login.
+  }
 
   @override
   Widget build(BuildContext context) {
     final auth = AuthRepository.instance;
     final name = auth.currentName ?? '';
 
+    final divider = Divider(height: 1, color: context.borderColor);
+
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: ResponsiveCenter(
-          child: Padding(
-            padding: const EdgeInsets.all(AppSizes.screenPadding),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 40,
+          maxWidth: 560,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.screenPadding,
+              AppSizes.lg,
+              AppSizes.screenPadding,
+              AppSizes.lg,
+            ),
+            children: [
+              Center(
+                child: CircleAvatar(
+                  radius: context.rs(44),
                   backgroundColor: AppColors.blush,
                   child: Text(
                     name.isEmpty ? '?' : name[0].toUpperCase(),
                     style: context.text.headlineLarge
-                        ?.copyWith(color: AppColors.lightText),
+                        ?.copyWith(fontSize: 32, color: AppColors.lightText),
                   ),
                 ),
-                const SizedBox(height: AppSizes.md),
-                if (name.isNotEmpty)
-                  Text(name, style: context.text.headlineLarge),
-                if (auth.currentEmail != null)
-                  Text(
-                    auth.currentEmail!,
-                    style: context.text.bodyMedium
-                        ?.copyWith(color: context.mutedText),
-                  ),
-                const SizedBox(height: AppSizes.xl),
-                AppButton(
-                  label: AppStrings.signOut,
-                  secondary: true,
-                  onPressed: () async {
-                    await auth.signOut();
-                    if (context.mounted) context.go(AppRoutes.login);
-                  },
+              ),
+              const SizedBox(height: AppSizes.md),
+              if (name.isNotEmpty)
+                Center(child: Text(name, style: context.text.headlineLarge)),
+              const SizedBox(height: 4),
+              Center(
+                child: Text(
+                  AppStrings.dayOfJourney(_day),
+                  style: context.text.bodyMedium?.copyWith(color: context.mutedText),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: AppSizes.lg),
+              MenuTile(
+                icon: Icons.spa_outlined,
+                label: AppStrings.myGrowth,
+                onTap: () => context.go(AppRoutes.growth),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.edit_note,
+                label: AppStrings.menuReflectionPrefs,
+                onTap: () => context.push(AppRoutes.profilePreferences),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.notifications_none,
+                label: AppStrings.menuNotifications,
+                onTap: () => context.push(AppRoutes.profileNotifications),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.palette_outlined,
+                label: AppStrings.menuAppearance,
+                onTap: () => context.push(AppRoutes.profileAppearance),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.lock_outline,
+                label: AppStrings.menuPrivacyData,
+                onTap: () => context.push(AppRoutes.profilePrivacy),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.description_outlined,
+                label: AppStrings.menuTerms,
+                onTap: () => context.push(AppRoutes.profileTerms),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.shield_outlined,
+                label: AppStrings.menuPrivacyPolicy,
+                onTap: () => context.push(AppRoutes.profilePrivacyPolicy),
+              ),
+              divider,
+              MenuTile(
+                icon: Icons.delete_outline,
+                label: AppStrings.menuDeleteAccount,
+                destructive: true,
+                onTap: () => _deleteAccount(context),
+              ),
+              const SizedBox(height: AppSizes.lg),
+              AppCard(
+                onTap: () => _logOut(context),
+                child: Row(
+                  children: [
+                    const Icon(Icons.logout, size: 22),
+                    const SizedBox(width: AppSizes.md),
+                    Expanded(
+                      child: Text(
+                        AppStrings.logOut,
+                        style: context.text.bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, color: context.mutedText),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),

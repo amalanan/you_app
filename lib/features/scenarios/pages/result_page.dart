@@ -104,7 +104,7 @@ class ResultPage extends StatelessWidget {
                     children: [
                       AppButton(
                         label: AppStrings.viewMyGrowth,
-                        onPressed: () => context.go(AppRoutes.insights),
+                        onPressed: () => context.go(AppRoutes.growth),
                       ),
                       TextButton(
                         onPressed: () => context.go(AppRoutes.home),

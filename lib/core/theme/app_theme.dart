@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_sizes.dart';
-import 'app_text_style.dart';
+import 'app_text_styles.dart';
 
 abstract final class AppTheme {
   static ThemeData get light => _build(Brightness.light);
@@ -66,6 +66,14 @@ abstract final class AppTheme {
             fontWeight: FontWeight.w600,
           ),
         ),
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: const WidgetStatePropertyAll(AppColors.white),
+        trackColor: WidgetStateProperty.resolveWith(
+              (states) =>
+          states.contains(WidgetState.selected) ? AppColors.primary : border,
+        ),
+        trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
       ),
       sliderTheme: SliderThemeData(
         trackHeight: 4,

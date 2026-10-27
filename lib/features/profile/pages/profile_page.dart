@@ -11,8 +11,9 @@ import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/menu_tile.dart';
 import '../../../core/widgets/responsive_center.dart';
 import '../../auth/data/auth_repository.dart';
+import '../logic/delete_account.dart';
 
-/// Profile tab: who you are + menu + log out.
+/// Profile tab: who you are + settings menu + log out.
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -24,33 +25,69 @@ class ProfilePage extends StatelessWidget {
     if (context.mounted) context.go(AppRoutes.login);
   }
 
-  Future<void> _deleteAccount(BuildContext context) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text(AppStrings.deleteAccountTitle),
-        content: const Text(AppStrings.deleteAccountBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: const Text(AppStrings.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            style: TextButton.styleFrom(foregroundColor: AppColors.error),
-            child: const Text(AppStrings.delete),
-          ),
-        ],
-      ),
-    );
-    if (confirmed != true) return;
-    // TODO: add deleteAccount() to AuthRepository, call it, then go to login.
-  }
-
   @override
   Widget build(BuildContext context) {
     final auth = AuthRepository.instance;
     final name = auth.currentName ?? '';
+
+    final items = <MenuTile>[
+      MenuTile(
+        icon: Icons.spa_outlined,
+        label: AppStrings.myGrowth,
+        onTap: () => context.go(AppRoutes.growth),
+      ),
+      MenuTile(
+        icon: Icons.edit_note,
+        label: AppStrings.menuReflectionPrefs,
+        onTap: () => context.push(AppRoutes.profilePreferences),
+      ),
+      MenuTile(
+        icon: Icons.notifications_none,
+        label: AppStrings.menuNotifications,
+        onTap: () => context.push(AppRoutes.profileNotifications),
+      ),
+      MenuTile(
+        icon: Icons.palette_outlined,
+        label: AppStrings.menuAppearance,
+        onTap: () => context.push(AppRoutes.profileAppearance),
+      ),
+      MenuTile(
+        icon: Icons.language,
+        label: AppStrings.menuLanguage,
+        onTap: () => context.push(AppRoutes.profileLanguage),
+      ),
+      MenuTile(
+        icon: Icons.lock_outline,
+        label: AppStrings.menuPrivacyData,
+        onTap: () => context.push(AppRoutes.profilePrivacy),
+      ),
+      MenuTile(
+        icon: Icons.help_outline,
+        label: AppStrings.menuHelp,
+        onTap: () => context.push(AppRoutes.profileHelp),
+      ),
+      MenuTile(
+        icon: Icons.description_outlined,
+        label: AppStrings.menuTerms,
+        onTap: () => context.push(AppRoutes.profileTerms),
+      ),
+      MenuTile(
+        icon: Icons.shield_outlined,
+        label: AppStrings.menuPrivacyPolicy,
+        onTap: () => context.push(AppRoutes.profilePrivacyPolicy),
+      ),
+      MenuTile(
+        icon: Icons.info_outline,
+        label: AppStrings.menuAbout,
+        onTap: () => context.push(AppRoutes.profileAbout),
+      ),
+      MenuTile(
+        icon: Icons.delete_outline,
+        label: AppStrings.menuDeleteAccount,
+        destructive: true,
+        onTap: () => confirmAndDeleteAccount(context),
+      ),
+    ];
 
     final divider = Divider(height: 1, color: context.borderColor);
 
@@ -89,54 +126,10 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: AppSizes.lg),
-              MenuTile(
-                icon: Icons.spa_outlined,
-                label: AppStrings.myGrowth,
-                onTap: () => context.go(AppRoutes.growth),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.edit_note,
-                label: AppStrings.menuReflectionPrefs,
-                onTap: () => context.push(AppRoutes.profilePreferences),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.notifications_none,
-                label: AppStrings.menuNotifications,
-                onTap: () => context.push(AppRoutes.profileNotifications),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.palette_outlined,
-                label: AppStrings.menuAppearance,
-                onTap: () => context.push(AppRoutes.profileAppearance),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.lock_outline,
-                label: AppStrings.menuPrivacyData,
-                onTap: () => context.push(AppRoutes.profilePrivacy),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.description_outlined,
-                label: AppStrings.menuTerms,
-                onTap: () => context.push(AppRoutes.profileTerms),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.shield_outlined,
-                label: AppStrings.menuPrivacyPolicy,
-                onTap: () => context.push(AppRoutes.profilePrivacyPolicy),
-              ),
-              divider,
-              MenuTile(
-                icon: Icons.delete_outline,
-                label: AppStrings.menuDeleteAccount,
-                destructive: true,
-                onTap: () => _deleteAccount(context),
-              ),
+              for (var i = 0; i < items.length; i++) ...[
+                items[i],
+                if (i != items.length - 1) divider,
+              ],
               const SizedBox(height: AppSizes.lg),
               AppCard(
                 onTap: () => _logOut(context),

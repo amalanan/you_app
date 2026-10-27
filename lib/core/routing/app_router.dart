@@ -9,9 +9,16 @@ import '../../features/home/pages/home_page.dart';
 import '../../features/journey/pages/journey_page.dart';
 import '../../features/main/pages/main_shell_page.dart';
 import '../../features/onboarding/pages/onboarding_page.dart';
+import '../../features/profile/data/legal_content.dart';
+import '../../features/profile/pages/about_page.dart';
 import '../../features/profile/pages/appearance_page.dart';
+import '../../features/profile/pages/help_page.dart';
+import '../../features/profile/pages/language_page.dart';
+import '../../features/profile/pages/legal_page.dart';
 import '../../features/profile/pages/notifications_page.dart';
+import '../../features/profile/pages/privacy_data_page.dart';
 import '../../features/profile/pages/profile_page.dart';
+import '../../features/profile/pages/reflection_preferences_page.dart';
 import '../../features/scenarios/logic/scenario_flow_controller.dart';
 import '../../features/scenarios/pages/confidence_page.dart';
 import '../../features/scenarios/pages/reflection_page.dart';
@@ -28,7 +35,6 @@ import '../../features/situations/pages/situation_type_page.dart';
 import '../../features/splash/pages/splash_page.dart';
 import '../constants/app_strings.dart';
 import '../models/growth_type.dart';
-import '../widgets/placeholder_page.dart';
 import 'app_routes.dart';
 
 abstract final class AppRouter {
@@ -62,72 +68,105 @@ abstract final class AppRouter {
       StatefulShellRoute.indexedStack(
         builder: (_, __, shell) => MainShellPage(navigationShell: shell),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.home,
-              builder: (_, __) => const HomePage(),
-              routes: [
-                // full path: /home/scenarios
-                GoRoute(
-                  path: 'scenarios',
-                  builder: (_, __) => const ScenariosPage(),
-                ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: AppRoutes.journey, builder: (_, __) => const JourneyPage()),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.insights,
-              builder: (_, __) => const InsightsPage(),
-              routes: [
-                // /insights/growth
-                GoRoute(
-                  path: 'growth',
-                  builder: (_, __) => const GrowthPage(),
-                  routes: [
-                    // /insights/growth/learning, /insights/growth/consistency ...
-                    GoRoute(
-                      path: ':type',
-                      builder: (_, state) => GrowthDetailPage(
-                        type: GrowthType.values.asNameMap()[state.pathParameters['type']] ??
-                            GrowthType.learning,
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                builder: (_, __) => const HomePage(),
+                routes: [
+                  // full path: /home/scenarios
+                  GoRoute(
+                    path: 'scenarios',
+                    builder: (_, __) => const ScenariosPage(),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.journey,
+                builder: (_, __) => const JourneyPage(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.insights,
+                builder: (_, __) => const InsightsPage(),
+                routes: [
+                  // /insights/growth
+                  GoRoute(
+                    path: 'growth',
+                    builder: (_, __) => const GrowthPage(),
+                    routes: [
+                      // /insights/growth/learning, /insights/growth/consistency ...
+                      GoRoute(
+                        path: ':type',
+                        builder:
+                            (_, state) => GrowthDetailPage(
+                              type:
+                                  GrowthType.values.asNameMap()[state
+                                      .pathParameters['type']] ??
+                                  GrowthType.learning,
+                            ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.profile,
-              builder: (_, __) => const ProfilePage(),
-              routes: [
-                GoRoute(path: 'notifications', builder: (_, __) => const NotificationsPage()),
-                GoRoute(path: 'appearance', builder: (_, __) => const AppearancePage()),
-                // TODO: real pages for the 4 below
-                GoRoute(
-                  path: 'preferences',
-                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuReflectionPrefs),
-                ),
-                GoRoute(
-                  path: 'privacy',
-                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuPrivacyData),
-                ),
-                GoRoute(
-                  path: 'terms',
-                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuTerms),
-                ),
-                GoRoute(
-                  path: 'privacy-policy',
-                  builder: (_, __) => const PlaceholderPage(title: AppStrings.menuPrivacyPolicy),
-                ),
-              ],
-            ),
-          ]),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                builder: (_, __) => const ProfilePage(),
+                routes: [
+                  GoRoute(
+                    path: 'notifications',
+                    builder: (_, __) => const NotificationsPage(),
+                  ),
+                  GoRoute(
+                    path: 'appearance',
+                    builder: (_, __) => const AppearancePage(),
+                  ),
+                  GoRoute(
+                    path: 'language',
+                    builder: (_, __) => const LanguagePage(),
+                  ),
+                  GoRoute(
+                    path: 'preferences',
+                    builder: (_, __) => const ReflectionPreferencesPage(),
+                  ),
+                  GoRoute(
+                    path: 'privacy',
+                    builder: (_, __) => const PrivacyDataPage(),
+                  ),
+                  GoRoute(path: 'help', builder: (_, __) => const HelpPage()),
+                  GoRoute(
+                    path: 'terms',
+                    builder:
+                        (_, __) => const LegalPage(
+                          title: AppStrings.menuTerms,
+                          sections: termsSections,
+                        ),
+                  ),
+                  GoRoute(
+                    path: 'privacy-policy',
+                    builder:
+                        (_, __) => const LegalPage(
+                          title: AppStrings.menuPrivacyPolicy,
+                          sections: privacyPolicySections,
+                        ),
+                  ),
+                  GoRoute(path: 'about', builder: (_, __) => const AboutPage()),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
 
@@ -147,17 +186,20 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.situationFeelings,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationFeelingsPage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationFeelingsPage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationResponse,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationResponsePage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationResponsePage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationOutcome,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationOutcomePage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationOutcomePage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationSaved,

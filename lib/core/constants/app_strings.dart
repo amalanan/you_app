@@ -194,6 +194,32 @@ abstract final class AppStrings {
   static const themeLight = 'Light';
   static const themeDark = 'Dark';
 
+  // Profile pages
+  static const menuLanguage = 'Language';
+  static const menuHelp = 'Help & Support';
+  static const menuAbout = 'About';
+  static const save = 'Save';
+  static const copied = 'Copied';
+  static const prefTimeTitle = 'Best time to reflect';
+  static const timeMorning = 'Morning';
+  static const timeEvening = 'Evening';
+  static const timeAnytime = 'Anytime';
+  static const prefTipsTitle = 'Show reflection tips';
+  static const prefTipsBody = 'Short hints while you write your reflections.';
+  static const privacyAnalytics = 'Share anonymous usage data';
+  static const privacyAnalyticsBody = 'Helps us improve the app. Your reflections are never shared.';
+  static const exportData = 'Export my data';
+  static const languageSaved = 'Language saved';
+  static const contactUs = 'Contact Us';
+  static const faqTitle = 'Frequently asked questions';
+  static const aboutTagline = 'A simple app for a deeper you.';
+  static String versionLabel(String v) => 'Version $v';
+  static const successTitle = 'Well done!';
+  static const successBody = 'Your progress matters.';
+  static const offlineTitle = 'No internet connection';
+  static const offlineBody = 'Check your connection and try again.';
+  static const retry = 'Retry';
+
   // Validation
   static const fieldRequired = 'This field is required';
   static const invalidEmail = 'Enter a valid email';

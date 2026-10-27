@@ -51,7 +51,14 @@ abstract final class AppTheme {
         foregroundColor: text,
         elevation: 0,
         scrolledUnderElevation: 0,
-        centerTitle: true,
+        centerTitle: false,
+        titleSpacing: 0,
+        titleTextStyle: TextStyle(
+          fontFamily: AppTextStyles.fontFamily,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+          color: text,
+        ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(

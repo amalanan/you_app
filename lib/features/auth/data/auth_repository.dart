@@ -21,4 +21,7 @@ abstract class AuthRepository {
   Future<void> sendPasswordReset(String email);
 
   Future<void> signOut();
+
+  /// Removes the account and its saved data, then signs out.
+  Future<void> deleteAccount();
 }

@@ -17,6 +17,9 @@ abstract final class AppRoutes {
   static const profileNotifications = '/profile/notifications';
   static const profileAppearance = '/profile/appearance';
   static const profilePreferences = '/profile/preferences';
+  static const profileLanguage = '/profile/language';
+  static const profileHelp = '/profile/help';
+  static const profileAbout = '/profile/about';
   static const profilePrivacy = '/profile/privacy';
   static const profileTerms = '/profile/terms';
   static const profilePrivacyPolicy = '/profile/privacy-policy';

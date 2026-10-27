@@ -38,6 +38,11 @@ class LocalStorage {
 
   Future<void> setBool(String key, bool value) => _prefs.setBool(key, value);
 
+  // Simple text settings (language, reflection time...)
+  String? getString(String key) => _prefs.getString(key);
+
+  Future<void> setString(String key, String value) => _prefs.setString(key, value);
+
   // Auth
   String? get token => _prefs.getString(StorageKeys.authToken);
 

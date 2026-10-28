@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-
 import '../../features/auth/pages/login_page.dart';
 import '../../features/auth/pages/sign_up_page.dart';
 import '../../features/home/insights/pages/growth_detail_page.dart';
@@ -106,10 +105,11 @@ abstract final class AppRouter {
                       GoRoute(
                         path: ':type',
                         builder:
-                            (_, state) => GrowthDetailPage(
+                            (_, state) =>
+                            GrowthDetailPage(
                               type:
-                                  GrowthType.values.asNameMap()[state
-                                      .pathParameters['type']] ??
+                              GrowthType.values.asNameMap()[state
+                                  .pathParameters['type']] ??
                                   GrowthType.learning,
                             ),
                       ),
@@ -149,18 +149,20 @@ abstract final class AppRouter {
                   GoRoute(
                     path: 'terms',
                     builder:
-                        (_, __) => const LegalPage(
-                          title: AppStrings.menuTerms,
-                          sections: termsSections,
-                        ),
+                        (_, __) =>
+                    const LegalPage(
+                      title: AppStrings.menuTerms,
+                      sections: termsSections,
+                    ),
                   ),
                   GoRoute(
                     path: 'privacy-policy',
                     builder:
-                        (_, __) => const LegalPage(
-                          title: AppStrings.menuPrivacyPolicy,
-                          sections: privacyPolicySections,
-                        ),
+                        (_, __) =>
+                    const LegalPage(
+                      title: AppStrings.menuPrivacyPolicy,
+                      sections: privacyPolicySections,
+                    ),
                   ),
                   GoRoute(path: 'about', builder: (_, __) => const AboutPage()),
                 ],

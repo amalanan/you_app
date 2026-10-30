@@ -17,17 +17,16 @@ class YouApp extends StatelessWidget {
       valueListenable: themeController,
       builder:
           (_, mode, __) => MaterialApp.router(
-                  useInheritedMediaQuery: true,
-                  title: AppStrings.appName,
-                  debugShowCheckedModeBanner: false,
-                  theme: AppTheme.light,
-                  darkTheme: AppTheme.dark,
-                  themeMode: mode,
-                  routerConfig: AppRouter.router,
-                  locale: DevicePreview.locale(context),
-                  builder: DevicePreview.appBuilder,
-                ),
-
+            useInheritedMediaQuery: true,
+            title: AppStrings.appName,
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.light,
+            darkTheme: AppTheme.dark,
+            themeMode: mode,
+            routerConfig: AppRouter.router,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+          ),
     );
   }
 }

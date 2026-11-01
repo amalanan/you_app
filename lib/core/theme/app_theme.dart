@@ -32,6 +32,7 @@ abstract final class AppTheme {
       brightness: brightness,
       useMaterial3: true,
       fontFamily: AppTextStyles.fontFamily,
+      fontFamilyFallback: AppTextStyles.fontFamilyFallback,
     );
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(AppSizes.radiusMd),
@@ -55,6 +56,7 @@ abstract final class AppTheme {
         titleSpacing: 0,
         titleTextStyle: TextStyle(
           fontFamily: AppTextStyles.fontFamily,
+          fontFamilyFallback: AppTextStyles.fontFamilyFallback,
           fontSize: 18,
           fontWeight: FontWeight.w600,
           color: text,
@@ -69,6 +71,7 @@ abstract final class AppTheme {
           shape: shape,
           textStyle: const TextStyle(
             fontFamily: AppTextStyles.fontFamily,
+            fontFamilyFallback: AppTextStyles.fontFamilyFallback,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -96,13 +99,17 @@ abstract final class AppTheme {
         style: TextButton.styleFrom(
           textStyle: const TextStyle(
             fontFamily: AppTextStyles.fontFamily,
+            fontFamilyFallback: AppTextStyles.fontFamilyFallback,
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
         ),
       ),
       snackBarTheme: const SnackBarThemeData(
-        contentTextStyle: TextStyle(fontFamily: AppTextStyles.fontFamily),
+        contentTextStyle: TextStyle(
+          fontFamily: AppTextStyles.fontFamily,
+          fontFamilyFallback: AppTextStyles.fontFamilyFallback,
+        ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
@@ -113,6 +120,7 @@ abstract final class AppTheme {
           side: BorderSide(color: border),
           textStyle: const TextStyle(
             fontFamily: AppTextStyles.fontFamily,
+            fontFamilyFallback: AppTextStyles.fontFamilyFallback,
             fontSize: 15,
             fontWeight: FontWeight.w500,
           ),

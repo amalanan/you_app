@@ -1,4 +1,8 @@
-/// Plain strings for now. Move to l10n (ARB) when you add Arabic/English switching.
+import '../l10n/app_locale.dart';
+
+/// English texts of the app. Each one is also the KEY of its Arabic pair in
+/// core/l10n/translations_ar.dart (the Text widget translates it when needed).
+
 abstract final class AppStrings {
   static const appName = 'YOU';
   static const tagline = 'Your Growth Journey';
@@ -64,9 +68,9 @@ abstract final class AppStrings {
   static const goodAfternoon = 'Good afternoon';
   static const goodEvening = 'Good evening';
   static const yourJourney = 'Your journey';
-  static String dayNumber(int n) => 'Day $n';
+  static String dayNumber(int n) => AppLocale.isArabic ? 'اليوم $n' : 'Day $n';
   static const todaysScenario = "TODAY'S SCENARIO";
-  static String minutes(int n) => '$n min';
+  static String minutes(int n) => AppLocale.isArabic ? '$n دقيقة' : '$n min';
   static const exploreScenario = 'Explore Scenario';
   static const yourGrowth = 'YOUR GROWTH';
   static const seeProgress = 'See progress';
@@ -86,7 +90,7 @@ abstract final class AppStrings {
   static const filterChallenges = 'Challenges';
   static const filterChange = 'Change';
   static const scenarioLabel = 'SCENARIO';
-  static String stepOf(int step) => '$step of 3';
+  static String stepOf(int step) => AppLocale.isArabic ? '$step من 3' : '$step of 3';
   static const whatWouldYouDo = 'What would you most likely do?';
   static const continueLabel = 'Continue';
   static const howConfident = 'How confident are you in your choice?';
@@ -148,7 +152,8 @@ abstract final class AppStrings {
   static const growthFromReflection = 'Your growth from this reflection';
 
   // Journey
-  static String daysOfReflection(int n) => '$n days of reflection';
+  static String daysOfReflection(int n) =>
+      AppLocale.isArabic ? '$n يوماً من التأمّل' : '$n days of reflection';
   static const statReflections = 'Reflections';
   static const statSituations = 'Situations';
   static const statScenarios = 'Scenarios';
@@ -172,7 +177,8 @@ abstract final class AppStrings {
   static const fromRecentExperiences = 'From your recent experiences';
 
   // Profile
-  static String dayOfJourney(int n) => 'Day $n of your journey';
+  static String dayOfJourney(int n) =>
+      AppLocale.isArabic ? 'اليوم $n من رحلتك' : 'Day $n of your journey';
   static const menuReflectionPrefs = 'Reflection Preferences';
   static const menuNotifications = 'Notifications';
   static const menuAppearance = 'Appearance';
@@ -213,7 +219,8 @@ abstract final class AppStrings {
   static const contactUs = 'Contact Us';
   static const faqTitle = 'Frequently asked questions';
   static const aboutTagline = 'A simple app for a deeper you.';
-  static String versionLabel(String v) => 'Version $v';
+  static String versionLabel(String v) =>
+      AppLocale.isArabic ? 'الإصدار $v' : 'Version $v';
   static const successTitle = 'Well done!';
   static const successBody = 'Your progress matters.';
   static const offlineTitle = 'No internet connection';

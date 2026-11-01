@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 abstract final class AppTextStyles {
   static const fontFamily = 'Poppins';
 
+  /// Poppins has no Arabic letters, so Arabic text falls back to this font.
+  static const fontFamilyFallback = ['IBMPlexSansArabic'];
+
   static TextTheme build(TextTheme base, Color color) {
     final t = base.apply(
       fontFamily: fontFamily,
+      fontFamilyFallback: fontFamilyFallback,
       bodyColor: color,
       displayColor: color,
     );

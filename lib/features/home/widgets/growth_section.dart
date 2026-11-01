@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
+import '../../../core/l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_durations.dart';
@@ -9,7 +12,6 @@ import '../../../core/models/growth_score.dart';
 import '../../../core/models/growth_type.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/widgets/icon_box.dart';
-import '../models/home_data.dart';
 
 /// "YOUR GROWTH" + one row per skill.
 class GrowthSection extends StatelessWidget {
@@ -29,12 +31,12 @@ class GrowthSection extends StatelessWidget {
                 AppStrings.yourGrowth,
                 style: context.text.bodySmall?.copyWith(
                   fontWeight: FontWeight.w600,
-                  letterSpacing: 0.8,
+                  letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
                 ),
               ),
             ),
             TextButton(
-              onPressed: () => context.go(AppRoutes.insights),
+              onPressed: () => context.go(AppRoutes.growth),
               style: TextButton.styleFrom(
                 foregroundColor: context.mutedText,
                 visualDensity: VisualDensity.compact,

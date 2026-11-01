@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/helpers/extensions.dart';

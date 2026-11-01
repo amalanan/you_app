@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
+import '../../../core/l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
@@ -31,7 +34,7 @@ class TodayScenarioCard extends StatelessWidget {
                   AppStrings.todaysScenario,
                   style: context.text.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    letterSpacing: 0.8,
+                    letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
                   ),
                 ),
               ),

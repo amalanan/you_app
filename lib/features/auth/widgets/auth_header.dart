@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
@@ -23,11 +25,11 @@ class AuthHeader extends StatelessWidget {
             alignment: AlignmentDirectional.centerStart,
             child: context.canPop()
                 ? IconButton(
-                    onPressed: () => context.pop(),
-                    padding: EdgeInsets.zero,
-                    alignment: AlignmentDirectional.centerStart,
-                    icon: const Icon(Icons.arrow_back),
-                  )
+              onPressed: () => context.pop(),
+              padding: EdgeInsets.zero,
+              alignment: AlignmentDirectional.centerStart,
+              icon: const Icon(Icons.arrow_back),
+            )
                 : null,
           ),
         ),

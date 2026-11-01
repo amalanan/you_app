@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_durations.dart';
@@ -34,7 +36,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Future<void> _finish() async {
     await LocalStorage.instance.setOnboardingSeen(true);
     if (!mounted) return;
-    context.go(AppRoutes.login); // كان AppRoutes.home
+    context.go(AppRoutes.login);
   }
 
   void _next() {

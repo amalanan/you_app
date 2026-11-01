@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart' hide Text;
 import 'package:flutter/widgets.dart' as w;
-
 import 'app_locale.dart';
 
 /// Drop-in replacement for Flutter's [Text]: the same widget, but it shows the

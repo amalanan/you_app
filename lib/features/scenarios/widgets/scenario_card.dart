@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
@@ -14,10 +16,10 @@ class ScenarioCard extends StatelessWidget {
   final VoidCallback onTap;
 
   IconData get _icon => switch (scenario.category) {
-        ScenarioCategory.decisions => Icons.alt_route,
-        ScenarioCategory.challenges => Icons.terrain,
-        ScenarioCategory.change => Icons.autorenew,
-      };
+    ScenarioCategory.decisions => Icons.alt_route,
+    ScenarioCategory.challenges => Icons.terrain,
+    ScenarioCategory.change => Icons.autorenew,
+  };
 
   @override
   Widget build(BuildContext context) {

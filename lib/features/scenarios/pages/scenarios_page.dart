@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
+
+import '../../../core/l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_sizes.dart';
@@ -26,13 +30,13 @@ class _ScenariosPageState extends State<ScenariosPage> {
   String _query = '';
 
   List<Scenario> get _visible => mockScenarios.where((s) {
-        final matchesFilter = _filter == null || s.category == _filter;
-        final q = _query.trim().toLowerCase();
-        final matchesQuery = q.isEmpty ||
-            s.title.toLowerCase().contains(q) ||
-            s.summary.toLowerCase().contains(q);
-        return matchesFilter && matchesQuery;
-      }).toList();
+    final matchesFilter = _filter == null || s.category == _filter;
+    final q = _query.trim().toLowerCase();
+    final matchesQuery = q.isEmpty ||
+        s.title.toLowerCase().contains(q) ||
+        s.summary.toLowerCase().contains(q);
+    return matchesFilter && matchesQuery;
+  }).toList();
 
   void _open(Scenario scenario) {
     context.push(
@@ -71,17 +75,17 @@ class _ScenariosPageState extends State<ScenariosPage> {
                     Expanded(
                       child: _searching
                           ? TextField(
-                              autofocus: true,
-                              onChanged: (v) => setState(() => _query = v),
-                              decoration: const InputDecoration(
-                                hintText: AppStrings.searchScenarios,
-                              ),
-                            )
+                        autofocus: true,
+                        onChanged: (v) => setState(() => _query = v),
+                        decoration: InputDecoration(
+                          hintText: tr(AppStrings.searchScenarios),
+                        ),
+                      )
                           : Text(
-                              AppStrings.exploreScenarios,
-                              style: context.text.headlineLarge
-                                  ?.copyWith(fontSize: context.rs(24)),
-                            ),
+                        AppStrings.exploreScenarios,
+                        style: context.text.headlineLarge
+                            ?.copyWith(fontSize: context.rs(24)),
+                      ),
                     ),
                     IconButton(
                       onPressed: _toggleSearch,
@@ -115,26 +119,26 @@ class _ScenariosPageState extends State<ScenariosPage> {
               Expanded(
                 child: items.isEmpty
                     ? Center(
-                        child: Text(
-                          AppStrings.noScenariosFound,
-                          style: context.text.bodyMedium
-                              ?.copyWith(color: context.mutedText),
-                        ),
-                      )
+                  child: Text(
+                    AppStrings.noScenariosFound,
+                    style: context.text.bodyMedium
+                        ?.copyWith(color: context.mutedText),
+                  ),
+                )
                     : ListView.separated(
-                        padding: const EdgeInsets.fromLTRB(
-                          AppSizes.screenPadding,
-                          0,
-                          AppSizes.screenPadding,
-                          AppSizes.lg,
-                        ),
-                        itemCount: items.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: AppSizes.md),
-                        itemBuilder: (_, i) => ScenarioCard(
-                          scenario: items[i],
-                          onTap: () => _open(items[i]),
-                        ),
-                      ),
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSizes.screenPadding,
+                    0,
+                    AppSizes.screenPadding,
+                    AppSizes.lg,
+                  ),
+                  itemCount: items.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: AppSizes.md),
+                  itemBuilder: (_, i) => ScenarioCard(
+                    scenario: items[i],
+                    onTap: () => _open(items[i]),
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 import 'package:flutter/services.dart';
 
 import '../../../core/constants/app_sizes.dart';
@@ -63,7 +65,7 @@ class HelpPage extends StatelessWidget {
                   ExpansionTile(
                     tilePadding: EdgeInsets.zero,
                     childrenPadding: const EdgeInsets.only(bottom: AppSizes.md),
-                    expandedAlignment: Alignment.centerLeft,
+                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
                     title: Text(
                       item.question,
                       style: context.text.bodyMedium

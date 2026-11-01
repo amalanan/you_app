@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
@@ -12,10 +14,10 @@ class JourneyTimeline extends StatelessWidget {
   final List<JourneyEntry> entries;
 
   IconData _icon(JourneyEntryType type) => switch (type) {
-        JourneyEntryType.situation => Icons.add,
-        JourneyEntryType.scenario => Icons.check,
-        JourneyEntryType.reflection => Icons.edit,
-      };
+    JourneyEntryType.situation => Icons.add,
+    JourneyEntryType.scenario => Icons.check,
+    JourneyEntryType.reflection => Icons.edit,
+  };
 
   @override
   Widget build(BuildContext context) {

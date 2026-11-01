@@ -1,17 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../core/helpers/extensions.dart';
+import '../../../core/l10n/app_locale.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/constants/app_strings.dart';
-import '../../../core/helpers/extensions.dart';
-import '../../../core/storage/local_storage.dart';
-import '../../../core/storage/storage_keys.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/sub_page.dart';
 
-/// Choose the language, then Save.
-/// For now only the choice is saved. TODO: apply it with l10n (ARB files) so
-/// the app text and direction really change.
+/// Choose the language, then Save. The whole app switches at once
+/// (texts + right-to-left for Arabic).
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
 
@@ -25,14 +27,12 @@ class _LanguagePageState extends State<LanguagePage> {
     ('ar', 'العربية'),
   ];
 
-  late String _selected =
-      LocalStorage.instance.getString(StorageKeys.language) ?? 'en';
+  late String _selected = AppLocale.instance.value.languageCode;
 
   Future<void> _save() async {
-    await LocalStorage.instance.setString(StorageKeys.language, _selected);
-    if (!mounted) return;
-    context.showSnack(AppStrings.languageSaved);
-    Navigator.of(context).maybePop();
+    final code = _selected;
+    context.pop(); // back to Profile first, then the whole app changes language
+    await AppLocale.instance.setLanguage(code);
   }
 
   @override

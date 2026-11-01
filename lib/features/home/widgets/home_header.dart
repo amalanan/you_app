@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../../../core/l10n/text.dart';
+
+import '../../../core/l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/constants/app_colors.dart';
@@ -23,9 +27,11 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firstName = name.trim().split(' ').first;
+    final greeting = tr(_greeting);
+    final comma = AppLocale.isArabic ? '،' : ',';
     final title = firstName.isEmpty
-        ? '$_greeting 🌿'
-        : '$_greeting,\n$firstName 🌿';
+        ? '$greeting 🌿'
+        : '$greeting$comma\n$firstName 🌿';
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

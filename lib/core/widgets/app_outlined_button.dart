@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../l10n/text.dart';
 
 /// White / surface button with a border (e.g. "Continue with Google").
 class AppOutlinedButton extends StatelessWidget {

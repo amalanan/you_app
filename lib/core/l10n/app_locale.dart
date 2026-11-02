@@ -8,29 +8,45 @@ import 'translations_ar.dart';
 
 /// The language of the app: English ('en') or Arabic ('ar').
 ///
-/// - The choice is saved on the device (Profile > Language).
-/// - On the very first launch it follows the phone: Arabic phone -> Arabic app.
+/// - By default ("system") the app FOLLOWS THE PHONE, live: change the phone to
+///   Arabic and the app becomes Arabic (right-to-left); change it back and the
+///   app follows.
+/// - Profile > Language can force English or Arabic instead.
 /// - Changing it rebuilds the whole app (see app.dart), so every text updates.
-class AppLocale extends ValueNotifier<Locale> {
-  AppLocale._(super.value);
+class AppLocale extends ValueNotifier<Locale> with WidgetsBindingObserver {
+  AppLocale._(super.value) {
+    WidgetsBinding.instance.addObserver(this);
+  }
 
   /// Created on first use (after LocalStorage.init() in main).
-  static final AppLocale instance = AppLocale._(_initial());
+  static final AppLocale instance = AppLocale._(_resolve(savedChoice));
 
   static const supported = [Locale('en'), Locale('ar')];
 
-  static Locale _initial() {
-    final saved = LocalStorage.instance.getString(StorageKeys.language);
-    if (saved != null) return Locale(saved);
+  /// Value saved for "Language": 'system', 'en' or 'ar'.
+  static const system = 'system';
+
+  static String get savedChoice =>
+      LocalStorage.instance.getString(StorageKeys.language) ?? system;
+
+  static Locale _resolve(String choice) {
+    if (choice == 'en' || choice == 'ar') return Locale(choice);
     final device = ui.PlatformDispatcher.instance.locale.languageCode;
     return Locale(device == 'ar' ? 'ar' : 'en');
   }
 
   static bool get isArabic => instance.value.languageCode == 'ar';
 
-  Future<void> setLanguage(String code) async {
-    await LocalStorage.instance.setString(StorageKeys.language, code);
-    value = Locale(code);
+  /// The phone language changed while the app is open.
+  @override
+  void didChangeLocales(List<Locale>? locales) {
+    if (savedChoice == system) value = _resolve(system);
+  }
+
+  /// [choice] is 'system', 'en' or 'ar'.
+  Future<void> setLanguage(String choice) async {
+    await LocalStorage.instance.setString(StorageKeys.language, choice);
+    value = _resolve(choice);
   }
 }
 

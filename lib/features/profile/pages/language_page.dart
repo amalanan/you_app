@@ -22,12 +22,13 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
-  static const _languages = [
+  static var _languages = [
+    (AppLocale.system, AppStrings.languageSystem),
     ('en', 'English'),
     ('ar', 'العربية'),
   ];
 
-  late String _selected = AppLocale.instance.value.languageCode;
+  late String _selected = AppLocale.savedChoice;
 
   Future<void> _save() async {
     final code = _selected;

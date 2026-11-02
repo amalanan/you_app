@@ -2,7 +2,6 @@ import '../l10n/app_locale.dart';
 
 /// English texts of the app. Each one is also the KEY of its Arabic pair in
 /// core/l10n/translations_ar.dart (the Text widget translates it when needed).
-
 abstract final class AppStrings {
   static const appName = 'YOU';
   static const tagline = 'Your Growth Journey';
@@ -201,6 +200,7 @@ abstract final class AppStrings {
   static const themeDark = 'Dark';
 
   // Profile pages
+  static const languageSystem = 'System default';
   static const menuLanguage = 'Language';
   static const menuHelp = 'Help & Support';
   static const menuAbout = 'About';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Text;
 import 'package:flutter/widgets.dart' as w;
+
 import 'app_locale.dart';
 
 /// Drop-in replacement for Flutter's [Text]: the same widget, but it shows the
@@ -10,40 +11,40 @@ import 'app_locale.dart';
 ///   import '.../core/l10n/text.dart';
 class Text extends StatelessWidget {
   const Text(
-    this.data, {
-    super.key,
-    this.style,
-    this.strutStyle,
-    this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.softWrap,
-    this.overflow,
-    this.textScaler,
-    this.maxLines,
-    this.semanticsLabel,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.selectionColor,
-  }) : textSpan = null;
+      this.data, {
+        super.key,
+        this.style,
+        this.strutStyle,
+        this.textAlign,
+        this.textDirection,
+        this.locale,
+        this.softWrap,
+        this.overflow,
+        this.textScaler,
+        this.maxLines,
+        this.semanticsLabel,
+        this.textWidthBasis,
+        this.textHeightBehavior,
+        this.selectionColor,
+      }) : textSpan = null;
 
   const Text.rich(
-    this.textSpan, {
-    super.key,
-    this.style,
-    this.strutStyle,
-    this.textAlign,
-    this.textDirection,
-    this.locale,
-    this.softWrap,
-    this.overflow,
-    this.textScaler,
-    this.maxLines,
-    this.semanticsLabel,
-    this.textWidthBasis,
-    this.textHeightBehavior,
-    this.selectionColor,
-  }) : data = null;
+      this.textSpan, {
+        super.key,
+        this.style,
+        this.strutStyle,
+        this.textAlign,
+        this.textDirection,
+        this.locale,
+        this.softWrap,
+        this.overflow,
+        this.textScaler,
+        this.maxLines,
+        this.semanticsLabel,
+        this.textWidthBasis,
+        this.textHeightBehavior,
+        this.selectionColor,
+      }) : data = null;
 
   final String? data;
   final InlineSpan? textSpan;

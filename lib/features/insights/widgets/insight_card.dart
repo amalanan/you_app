@@ -5,7 +5,7 @@ import '../../../core/l10n/text.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
 import '../../../core/helpers/extensions.dart';
-import '../../home/insights/models/growth_detail.dart';
+import '../models/growth_detail.dart';
 
 /// One card of the Insights tab (lavender / grey / pink).
 class InsightCard extends StatelessWidget {

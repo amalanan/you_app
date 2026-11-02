@@ -4,7 +4,7 @@ import '../../../core/l10n/text.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/helpers/extensions.dart';
-import '../../home/insights/models/growth_detail.dart';
+import '../models/growth_detail.dart';
 
 /// Simple line chart (no package): green line, dots and labels under each dot.
 class GrowthLineChart extends StatelessWidget {

@@ -10,8 +10,8 @@ import '../../../core/models/growth_type.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/app_segmented.dart';
 import '../../../core/widgets/sub_page.dart';
-import '../../home/insights/models/growth_detail.dart';
 import '../data/mock_insights.dart';
+import '../models/growth_detail.dart';
 import '../widgets/growth_line_chart.dart';
 
 /// One skill: range tabs, current / previous score, chart and notes.

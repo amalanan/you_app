@@ -1,4 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../l10n/text.dart';
+import '../l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
 import '../constants/app_sizes.dart';
@@ -49,7 +52,7 @@ class FlowScaffold extends StatelessWidget {
                           label!,
                           style: context.text.bodySmall?.copyWith(
                             fontWeight: FontWeight.w600,
-                            letterSpacing: 0.8,
+                            letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
                           ),
                         ),
                       const Spacer(),

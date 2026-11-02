@@ -1,4 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../l10n/text.dart';
+
+import '../l10n/app_locale.dart';
 
 /// Label above the field + hint + optional password eye (as in the design).
 /// [label] is optional; with [maxLines] > 1 it becomes a text area.
@@ -74,18 +78,18 @@ class _AppTextFieldState extends State<AppTextField> {
           autocorrect: !widget.isPassword,
           enableSuggestions: !widget.isPassword,
           decoration: InputDecoration(
-            hintText: widget.hint,
+            hintText: widget.hint == null ? null : tr(widget.hint!),
             alignLabelWithHint: true,
             suffixIcon: widget.isPassword
                 ? IconButton(
-                    icon: Icon(
-                      _obscure
-                          ? Icons.visibility_outlined
-                          : Icons.visibility_off_outlined,
-                      size: 20,
-                    ),
-                    onPressed: () => setState(() => _obscure = !_obscure),
-                  )
+              icon: Icon(
+                _obscure
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+                size: 20,
+              ),
+              onPressed: () => setState(() => _obscure = !_obscure),
+            )
                 : null,
           ),
         ),

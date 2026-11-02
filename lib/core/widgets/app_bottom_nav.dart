@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Text;
+
+import '../l10n/text.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_sizes.dart';
@@ -39,12 +41,12 @@ class AppBottomNav extends StatelessWidget {
   final VoidCallback onAddTap;
 
   Widget _tab(int i) => Expanded(
-        child: _NavTab(
-          item: items[i],
-          selected: i == currentIndex,
-          onTap: () => onTap(i),
-        ),
-      );
+    child: _NavTab(
+      item: items[i],
+      selected: i == currentIndex,
+      onTap: () => onTap(i),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -97,18 +99,18 @@ class _NavTab extends StatelessWidget {
 
     final Widget icon = item.asset != null
         ? Image.asset(
-            item.asset!,
-            width: 24,
-            height: 24,
-            color: color,
-            fit: BoxFit.contain,
-            filterQuality: FilterQuality.high,
-          )
+      item.asset!,
+      width: 24,
+      height: 24,
+      color: color,
+      fit: BoxFit.contain,
+      filterQuality: FilterQuality.high,
+    )
         : Icon(
-            selected ? (item.selectedIcon ?? item.icon) : item.icon,
-            color: color,
-            size: 26,
-          );
+      selected ? (item.selectedIcon ?? item.icon) : item.icon,
+      color: color,
+      size: 26,
+    );
 
     return InkResponse(
       onTap: onTap,

@@ -40,12 +40,23 @@ class YouApp extends StatelessWidget {
 
           routerConfig: AppRouter.router,
 
-          builder: DevicePreview.appBuilder,
+          builder: (context, child) {
+            return DevicePreview.appBuilder(
+              context,
+              Directionality(
+                textDirection: locale.languageCode == 'ar'
+                    ? TextDirection.rtl
+                    : TextDirection.ltr,
+                child: child ?? const SizedBox.shrink(),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 }
+
 
 // class YouApp extends StatelessWidget {
 //   const YouApp({super.key, required this.themeController});

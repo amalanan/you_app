@@ -711,4 +711,6 @@ const Map<String, String> arabicTexts = {
   'تسجيل الدخول عبر Google غير متاح بعد',
   'Too many attempts, try again later':
   'محاولات كثيرة، حاولي لاحقاً',
+  'Check your email to confirm your account':
+  'تحقّقي من بريدك الإلكتروني لتأكيد حسابك',
 };

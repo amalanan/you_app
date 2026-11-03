@@ -242,4 +242,5 @@ abstract final class AppStrings {
   static const userDisabled = 'This account has been disabled';
   static const googleUnavailable = 'Google sign-in is not available yet';
   static const tooManyRequests = 'Too many attempts, try again later';
+  static const checkEmailToConfirm = 'Check your email to confirm your account';
 }

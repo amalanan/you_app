@@ -23,7 +23,8 @@ class SituationSavedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final insight = buildInsight(flow);
+    final insight =
+        flow.insight ?? const SituationInsight(notices: [], gains: []);
 
     return PopScope(
       // Back from here goes Home (the steps behind it are finished).

@@ -14,6 +14,9 @@ import 'features/home/data/supabase_home_repository.dart';
 import 'features/scenarios/data/mock_scenario_repository.dart';
 import 'features/scenarios/data/scenario_repository.dart';
 import 'features/scenarios/data/supabase_scenario_repository.dart';
+import 'features/situations/data/mock_situation_repository.dart';
+import 'features/situations/data/situation_repository.dart';
+import 'features/situations/data/supabase_situation_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,11 +30,13 @@ Future<void> main() async {
     AuthRepository.instance = SupabaseAuthRepository();
     ScenarioRepository.instance = SupabaseScenarioRepository();
     HomeRepository.instance = SupabaseHomeRepository();
+    SituationRepository.instance = SupabaseSituationRepository();
 
   } else {
     AuthRepository.instance = await LocalAuthRepository.create();
     ScenarioRepository.instance = MockScenarioRepository();
     HomeRepository.instance = MockHomeRepository();
+    SituationRepository.instance = MockSituationRepository();
 
   }
   ThemeController.instance = ThemeController();

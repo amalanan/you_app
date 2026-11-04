@@ -33,9 +33,18 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
     super.dispose();
   }
 
-  void _save() {
-    // TODO: save the reflection (repository / database) before opening the result.
-    context.push(AppRoutes.situationSaved, extra: widget.flow);
+  bool _saving = false;
+
+  Future<void> _save() async {
+    setState(() => _saving = true);
+    final ok = await widget.flow.submit();
+    if (!mounted) return;
+    setState(() => _saving = false);
+    if (ok) {
+      context.push(AppRoutes.situationSaved, extra: widget.flow);
+    } else {
+      context.showSnack(widget.flow.error ?? AppStrings.unknownError);
+    }
   }
 
   @override
@@ -44,7 +53,11 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
     final label = context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600);
 
     return FlowScaffold(
-      button: AppButton(label: AppStrings.continueLabel, onPressed: _save),
+      button: AppButton(
+        label: AppStrings.continueLabel,
+        isLoading: _saving,
+        onPressed: _save,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

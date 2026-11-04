@@ -13,17 +13,22 @@ import '../../../core/widgets/app_card.dart';
 import '../models/home_data.dart';
 
 class TodayScenarioCard extends StatelessWidget {
-  const TodayScenarioCard({super.key, required this.scenario});
+  const TodayScenarioCard({
+    super.key,
+    required this.scenario,
+    required this.onStart,
+  });
 
   final TodayScenario scenario;
 
+  /// The purple button: open today's scenario.
+  final VoidCallback onStart;
+
   @override
   Widget build(BuildContext context) {
-    void open() => context.push(AppRoutes.scenarios);
-
     return AppCard(
       padding: const EdgeInsets.all(AppSizes.lg),
-      onTap: open,
+      onTap: () => context.push(AppRoutes.scenarios), // the whole card = the list
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -66,7 +71,7 @@ class TodayScenarioCard extends StatelessWidget {
                 label: AppStrings.exploreScenario,
                 secondary: true,
                 trailingIcon: Icons.arrow_forward,
-                onPressed: open,
+                onPressed: onStart,
               ),
             ),
           ),

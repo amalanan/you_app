@@ -13,8 +13,14 @@ class JourneyProgress {
 }
 
 class TodayScenario {
-  const TodayScenario({required this.text, required this.minutes});
+  const TodayScenario({
+    required this.text,
+    required this.minutes,
+    this.id = '',
+  });
 
+  /// Id of the scenario (to open it directly).
+  final String id;
   final String text;
   final int minutes;
 }
@@ -27,6 +33,7 @@ class HomeData {
   });
 
   final JourneyProgress journey;
-  final TodayScenario scenario;
+  /// null when there are no scenarios at all.
+  final TodayScenario? scenario;
   final List<GrowthScore> growth;
 }

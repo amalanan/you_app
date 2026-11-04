@@ -6,6 +6,7 @@ import '../models/home_data.dart';
 const mockHomeData = HomeData(
   journey: JourneyProgress(day: 12, completedSteps: 7),
   scenario: TodayScenario(
+    id: 'difficult-choice',
     text: "You receive an opportunity that could move you forward, but you're not sure you're ready.",
     minutes: 2,
   ),

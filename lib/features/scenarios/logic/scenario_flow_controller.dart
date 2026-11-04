@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../../../core/models/growth_gain.dart';
 import '../../../core/errors/error_handler.dart';
+import '../../../core/helpers/data_events.dart';
 import '../data/scenario_repository.dart';
 import '../models/scenario.dart';
 
@@ -75,6 +76,7 @@ class ScenarioFlowController extends ChangeNotifier {
       );
       _isSubmitting = false;
       notifyListeners();
+      DataEvents.instance.changed(); // Home reloads its scores
       return true;
     } catch (e) {
       _error = ErrorHandler.handle(e).message;

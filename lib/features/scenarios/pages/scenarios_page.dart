@@ -22,7 +22,10 @@ import '../models/scenario.dart';
 import '../widgets/scenario_card.dart';
 
 class ScenariosPage extends StatefulWidget {
-  const ScenariosPage({super.key});
+  const ScenariosPage({super.key, this.openScenarioId});
+
+  /// If set (from Home), this scenario opens as soon as the list is loaded.
+  final String? openScenarioId;
 
   @override
   State<ScenariosPage> createState() => _ScenariosPageState();
@@ -36,6 +39,7 @@ class _ScenariosPageState extends State<ScenariosPage> {
   List<Scenario> _all = [];
   bool _loading = true;
   Failure? _failure;
+  bool _autoOpened = false;
 
   @override
   void initState() {
@@ -55,6 +59,7 @@ class _ScenariosPageState extends State<ScenariosPage> {
         _all = list;
         _loading = false;
       });
+      _openRequestedScenario(list);
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -62,6 +67,17 @@ class _ScenariosPageState extends State<ScenariosPage> {
         _loading = false;
       });
     }
+  }
+
+  void _openRequestedScenario(List<Scenario> list) {
+    final id = widget.openScenarioId;
+    if (id == null || _autoOpened) return;
+    _autoOpened = true;
+    final match = list.where((s) => s.id == id);
+    if (match.isEmpty) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _open(match.first);
+    });
   }
 
   List<Scenario> get _visible => _all.where((s) {

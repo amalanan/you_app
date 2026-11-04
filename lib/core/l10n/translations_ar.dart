@@ -689,6 +689,8 @@ const Map<String, String> arabicTexts = {
   'تحقّقي من اتصالك وحاولي مرة أخرى.',
   'Retry':
   'إعادة المحاولة',
+  'Something went wrong':
+  'حدث خطأ ما',
   'This field is required':
   'هذا الحقل مطلوب',
   'Enter a valid email':

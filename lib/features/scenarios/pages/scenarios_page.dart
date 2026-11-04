@@ -5,14 +5,18 @@ import '../../../core/l10n/text.dart';
 import '../../../core/l10n/app_locale.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_sizes.dart';
+import '../../../core/errors/error_handler.dart';
+import '../../../core/errors/failures.dart';
+import '../../../core/widgets/status_view.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/helpers/extensions.dart';
 import '../../../core/helpers/responsive.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/widgets/app_chip.dart';
 import '../../../core/widgets/responsive_center.dart';
-import '../data/mock_scenarios.dart';
+import '../data/scenario_repository.dart';
 import '../logic/scenario_flow_controller.dart';
 import '../models/scenario.dart';
 import '../widgets/scenario_card.dart';
@@ -29,7 +33,38 @@ class _ScenariosPageState extends State<ScenariosPage> {
   bool _searching = false;
   String _query = '';
 
-  List<Scenario> get _visible => mockScenarios.where((s) {
+  List<Scenario> _all = [];
+  bool _loading = true;
+  Failure? _failure;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _failure = null;
+    });
+    try {
+      final list = await ScenarioRepository.instance.fetchScenarios();
+      if (!mounted) return;
+      setState(() {
+        _all = list;
+        _loading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _failure = ErrorHandler.handle(e);
+        _loading = false;
+      });
+    }
+  }
+
+  List<Scenario> get _visible => _all.where((s) {
     final matchesFilter = _filter == null || s.category == _filter;
     final q = _query.trim().toLowerCase();
     final matchesQuery = q.isEmpty ||
@@ -50,6 +85,42 @@ class _ScenariosPageState extends State<ScenariosPage> {
       _searching = !_searching;
       if (!_searching) _query = '';
     });
+  }
+
+  Widget _body(List<Scenario> items) {
+    if (_loading) {
+      return const Center(
+        child: CircularProgressIndicator(color: AppColors.primary),
+      );
+    }
+    final failure = _failure;
+    if (failure != null) {
+      return failure is NetworkFailure
+          ? StatusView.offline(onRetry: _load)
+          : StatusView.error(message: failure.message, onRetry: _load);
+    }
+    if (items.isEmpty) {
+      return Center(
+        child: Text(
+          AppStrings.noScenariosFound,
+          style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+        ),
+      );
+    }
+    return ListView.separated(
+      padding: const EdgeInsets.fromLTRB(
+        AppSizes.screenPadding,
+        0,
+        AppSizes.screenPadding,
+        AppSizes.lg,
+      ),
+      itemCount: items.length,
+      separatorBuilder: (_, __) => const SizedBox(height: AppSizes.md),
+      itemBuilder: (_, i) => ScenarioCard(
+        scenario: items[i],
+        onTap: () => _open(items[i]),
+      ),
+    );
   }
 
   @override
@@ -116,30 +187,7 @@ class _ScenariosPageState extends State<ScenariosPage> {
                 ),
               ),
               const SizedBox(height: AppSizes.md),
-              Expanded(
-                child: items.isEmpty
-                    ? Center(
-                  child: Text(
-                    AppStrings.noScenariosFound,
-                    style: context.text.bodyMedium
-                        ?.copyWith(color: context.mutedText),
-                  ),
-                )
-                    : ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(
-                    AppSizes.screenPadding,
-                    0,
-                    AppSizes.screenPadding,
-                    AppSizes.lg,
-                  ),
-                  itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: AppSizes.md),
-                  itemBuilder: (_, i) => ScenarioCard(
-                    scenario: items[i],
-                    onTap: () => _open(items[i]),
-                  ),
-                ),
-              ),
+              Expanded(child: _body(items)),
             ],
           ),
         ),

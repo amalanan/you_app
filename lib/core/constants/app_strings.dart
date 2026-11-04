@@ -226,6 +226,7 @@ abstract final class AppStrings {
   static const offlineTitle = 'No internet connection';
   static const offlineBody = 'Check your connection and try again.';
   static const retry = 'Retry';
+  static const errorTitle = 'Something went wrong';
 
   // Validation
   static const fieldRequired = 'This field is required';

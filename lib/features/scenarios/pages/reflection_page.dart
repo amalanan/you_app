@@ -33,6 +33,16 @@ class _ReflectionPageState extends State<ReflectionPage> {
     super.dispose();
   }
 
+  Future<void> _complete() async {
+    final ok = await widget.flow.submit();
+    if (!mounted) return;
+    if (ok) {
+      context.push(AppRoutes.scenarioResult, extra: widget.flow);
+    } else {
+      context.showSnack(widget.flow.error ?? AppStrings.unknownError);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final flow = widget.flow;
@@ -44,7 +54,8 @@ class _ReflectionPageState extends State<ReflectionPage> {
         button: AppButton(
           label: AppStrings.completeScenario,
           secondary: true, // purple, as in the design
-          onPressed: () => context.push(AppRoutes.scenarioResult, extra: flow),
+          isLoading: flow.isSubmitting,
+          onPressed: _complete,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

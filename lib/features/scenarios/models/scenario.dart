@@ -5,10 +5,10 @@ enum ScenarioCategory { decisions, challenges, change }
 
 extension ScenarioCategoryX on ScenarioCategory {
   String get label => switch (this) {
-        ScenarioCategory.decisions => AppStrings.filterDecisions,
-        ScenarioCategory.challenges => AppStrings.filterChallenges,
-        ScenarioCategory.change => AppStrings.filterChange,
-      };
+    ScenarioCategory.decisions => AppStrings.filterDecisions,
+    ScenarioCategory.challenges => AppStrings.filterChallenges,
+    ScenarioCategory.change => AppStrings.filterChange,
+  };
 }
 
 class ScenarioOption {
@@ -16,8 +16,10 @@ class ScenarioOption {
     required this.text,
     required this.insight,
     required this.gains,
+    this.id = '', // filled when the scenario comes from the database
   });
 
+  final String id;
   final String text;
 
   /// Shown on the result screen ("Your response suggests that...").
@@ -49,4 +51,12 @@ class Scenario {
   final int minutes;
   final ScenarioCategory category;
   final List<ScenarioOption> options;
+}
+
+/// What the server sends back after an answer is saved.
+class ScenarioResult {
+  const ScenarioResult({required this.insight, required this.gains});
+
+  final String insight;
+  final List<GrowthGain> gains;
 }

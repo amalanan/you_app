@@ -49,6 +49,21 @@ class StatusView extends StatelessWidget {
         onAction: onRetry,
       );
 
+  factory StatusView.error({
+    Key? key,
+    required String message,
+    required VoidCallback onRetry,
+  }) =>
+      StatusView(
+        key: key,
+        icon: Icons.error_outline,
+        iconColor: AppColors.error,
+        title: AppStrings.errorTitle,
+        message: message,
+        actionLabel: AppStrings.retry,
+        onAction: onRetry,
+      );
+
   final IconData icon;
   final Color iconColor;
   final String title;

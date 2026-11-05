@@ -15,13 +15,13 @@ const mockInsights = [
     kind: InsightKind.pattern,
     title: 'We noticed a pattern',
     body:
-        'You often prefer to understand the available options before making important decisions.',
+    'You often prefer to understand the available options before making important decisions.',
   ),
   InsightItem(
     kind: InsightKind.explore,
     title: 'Worth exploring',
     body:
-        'You seem good at planning, but consistency in execution was lower in some of your experiences.',
+    'You seem good at planning, but consistency in execution was lower in some of your experiences.',
   ),
 ];
 
@@ -46,20 +46,20 @@ GrowthDetail growthDetailFor(GrowthType type, GrowthRange range) {
   // Shape of the line chart (offsets from the current score) for each range.
   final (labels, offsets, delta) = switch (range) {
     GrowthRange.week => (
-        ['17', '18', '19', '20', '21', '22', '23'],
-        [-11, -5, -8, -4, -5, -3, 0],
-        7,
-      ),
+    ['17', '18', '19', '20', '21', '22', '23'],
+    [-11, -5, -8, -4, -5, -3, 0],
+    7,
+    ),
     GrowthRange.month => (
-        ['W1', 'W2', 'W3', 'W4', 'W5'],
-        [-14, -9, -10, -4, 0],
-        10,
-      ),
+    ['W1', 'W2', 'W3', 'W4', 'W5'],
+    [-14, -9, -10, -4, 0],
+    10,
+    ),
     GrowthRange.quarter => (
-        ['Jul', 'Aug', 'Sep', 'Oct'],
-        [-20, -12, -6, 0],
-        14,
-      ),
+    ['Jul', 'Aug', 'Sep', 'Oct'],
+    [-20, -12, -6, 0],
+    14,
+    ),
   };
 
   final points = [
@@ -78,47 +78,50 @@ GrowthDetail growthDetailFor(GrowthType type, GrowthRange range) {
   );
 }
 
+/// The short "What does this mean?" text of a skill (stays in the app).
+String growthMeaningFor(GrowthType type) => _notes[type]!.$1;
+
 const _notes = <GrowthType, (String, List<String>)>{
   GrowthType.decisionMaking: (
-    'Your recent responses show that you weigh your options carefully before you commit to a choice.',
-    [
-      'I listed the pros and cons before accepting the offer...',
-      'I asked for advice, then trusted my own judgment in the end...',
-    ],
+  'Your recent responses show that you weigh your options carefully before you commit to a choice.',
+  [
+    'I listed the pros and cons before accepting the offer...',
+    'I asked for advice, then trusted my own judgment in the end...',
+  ],
   ),
   GrowthType.selfAwareness: (
-    'Your reflections show that you notice your feelings and reactions more clearly than before.',
-    [
-      'I noticed that I get nervous when I am not prepared...',
-      'I realized I need quiet time before I make big decisions...',
-    ],
+  'Your reflections show that you notice your feelings and reactions more clearly than before.',
+  [
+    'I noticed that I get nervous when I am not prepared...',
+    'I realized I need quiet time before I make big decisions...',
+  ],
   ),
   GrowthType.flexibility: (
-    'You are showing more openness to changing your approach when something does not work.',
-    [
-      'My plan changed suddenly, so I looked for another way...',
-      'I tried a different method instead of pushing the same one...',
-    ],
+  'You are showing more openness to changing your approach when something does not work.',
+  [
+    'My plan changed suddenly, so I looked for another way...',
+    'I tried a different method instead of pushing the same one...',
+  ],
   ),
   GrowthType.adaptation: (
-    'You are getting better at adjusting to new situations and recovering after setbacks.',
-    [
-      'After the mistake, I fixed it step by step and moved on...',
-      'I adapted quickly when the schedule changed...',
-    ],
+  'You are getting better at adjusting to new situations and recovering after setbacks.',
+  [
+    'After the mistake, I fixed it step by step and moved on...',
+    'I adapted quickly when the schedule changed...',
+  ],
   ),
   GrowthType.consistency: (
-    'This is the area with the most room to grow. Small, regular steps usually help more than big efforts.',
-    [
-      'I started strong but lost momentum after a few days...',
-      'Planning is easy for me, but following through is harder...',
-    ],
+  'This is the area with the most room to grow. Small, regular steps usually help more than big efforts.',
+  [
+    'I started strong but lost momentum after a few days...',
+    'Planning is easy for me, but following through is harder...',
+  ],
   ),
   GrowthType.learning: (
-    'Your recent reflections show that you often try to extract a lesson from difficult experiences.',
-    [
-      'I learned to verify more before making a decision...',
-      'This situation taught me that patience is very important...',
-    ],
+  'Your recent reflections show that you often try to extract a lesson from difficult experiences.',
+  [
+    'I learned to verify more before making a decision...',
+    'This situation taught me that patience is very important...',
+  ],
   ),
 };

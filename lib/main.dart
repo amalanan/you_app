@@ -35,14 +35,12 @@ Future<void> main() async {
     HomeRepository.instance = SupabaseHomeRepository();
     SituationRepository.instance = SupabaseSituationRepository();
     GrowthRepository.instance = SupabaseGrowthRepository();
-
   } else {
     AuthRepository.instance = await LocalAuthRepository.create();
     ScenarioRepository.instance = MockScenarioRepository();
     HomeRepository.instance = MockHomeRepository();
     SituationRepository.instance = MockSituationRepository();
     GrowthRepository.instance = MockGrowthRepository();
-
   }
   ThemeController.instance = ThemeController();
   runApp(

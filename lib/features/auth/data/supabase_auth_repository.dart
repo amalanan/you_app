@@ -1,6 +1,7 @@
 import 'dart:io' show SocketException;
 
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
+
 import '../../../core/constants/app_strings.dart';
 import '../../../core/errors/exceptions.dart';
 import 'auth_repository.dart';
@@ -19,6 +20,12 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   String? get currentEmail => _auth.currentUser?.email;
+
+  @override
+  DateTime? get memberSince {
+    final created = _auth.currentUser?.createdAt;
+    return created == null ? null : DateTime.tryParse(created);
+  }
 
   @override
   Future<void> signIn({required String email, required String password}) {

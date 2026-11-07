@@ -19,9 +19,6 @@ import '../logic/delete_account.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  // TODO: take the day from the real journey data.
-  static const _day = 12;
-
   Future<void> _logOut(BuildContext context) async {
     await AuthRepository.instance.signOut();
     if (context.mounted) context.go(AppRoutes.login);
@@ -123,7 +120,7 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 4),
               Center(
                 child: Text(
-                  AppStrings.dayOfJourney(_day),
+                  AppStrings.dayOfJourney(journeyDayFrom(auth.memberSince)),
                   style: context.text.bodyMedium?.copyWith(color: context.mutedText),
                 ),
               ),

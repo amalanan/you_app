@@ -36,6 +36,13 @@ class LocalAuthRepository implements AuthRepository {
   String? get currentEmail => _prefs.getString(_sessionKey);
 
   @override
+  DateTime? get memberSince {
+    final user = _users[currentEmail] as Map<String, dynamic>?;
+    final created = user?['createdAt'] as String?;
+    return created == null ? null : DateTime.tryParse(created);
+  }
+
+  @override
   String? get currentName {
     final user = _users[currentEmail] as Map<String, dynamic>?;
     return user?['name'] as String?;
@@ -62,7 +69,11 @@ class LocalAuthRepository implements AuthRepository {
     if (users.containsKey(_key(email))) {
       throw const AuthException(AppStrings.emailInUse);
     }
-    users[_key(email)] = {'name': name.trim(), 'password': password};
+    users[_key(email)] = {
+      'name': name.trim(),
+      'password': password,
+      'createdAt': DateTime.now().toUtc().toIso8601String(),
+    };
     await _prefs.setString(_usersKey, jsonEncode(users));
     await _prefs.setString(_sessionKey, _key(email));
   }

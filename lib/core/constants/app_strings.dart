@@ -153,6 +153,13 @@ abstract final class AppStrings {
   // Journey
   static String daysOfReflection(int n) =>
       AppLocale.isArabic ? '$n يوماً من التأمّل' : '$n days of reflection';
+  static const today = 'Today';
+  static const yesterday = 'Yesterday';
+  static const journeyAddedSituation = 'Added a new situation';
+  static const journeyCompletedScenario = 'Completed a scenario';
+  static const journeyEmptyTitle = 'Your journey starts here';
+  static const journeyEmptyBody =
+      'Add a situation or complete a scenario and your activity will appear here.';
   static const statReflections = 'Reflections';
   static const statSituations = 'Situations';
   static const statScenarios = 'Scenarios';

@@ -715,4 +715,8 @@ const Map<String, String> arabicTexts = {
   'محاولات كثيرة، حاولي لاحقاً',
   'Check your email to confirm your account':
   'تحقّقي من بريدك الإلكتروني لتأكيد حسابك',
+  'Your journey starts here':
+  'رحلتك تبدأ من هنا',
+  'Add a situation or complete a scenario and your activity will appear here.':
+  'أضيفي موقفاً أو أكملي سيناريو وسيظهر نشاطك هنا.',
 };

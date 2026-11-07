@@ -14,6 +14,10 @@ import 'features/home/data/supabase_home_repository.dart';
 import 'features/insights/data/growth_repository.dart';
 import 'features/insights/data/mock_growth_repository.dart';
 import 'features/insights/data/supabase_growth_repository.dart';
+import 'features/journey/data/journey_repository.dart';
+import 'features/journey/data/mock_journey.dart';
+import 'features/journey/data/mock_journey_repository.dart';
+import 'features/journey/data/supabase_journey_repository.dart';
 import 'features/scenarios/data/mock_scenario_repository.dart';
 import 'features/scenarios/data/scenario_repository.dart';
 import 'features/scenarios/data/supabase_scenario_repository.dart';
@@ -35,12 +39,14 @@ Future<void> main() async {
     HomeRepository.instance = SupabaseHomeRepository();
     SituationRepository.instance = SupabaseSituationRepository();
     GrowthRepository.instance = SupabaseGrowthRepository();
+    JourneyRepository.instance = SupabaseJourneyRepository();
   } else {
     AuthRepository.instance = await LocalAuthRepository.create();
     ScenarioRepository.instance = MockScenarioRepository();
     HomeRepository.instance = MockHomeRepository();
     SituationRepository.instance = MockSituationRepository();
     GrowthRepository.instance = MockGrowthRepository();
+    JourneyRepository.instance = MockJourneyRepository();
   }
   ThemeController.instance = ThemeController();
   runApp(

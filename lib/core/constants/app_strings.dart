@@ -166,6 +166,29 @@ abstract final class AppStrings {
 
   // Insights / My Growth
   static const insightsTitle = 'Your Insights';
+  static const insightImprovementTitle = 'Biggest improvement';
+  static const insightPatternTitle = 'We noticed a pattern';
+  static const insightExploreTitle = 'Worth exploring';
+  static const insightsEmptyTitle = 'Not enough data yet';
+  static const insightsEmptyBody =
+      'Complete a few scenarios or add a situation, and your insights will appear here.';
+
+  // The 3 insight sentences are built from your own numbers.
+  static String insightImprovement(String skill) => AppLocale.isArabic
+      ? 'ارتفعت درجة $skill لديك خلال تأمّلاتك الأخيرة.'
+      : 'Your $skill score rose over your recent reflections.';
+
+  static String insightPatternMatter(String matter) => AppLocale.isArabic
+      ? 'عندما تقررين، غالباً ما تضعين $matter أولاً.'
+      : 'When you decide, you often put $matter first.';
+
+  static String insightPatternFeeling(String feeling) => AppLocale.isArabic
+      ? 'تتكرر مشاعر «$feeling» كثيراً في المواقف التي تصفينها.'
+      : '$feeling shows up often in the situations you describe.';
+
+  static String insightExplore(String skill) => AppLocale.isArabic
+      ? 'الأقل اهتماماً حتى الآن: $skill. خطوة صغيرة هناك قد تفيدك.'
+      : 'Least attention so far: $skill. A small step there could help.';
   static const myGrowth = 'My Growth';
   static const growthSubtitle = 'How are your changes over time?';
   static const strongestSide = 'Your strongest side';

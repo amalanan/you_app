@@ -719,4 +719,8 @@ const Map<String, String> arabicTexts = {
   'رحلتك تبدأ من هنا',
   'Add a situation or complete a scenario and your activity will appear here.':
   'أضيفي موقفاً أو أكملي سيناريو وسيظهر نشاطك هنا.',
+  'Not enough data yet':
+  'لا توجد بيانات كافية بعد',
+  'Complete a few scenarios or add a situation, and your insights will appear here.':
+  'أكملي بعض السيناريوهات أو أضيفي موقفاً وستظهر رؤاك هنا.',
 };

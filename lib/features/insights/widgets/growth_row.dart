@@ -35,7 +35,7 @@ class GrowthRow extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${item.score}',
+                  item.hasData ? '${item.score}' : '—',
                   style: context.text.bodyMedium
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
@@ -43,7 +43,7 @@ class GrowthRow extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: item.score / 100),
+              tween: Tween(begin: 0, end: item.hasData ? item.score / 100 : 0),
               duration: AppDurations.medium * 2,
               curve: Curves.easeOut,
               builder: (_, value, __) => LinearProgressIndicator(

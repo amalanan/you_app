@@ -9,6 +9,7 @@ import '../../../core/errors/error_handler.dart';
 import '../../../core/errors/failures.dart';
 import '../../../core/helpers/extensions.dart';
 import '../../../core/helpers/responsive.dart';
+import '../../../core/models/growth_score.dart';
 import '../../../core/models/growth_type.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/app_segmented.dart';
@@ -90,6 +91,7 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
 
   Widget _content(GrowthDetail detail) {
     final change = detail.change;
+    final hasData = detail.current > GrowthScore.startScore;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,7 +100,7 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
           child: Column(
             children: [
               Text(
-                '${detail.current}',
+                hasData ? '${detail.current}' : '—',
                 style: context.text.displayLarge?.copyWith(
                   fontSize: context.rs(44),
                   fontWeight: FontWeight.w600,
@@ -116,9 +118,12 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _Stat(value: '${detail.previous}', label: AppStrings.previousScore),
             _Stat(
-              value: '${change >= 0 ? '+' : ''}$change',
+              value: hasData ? '${detail.previous}' : '—',
+              label: AppStrings.previousScore,
+            ),
+            _Stat(
+              value: hasData ? '${change >= 0 ? '+' : ''}$change' : '—',
               label: AppStrings.change,
               end: true,
             ),

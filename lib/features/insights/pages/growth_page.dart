@@ -59,9 +59,11 @@ class _GrowthPageState extends State<GrowthPage> {
   }
 
   Widget _content(List<GrowthScore> scores) {
-    final sorted = [...scores]..sort((a, b) => b.score.compareTo(a.score));
-    final strongest = sorted.first.type;
-    final weakest = sorted.last.type;
+    // only skills that already have points can be "strongest" or "worth exploring"
+    final sorted = [...scores.where((s) => s.hasData)]
+      ..sort((a, b) => b.score.compareTo(a.score));
+    final strongest = sorted.isEmpty ? null : sorted.first.type;
+    final weakest = sorted.length < 2 ? null : sorted.last.type;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -76,10 +78,14 @@ class _GrowthPageState extends State<GrowthPage> {
             item: item,
             onTap: () => context.go(AppRoutes.growthDetail(item.type.name)),
           ),
-        const SizedBox(height: AppSizes.lg),
-        _SideCard(title: AppStrings.strongestSide, value: strongest.label),
-        const SizedBox(height: AppSizes.md),
-        _SideCard(title: AppStrings.worthExploring, value: weakest.label),
+        if (strongest != null) ...[
+          const SizedBox(height: AppSizes.lg),
+          _SideCard(title: AppStrings.strongestSide, value: strongest.label),
+        ],
+        if (weakest != null) ...[
+          const SizedBox(height: AppSizes.md),
+          _SideCard(title: AppStrings.worthExploring, value: weakest.label),
+        ],
       ],
     );
   }

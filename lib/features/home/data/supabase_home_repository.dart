@@ -19,9 +19,6 @@ class SupabaseHomeRepository implements HomeRepository {
     GrowthType.selfAwareness,
   ];
 
-  /// A skill with no points yet starts here (same number as in schema.sql).
-  static const _startScore = 50;
-
   @override
   Future<HomeData> fetchHome() async {
     try {
@@ -43,13 +40,13 @@ class SupabaseHomeRepository implements HomeRepository {
         scenario: today == null
             ? null
             : TodayScenario(
-                id: today['id'] as String,
-                text: _text(today['situation']),
-                minutes: today['minutes'] as int,
-              ),
+          id: today['id'] as String,
+          text: _text(today['situation']),
+          minutes: today['minutes'] as int,
+        ),
         growth: [
           for (final skill in _homeSkills)
-            GrowthScore(skill, scores[skill.name] ?? _startScore),
+            GrowthScore(skill, scores[skill.name] ?? GrowthScore.startScore),
         ],
       );
     } on SocketException {

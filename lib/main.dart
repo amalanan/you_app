@@ -44,7 +44,6 @@ Future<void> main() async {
     GrowthRepository.instance = SupabaseGrowthRepository();
     JourneyRepository.instance = SupabaseJourneyRepository();
     InsightsRepository.instance = SupabaseInsightsRepository();
-
   } else {
     AuthRepository.instance = await LocalAuthRepository.create();
     ScenarioRepository.instance = MockScenarioRepository();

@@ -1,8 +1,6 @@
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'core/constants/app_strings.dart';
 import 'core/l10n/app_locale.dart';
 import 'core/routing/app_router.dart';
@@ -18,41 +16,44 @@ class YouApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Locale>(
       valueListenable: AppLocale.instance,
-      builder: (_, locale, __) => ValueListenableBuilder<ThemeMode>(
-        valueListenable: themeController,
-        builder: (_, mode, __) => MaterialApp.router(
-          useInheritedMediaQuery: true,
-          title: AppStrings.appName,
-          debugShowCheckedModeBanner: false,
+      builder:
+          (_, locale, __) => ValueListenableBuilder<ThemeMode>(
+            valueListenable: themeController,
+            builder:
+                (_, mode, __) => MaterialApp.router(
+                  useInheritedMediaQuery: true,
+                  title: AppStrings.appName,
+                  debugShowCheckedModeBanner: false,
 
-          theme: AppTheme.light,
-          darkTheme: AppTheme.dark,
-          themeMode: mode,
+                  theme: AppTheme.light,
+                  darkTheme: AppTheme.dark,
+                  themeMode: mode,
 
-          locale: DevicePreview.locale(context) ?? locale,
-          supportedLocales: AppLocale.supported,
+                  locale: DevicePreview.locale(context) ?? locale,
+                  supportedLocales: AppLocale.supported,
 
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
+                  localizationsDelegates: const [
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
 
-          routerConfig: AppRouter.router,
+                  routerConfig: AppRouter.router,
 
-          builder: (context, child) {
-            return DevicePreview.appBuilder(
-              context,
-              Directionality(
-                textDirection: locale.languageCode == 'ar'
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
-                child: child ?? const SizedBox.shrink(),
-              ),
-            );
-          },
-        ),
-      ),
+                  builder: (context, child) {
+                    return DevicePreview.appBuilder(
+                      context,
+                      Directionality(
+                        textDirection:
+                            locale.languageCode == 'ar'
+                                ? TextDirection.rtl
+                                : TextDirection.ltr,
+                        child: child ?? const SizedBox.shrink(),
+                      ),
+                    );
+                  },
+                ),
+          ),
     );
   }
 }

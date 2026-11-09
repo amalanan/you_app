@@ -57,7 +57,7 @@ Future<void> main() async {
   ThemeController.instance = ThemeController();
   runApp(
     DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => YouApp(themeController: ThemeController.instance),
     ),
   );

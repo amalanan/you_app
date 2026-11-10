@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import '../../../core/errors/error_handler.dart';
+import '../../../core/errors/exceptions.dart';
 import '../../../core/errors/failures.dart';
 import '../data/auth_repository.dart';
 
@@ -15,9 +16,14 @@ class AuthController extends ChangeNotifier {
   bool _isLoading = false;
   String? _errorMessage;
   bool _disposed = false;
+  String? _pendingEmail;
 
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
+
+  /// Set after signUp / signIn when the email still has to be confirmed (she must
+  /// tap the link we emailed): the screen then opens "Check your email".
+  String? get pendingEmail => _pendingEmail;
 
   Future<bool> signIn({required String email, required String password}) =>
       _run(() => _repo.signIn(email: email, password: password));
@@ -29,6 +35,9 @@ class AuthController extends ChangeNotifier {
   }) =>
       _run(() => _repo.signUp(name: name, email: email, password: password));
 
+  Future<bool> resendConfirmationEmail(String email) =>
+      _run(() => _repo.resendConfirmationEmail(email));
+
   Future<bool> signInWithGoogle() => _run(_repo.signInWithGoogle);
 
   Future<bool> sendPasswordReset(String email) =>
@@ -37,9 +46,16 @@ class AuthController extends ChangeNotifier {
   Future<bool> _run(Future<void> Function() action) async {
     _isLoading = true;
     _errorMessage = null;
+    _pendingEmail = null;
     _notify();
     try {
       await action();
+      _isLoading = false;
+      _notify();
+      return true;
+    } on EmailNotConfirmedException catch (e) {
+      // not an error: the next step is opening the email
+      _pendingEmail = e.email;
       _isLoading = false;
       _notify();
       return true;
@@ -47,7 +63,7 @@ class AuthController extends ChangeNotifier {
       final failure = ErrorHandler.handle(e);
       _isLoading = false;
       _errorMessage =
-          (failure is AuthFailure && failure.cancelled) ? null : failure.message;
+      (failure is AuthFailure && failure.cancelled) ? null : failure.message;
       _notify();
       return false;
     }

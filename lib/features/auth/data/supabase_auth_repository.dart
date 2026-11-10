@@ -2,6 +2,7 @@ import 'dart:io' show SocketException;
 
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
+import '../../../core/config/supabase_config.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/errors/exceptions.dart';
 import 'auth_repository.dart';
@@ -30,7 +31,20 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> signIn({required String email, required String password}) {
     return _guard(() async {
-      await _auth.signInWithPassword(email: email.trim(), password: password);
+      try {
+        await _auth.signInWithPassword(email: email.trim(), password: password);
+      } on sb.AuthException catch (e) {
+        // The account exists but the email was never confirmed: send a new code.
+        if (e.message.toLowerCase().contains('not confirmed')) {
+          await _auth.resend(
+            type: sb.OtpType.signup,
+            email: email.trim(),
+            emailRedirectTo: SupabaseConfig.authRedirectUrl,
+          );
+          throw EmailNotConfirmedException(email.trim());
+        }
+        rethrow;
+      }
     });
   }
 
@@ -45,11 +59,24 @@ class SupabaseAuthRepository implements AuthRepository {
         email: email.trim(),
         password: password,
         data: {'name': name.trim()}, // saved in profiles by the database trigger
+        emailRedirectTo: SupabaseConfig.authRedirectUrl, // the link opens the app
       );
-      // "Confirm email" is ON in Supabase: the account exists but must be confirmed first.
+      // "Confirm email" is ON in Supabase: the account exists, but she must tap the
+      // link in the email first (it opens the app and signs her in).
       if (res.session == null) {
-        throw const AuthException(AppStrings.checkEmailToConfirm);
+        throw EmailNotConfirmedException(email.trim());
       }
+    });
+  }
+
+  @override
+  Future<void> resendConfirmationEmail(String email) {
+    return _guard(() async {
+      await _auth.resend(
+        type: sb.OtpType.signup,
+        email: email.trim(),
+        emailRedirectTo: SupabaseConfig.authRedirectUrl,
+      );
     });
   }
 
@@ -102,6 +129,7 @@ class SupabaseAuthRepository implements AuthRepository {
     }
     if (m.contains('password') && m.contains('characters')) return AppStrings.shortPassword;
     if (m.contains('not confirmed')) return AppStrings.checkEmailToConfirm;
+    if (m.contains('security purposes')) return AppStrings.tooManyRequests;
     if (m.contains('rate limit') || m.contains('too many') || e.statusCode == '429') {
       return AppStrings.tooManyRequests;
     }

@@ -274,4 +274,16 @@ abstract final class AppStrings {
   static const googleUnavailable = 'Google sign-in is not available yet';
   static const tooManyRequests = 'Too many attempts, try again later';
   static const checkEmailToConfirm = 'Check your email to confirm your account';
+
+  // "Check your email" screen (she taps the link we emailed her)
+  static const checkEmailTitle = 'Check your email';
+  static const resendEmail = 'Resend email';
+  static const emailResent = 'Email sent again';
+  static const backToLogin = 'Back to log in';
+  static String checkEmailSubtitle(String email) => AppLocale.isArabic
+      ? 'أرسلنا رابط التأكيد إلى $email. افتحيه من هذا الهاتف وستدخلين التطبيق مباشرة.'
+      : 'We sent a confirmation link to $email. Open it on this phone and you will come straight into the app.';
+  static String resendEmailIn(int seconds) => AppLocale.isArabic
+      ? 'إعادة إرسال الإيميل بعد $seconds ث'
+      : 'Resend email in ${seconds}s';
 }

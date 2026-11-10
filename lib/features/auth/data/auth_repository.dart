@@ -19,6 +19,9 @@ abstract class AuthRepository {
     required String password,
   });
 
+  /// Sends the confirmation email (with the link) again.
+  Future<void> resendConfirmationEmail(String email);
+
   Future<void> signInWithGoogle();
 
   Future<void> sendPasswordReset(String email);

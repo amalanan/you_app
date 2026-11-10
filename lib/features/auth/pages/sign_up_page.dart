@@ -56,7 +56,12 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     if (!mounted) return;
     if (ok) {
-      context.go(AppRoutes.home);
+      final pending = _auth.pendingEmail;
+      if (pending != null) {
+        context.push(AppRoutes.checkEmail, extra: pending); // "Check your email"
+      } else {
+        context.go(AppRoutes.home);
+      }
     } else if (_auth.errorMessage != null) {
       context.showSnack(_auth.errorMessage!);
     }
@@ -135,7 +140,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   controller: _confirm,
                                   isPassword: true,
                                   validator: Validators.confirmPassword(
-                                    () => _password.text,
+                                        () => _password.text,
                                   ),
                                   textInputAction: TextInputAction.done,
                                   onSubmitted: (_) => _submit(),

@@ -78,6 +78,10 @@ class LocalAuthRepository implements AuthRepository {
     await _prefs.setString(_sessionKey, _key(email));
   }
 
+  // Device-only accounts have no confirmation email.
+  @override
+  Future<void> resendConfirmationEmail(String email) async {}
+
   @override
   Future<void> signInWithGoogle() async {
     throw const AuthException(AppStrings.googleUnavailable);

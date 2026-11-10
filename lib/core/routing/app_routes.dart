@@ -3,6 +3,7 @@ abstract final class AppRoutes {
   static const onboarding = '/onboarding';
   static const login = '/login';
   static const signUp = '/sign-up';
+  static const checkEmail = '/check-email';
 
   // Bottom navigation tabs
   static const home = '/home';

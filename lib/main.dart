@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'app.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide LocalStorage;
+import 'core/routing/app_router.dart';
 import 'core/storage/local_storage.dart';
 import 'core/theme/theme_controller.dart';
 import 'features/auth/data/auth_repository.dart';
 import 'features/auth/data/local_auth_repository.dart';
 import 'features/auth/data/supabase_auth_repository.dart';
 import 'core/config/supabase_config.dart';
+import 'features/auth/logic/email_link_listener.dart';
 import 'features/home/data/home_repository.dart';
 import 'features/home/data/mock_home_repository.dart';
 import 'features/home/data/supabase_home_repository.dart';
@@ -38,6 +40,7 @@ Future<void> main() async {
       anonKey: SupabaseConfig.anonKey,
     );
     AuthRepository.instance = SupabaseAuthRepository();
+    listenForEmailLinkSignIn(AppRouter.router);
     ScenarioRepository.instance = SupabaseScenarioRepository();
     HomeRepository.instance = SupabaseHomeRepository();
     SituationRepository.instance = SupabaseSituationRepository();

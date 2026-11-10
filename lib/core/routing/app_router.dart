@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/auth/pages/check_email_page.dart';
 import '../../features/auth/pages/login_page.dart';
 import '../../features/auth/pages/sign_up_page.dart';
+
 import '../../features/home/pages/home_page.dart';
 import '../../features/insights/pages/growth_detail_page.dart';
 import '../../features/insights/pages/growth_page.dart';
@@ -62,6 +64,12 @@ abstract final class AppRouter {
       ),
       GoRoute(path: AppRoutes.login, builder: (_, __) => const LoginPage()),
       GoRoute(path: AppRoutes.signUp, builder: (_, __) => const SignUpPage()),
+      GoRoute(
+        path: AppRoutes.checkEmail,
+        // the email is passed as `extra`; without it there is nothing to verify
+        redirect: (_, state) => state.extra is String ? null : AppRoutes.login,
+        builder: (_, state) => CheckEmailPage(email: state.extra! as String),
+      ),
 
       // The 4 tabs share one shell (bottom navigation bar).
       // Each tab keeps its own state when you switch between them.

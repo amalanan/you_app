@@ -42,7 +42,12 @@ class _LoginPageState extends State<LoginPage> {
   void _onResult(bool ok) {
     if (!mounted) return;
     if (ok) {
-      context.go(AppRoutes.home);
+      final pending = _auth.pendingEmail;
+      if (pending != null) {
+        context.push(AppRoutes.checkEmail, extra: pending); // "Check your email"
+      } else {
+        context.go(AppRoutes.home);
+      }
     } else if (_auth.errorMessage != null) {
       context.showSnack(_auth.errorMessage!);
     }

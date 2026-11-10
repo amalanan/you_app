@@ -723,4 +723,12 @@ const Map<String, String> arabicTexts = {
   'لا توجد بيانات كافية بعد',
   'Complete a few scenarios or add a situation, and your insights will appear here.':
   'أكملي بعض السيناريوهات أو أضيفي موقفاً وستظهر رؤاك هنا.',
+  'Check your email':
+  'تحقّقي من بريدك',
+  'Resend email':
+  'إعادة إرسال الإيميل',
+  'Email sent again':
+  'تم إرسال الإيميل مرة أخرى',
+  'Back to log in':
+  'العودة لتسجيل الدخول',
 };

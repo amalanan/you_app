@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _google() async {
     FocusScope.of(context).unfocus();
-    _onResult(await _auth.signInWithGoogle());
+    await _auth.signInWithGoogle();
   }
 
   Future<void> _forgotPassword() async {

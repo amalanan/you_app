@@ -82,8 +82,10 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<void> signInWithGoogle() async {
-    // TODO: Google needs a deep link + provider setup (next step).
-    throw const AuthException(AppStrings.googleUnavailable);
+    await _auth.signInWithOAuth(
+      sb.OAuthProvider.google,
+      redirectTo: SupabaseConfig.authRedirectUrl,
+    );
   }
 
   @override

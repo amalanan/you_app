@@ -90,6 +90,19 @@ class LocalAuthRepository implements AuthRepository {
   @override
   Future<void> sendPasswordReset(String email) => _fakeDelay();
 
+  // Device-only accounts: no reset link, but changing the password works.
+  @override
+  bool get isPasswordResetPending => false;
+
+  @override
+  Future<void> updatePassword(String newPassword) async {
+    final email = currentEmail;
+    final users = _users;
+    if (email == null || users[email] == null) return;
+    (users[email] as Map<String, dynamic>)['password'] = newPassword;
+    await _prefs.setString(_usersKey, jsonEncode(users));
+  }
+
   @override
   Future<void> signOut() => _prefs.remove(_sessionKey);
 

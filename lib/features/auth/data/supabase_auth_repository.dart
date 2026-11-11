@@ -5,6 +5,8 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import '../../../core/config/supabase_config.dart';
 import '../../../core/constants/app_strings.dart';
 import '../../../core/errors/exceptions.dart';
+import '../../../core/storage/storage_keys.dart';
+import '../../../core/storage/local_storage.dart';
 import 'auth_repository.dart';
 
 /// Accounts stored in Supabase (Auth). Screens do not know about it:
@@ -31,6 +33,8 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> signIn({required String email, required String password}) {
     return _guard(() async {
+      // she is logging in with a password: she is not following a reset link
+      await _clearResetRequest();
       try {
         await _auth.signInWithPassword(email: email.trim(), password: password);
       } on sb.AuthException catch (e) {
@@ -47,7 +51,6 @@ class SupabaseAuthRepository implements AuthRepository {
       }
     });
   }
-
   @override
   Future<void> signUp({
     required String name,
@@ -91,12 +94,41 @@ class SupabaseAuthRepository implements AuthRepository {
   @override
   Future<void> sendPasswordReset(String email) {
     return _guard(() async {
-      await _auth.resetPasswordForEmail(email.trim());
+      // the link in the email opens the app (same deep link as the confirmation email)
+      await _auth.resetPasswordForEmail(
+        email.trim(),
+        redirectTo: SupabaseConfig.authRedirectUrl,
+      );
+      await LocalStorage.instance.setString(
+        StorageKeys.passwordResetRequestedAt,
+        DateTime.now().toIso8601String(),
+      );
     });
   }
 
   @override
-  Future<void> signOut() => _auth.signOut();
+  bool get isPasswordResetPending {
+    final saved = LocalStorage.instance.getString(StorageKeys.passwordResetRequestedAt);
+    final at = saved == null ? null : DateTime.tryParse(saved);
+    return at != null && DateTime.now().difference(at) < const Duration(hours: 1);
+  }
+
+  @override
+  Future<void> updatePassword(String newPassword) {
+    return _guard(() async {
+      await _auth.updateUser(sb.UserAttributes(password: newPassword));
+      await _clearResetRequest();
+    });
+  }
+
+  Future<void> _clearResetRequest() =>
+      LocalStorage.instance.remove(StorageKeys.passwordResetRequestedAt);
+
+  @override
+  Future<void> signOut() async {
+    await _clearResetRequest();
+    await _auth.signOut();
+  }
 
   @override
   Future<void> deleteAccount() {
@@ -126,6 +158,7 @@ class SupabaseAuthRepository implements AuthRepository {
   static String _message(sb.AuthException e) {
     final m = e.message.toLowerCase();
     if (m.contains('invalid login')) return AppStrings.wrongCredentials;
+    if (m.contains('different from the old')) return AppStrings.samePassword;
     if (m.contains('already registered') || m.contains('already been registered')) {
       return AppStrings.emailInUse;
     }

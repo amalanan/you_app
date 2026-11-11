@@ -10,5 +10,6 @@ abstract final class StorageKeys {
   static const reflectionTime = 'reflection_time';
   static const reflectionTips = 'reflection_tips';
   static const analytics = 'analytics';
+  static const passwordResetRequestedAt = 'password_reset_requested_at';
   static const authToken = 'auth_token'; // move to flutter_secure_storage later
 }

@@ -35,6 +35,9 @@ class AuthController extends ChangeNotifier {
   }) =>
       _run(() => _repo.signUp(name: name, email: email, password: password));
 
+  Future<bool> updatePassword(String newPassword) =>
+      _run(() => _repo.updatePassword(newPassword));
+
   Future<bool> resendConfirmationEmail(String email) =>
       _run(() => _repo.resendConfirmationEmail(email));
 

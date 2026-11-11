@@ -731,4 +731,18 @@ const Map<String, String> arabicTexts = {
   'تم إرسال الإيميل مرة أخرى',
   'Back to log in':
   'العودة لتسجيل الدخول',
+  'Reset password':
+  'إعادة تعيين كلمة المرور',
+  'Choose a new password for your account.':
+  'اختاري كلمة مرور جديدة لحسابك.',
+  'New password':
+  'كلمة المرور الجديدة',
+  'Confirm new password':
+  'تأكيد كلمة المرور الجديدة',
+  'Save password':
+  'حفظ كلمة المرور',
+  'Your password was updated':
+  'تم تحديث كلمة المرور',
+  'Choose a password different from the old one':
+  'اختاري كلمة مرور مختلفة عن القديمة',
 };

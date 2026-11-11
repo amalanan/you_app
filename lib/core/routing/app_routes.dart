@@ -4,6 +4,7 @@ abstract final class AppRoutes {
   static const login = '/login';
   static const signUp = '/sign-up';
   static const checkEmail = '/check-email';
+  static const resetPassword = '/reset-password';
 
   // Bottom navigation tabs
   static const home = '/home';

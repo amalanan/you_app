@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/pages/check_email_page.dart';
+import '../../features/auth/data/auth_repository.dart';
 import '../../features/auth/pages/login_page.dart';
+import '../../features/auth/pages/reset_password_page.dart';
 import '../../features/auth/pages/sign_up_page.dart';
 
 import '../../features/home/pages/home_page.dart';
@@ -64,6 +66,12 @@ abstract final class AppRouter {
       ),
       GoRoute(path: AppRoutes.login, builder: (_, __) => const LoginPage()),
       GoRoute(path: AppRoutes.signUp, builder: (_, __) => const SignUpPage()),
+      GoRoute(
+        path: AppRoutes.resetPassword,
+        // the reset link signs her in; without a session there is nothing to reset
+        redirect: (_, __) => AuthRepository.instance.isLoggedIn ? null : AppRoutes.login,
+        builder: (_, __) => const ResetPasswordPage(),
+      ),
       GoRoute(
         path: AppRoutes.checkEmail,
         // the email is passed as `extra`; without it there is nothing to verify

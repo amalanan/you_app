@@ -26,6 +26,13 @@ abstract class AuthRepository {
 
   Future<void> sendPasswordReset(String email);
 
+  /// true for 1 hour after she asked for a reset link: the next time the app opens
+  /// with a session it must show "Reset password" instead of Home.
+  bool get isPasswordResetPending;
+
+  /// Saves the new password (she is signed in by the reset link).
+  Future<void> updatePassword(String newPassword);
+
   Future<void> signOut();
 
   /// Removes the account and its saved data, then signs out.

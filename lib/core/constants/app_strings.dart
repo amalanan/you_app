@@ -275,6 +275,15 @@ abstract final class AppStrings {
   static const tooManyRequests = 'Too many attempts, try again later';
   static const checkEmailToConfirm = 'Check your email to confirm your account';
 
+  // Reset password screen
+  static const resetPasswordTitle = 'Reset password';
+  static const resetPasswordSubtitle = 'Choose a new password for your account.';
+  static const newPassword = 'New password';
+  static const confirmNewPassword = 'Confirm new password';
+  static const savePassword = 'Save password';
+  static const passwordUpdated = 'Your password was updated';
+  static const samePassword = 'Choose a password different from the old one';
+
   // "Check your email" screen (she taps the link we emailed her)
   static const checkEmailTitle = 'Check your email';
   static const resendEmail = 'Resend email';

@@ -49,5 +49,7 @@ class LocalStorage {
   Future<void> setToken(String token) =>
       _prefs.setString(StorageKeys.authToken, token);
 
+  Future<bool> remove(String key) => _prefs.remove(key);
+
   Future<void> clearToken() => _prefs.remove(StorageKeys.authToken);
 }

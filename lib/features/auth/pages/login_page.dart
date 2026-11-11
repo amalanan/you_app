@@ -44,7 +44,10 @@ class _LoginPageState extends State<LoginPage> {
     if (ok) {
       final pending = _auth.pendingEmail;
       if (pending != null) {
-        context.push(AppRoutes.checkEmail, extra: pending); // "Check your email"
+        context.push(
+          AppRoutes.checkEmail,
+          extra: pending,
+        ); // "Check your email"
       } else {
         context.go(AppRoutes.home);
       }
@@ -73,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
     final ok = await _auth.sendPasswordReset(_email.text);
     if (!mounted) return;
     context.showSnack(
-      ok ? AppStrings.resetLinkSent : (_auth.errorMessage ?? AppStrings.unknownError),
+      ok
+          ? AppStrings.resetLinkSent
+          : (_auth.errorMessage ?? AppStrings.unknownError),
     );
   }
 
@@ -86,97 +91,104 @@ class _LoginPageState extends State<LoginPage> {
           child: ResponsiveCenter(
             child: ListenableBuilder(
               listenable: _auth,
-              builder: (context, _) => CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSizes.screenPadding,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const AuthHeader(
-                            title: AppStrings.welcomeBack,
-                            subtitle: AppStrings.continueJourney,
+              builder:
+                  (context, _) => CustomScrollView(
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.screenPadding,
                           ),
-                          const SizedBox(height: AppSizes.xl),
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                AppTextField(
-                                  label: AppStrings.email,
-                                  hint: AppStrings.emailHint,
-                                  controller: _email,
-                                  validator: Validators.email,
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  autofillHints: const [AutofillHints.email],
-                                ),
-                                const SizedBox(height: AppSizes.md),
-                                AppTextField(
-                                  label: AppStrings.password,
-                                  hint: AppStrings.passwordHint,
-                                  controller: _password,
-                                  isPassword: true,
-                                  validator: Validators.required,
-                                  textInputAction: TextInputAction.done,
-                                  autofillHints: const [AutofillHints.password],
-                                  onSubmitted: (_) => _submit(),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional.centerEnd,
-                            child: TextButton(
-                              onPressed: _auth.isLoading ? null : _forgotPassword,
-                              style: TextButton.styleFrom(
-                                foregroundColor: AppColors.secondary,
-                                textStyle: context.text.bodySmall?.copyWith(
-                                  decoration: TextDecoration.underline,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const AuthHeader(
+                                title: AppStrings.welcomeBack,
+                                subtitle: AppStrings.continueJourney,
+                              ),
+                              const SizedBox(height: AppSizes.xl),
+                              Form(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    AppTextField(
+                                      label: AppStrings.email,
+                                      hint: AppStrings.emailHint,
+                                      controller: _email,
+                                      validator: Validators.email,
+                                      keyboardType: TextInputType.emailAddress,
+                                      textInputAction: TextInputAction.next,
+                                      autofillHints: const [
+                                        AutofillHints.email,
+                                      ],
+                                    ),
+                                    const SizedBox(height: AppSizes.md),
+                                    AppTextField(
+                                      label: AppStrings.password,
+                                      hint: AppStrings.passwordHint,
+                                      controller: _password,
+                                      isPassword: true,
+                                      validator: Validators.required,
+                                      textInputAction: TextInputAction.done,
+                                      autofillHints: const [
+                                        AutofillHints.password,
+                                      ],
+                                      onSubmitted: (_) => _submit(),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              child: const Text(AppStrings.forgotPassword),
-                            ),
+                              Align(
+                                alignment: AlignmentDirectional.centerEnd,
+                                child: TextButton(
+                                  onPressed:
+                                      _auth.isLoading ? null : _forgotPassword,
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppColors.secondary,
+                                    textStyle: context.text.bodySmall?.copyWith(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  child: const Text(AppStrings.forgotPassword),
+                                ),
+                              ),
+                              const SizedBox(height: AppSizes.sm),
+                              AppButton(
+                                label: AppStrings.logIn,
+                                isLoading: _auth.isLoading,
+                                onPressed: _submit,
+                              ),
+                              const SizedBox(height: AppSizes.lg),
+                              Center(
+                                child: Text(
+                                  AppStrings.or,
+                                  style: context.text.bodySmall?.copyWith(
+                                    color: context.mutedText,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: AppSizes.lg),
+                              GoogleButton(
+                                isLoading: _auth.isLoading,
+                                onPressed: _google,
+                              ),
+                              const Spacer(),
+                              const SizedBox(height: AppSizes.lg),
+                              Center(
+                                child: AuthPrompt(
+                                  text: AppStrings.noAccount,
+                                  action: AppStrings.createOne,
+                                  onTap: () => context.push(AppRoutes.signUp),
+                                ),
+                              ),
+                              const SizedBox(height: AppSizes.sm),
+                            ],
                           ),
-                          const SizedBox(height: AppSizes.sm),
-                          AppButton(
-                            label: AppStrings.logIn,
-                            isLoading: _auth.isLoading,
-                            onPressed: _submit,
-                          ),
-                          const SizedBox(height: AppSizes.lg),
-                          Center(
-                            child: Text(
-                              AppStrings.or,
-                              style: context.text.bodySmall
-                                  ?.copyWith(color: context.mutedText),
-                            ),
-                          ),
-                          const SizedBox(height: AppSizes.lg),
-                          GoogleButton(
-                            isLoading: _auth.isLoading,
-                            onPressed: _google,
-                          ),
-                          const Spacer(),
-                          const SizedBox(height: AppSizes.lg),
-                          Center(
-                            child: AuthPrompt(
-                              text: AppStrings.noAccount,
-                              action: AppStrings.createOne,
-                              onTap: () => context.push(AppRoutes.signUp),
-                            ),
-                          ),
-                          const SizedBox(height: AppSizes.sm),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
             ),
           ),
         ),

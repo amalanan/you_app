@@ -105,10 +105,23 @@ abstract final class AppTheme {
           ),
         ),
       ),
-      snackBarTheme: const SnackBarThemeData(
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: isDark
+            ? AppColors.darkSurface
+            : AppColors.darkBackground,
         contentTextStyle: TextStyle(
           fontFamily: AppTextStyles.fontFamily,
           fontFamilyFallback: AppTextStyles.fontFamilyFallback,
+          color: AppColors.white,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+        ),
+        actionTextColor: AppColors.white,
+        disabledActionTextColor: AppColors.lightHint,
+        behavior: SnackBarBehavior.floating,
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.radiusMd),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(

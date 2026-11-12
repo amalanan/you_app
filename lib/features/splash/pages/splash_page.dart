@@ -31,13 +31,17 @@ class _SplashPageState extends State<SplashPage>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: AppDurations.splash);
+    _controller = AnimationController(
+      vsync: this,
+      duration: AppDurations.splash,
+    );
 
     const intro = Interval(0, 0.35, curve: Curves.easeOut);
     _fade = CurvedAnimation(parent: _controller, curve: intro);
-    _scale = Tween<double>(begin: 0.85, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: intro),
-    );
+    _scale = Tween<double>(
+      begin: 0.85,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _controller, curve: intro));
 
     _controller.forward().whenComplete(_goNext);
   }
@@ -49,9 +53,10 @@ class _SplashPageState extends State<SplashPage>
       route = AppRoutes.onboarding;
     } else if (AuthRepository.instance.isLoggedIn) {
       // opened from the reset link? then the new password comes first
-      route = AuthRepository.instance.isPasswordResetPending
-          ? AppRoutes.resetPassword
-          : AppRoutes.home;
+      route =
+          AuthRepository.instance.isPasswordResetPending
+              ? AppRoutes.resetPassword
+              : AppRoutes.home;
     } else {
       route = AppRoutes.login;
     }
@@ -90,8 +95,9 @@ class _SplashPageState extends State<SplashPage>
                             const SizedBox(height: AppSizes.md),
                             Text(
                               AppStrings.appName,
-                              style: context.text.displayLarge
-                                  ?.copyWith(fontSize: context.rs(56)),
+                              style: context.text.displayLarge?.copyWith(
+                                fontSize: context.rs(56),
+                              ),
                             ),
                             const SizedBox(height: AppSizes.sm),
                             Text(
@@ -142,18 +148,19 @@ class _ProgressBar extends StatelessWidget {
             ),
             AnimatedBuilder(
               animation: animation,
-              builder: (_, __) => FractionallySizedBox(
-                alignment: AlignmentDirectional.centerStart,
-                widthFactor: animation.value,
-                child: const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [AppColors.logoPurple, AppColors.primary],
+              builder:
+                  (_, __) => FractionallySizedBox(
+                    alignment: AlignmentDirectional.centerStart,
+                    widthFactor: animation.value,
+                    child: const DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [AppColors.logoPurple, AppColors.primary],
+                        ),
+                      ),
+                      child: SizedBox.expand(),
                     ),
                   ),
-                  child: SizedBox.expand(),
-                ),
-              ),
             ),
           ],
         ),

@@ -6,12 +6,13 @@ import 'app_text_styles.dart';
 
 abstract final class AppTheme {
   static ThemeData get light => _build(Brightness.light);
+
   static ThemeData get dark => _build(Brightness.dark);
 
   static ThemeData _build(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
     final background =
-    isDark ? AppColors.darkBackground : AppColors.lightBackground;
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final text = isDark ? AppColors.darkText : AppColors.lightText;
     final border = isDark ? AppColors.darkBorder : AppColors.lightBorder;
@@ -80,8 +81,10 @@ abstract final class AppTheme {
       switchTheme: SwitchThemeData(
         thumbColor: const WidgetStatePropertyAll(AppColors.white),
         trackColor: WidgetStateProperty.resolveWith(
-              (states) =>
-          states.contains(WidgetState.selected) ? AppColors.primary : border,
+          (states) =>
+              states.contains(WidgetState.selected)
+                  ? AppColors.primary
+                  : border,
         ),
         trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
       ),
@@ -106,9 +109,8 @@ abstract final class AppTheme {
         ),
       ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: isDark
-            ? AppColors.darkSurface
-            : AppColors.darkBackground,
+        backgroundColor:
+            isDark ? AppColors.darkSurface : AppColors.darkBackground,
         contentTextStyle: TextStyle(
           fontFamily: AppTextStyles.fontFamily,
           fontFamilyFallback: AppTextStyles.fontFamilyFallback,
@@ -141,8 +143,8 @@ abstract final class AppTheme {
       ),
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith(
-              (states) =>
-          states.contains(WidgetState.selected) ? AppColors.primary : null,
+          (states) =>
+              states.contains(WidgetState.selected) ? AppColors.primary : null,
         ),
         checkColor: const WidgetStatePropertyAll(AppColors.white),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),

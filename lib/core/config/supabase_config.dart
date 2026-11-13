@@ -16,8 +16,7 @@
 abstract final class SupabaseConfig {
   static const url = 'https://mtyoxjfznlhqawvgolgj.supabase.co';
 
-  static const anonKey =
-      'sb_publishable_5sLZSMrmJU15ADa8o2Fxog_0M3sxkc5';
+  static const anonKey = 'sb_publishable_5sLZSMrmJU15ADa8o2Fxog_0M3sxkc5';
   static const authRedirectUrl = 'youapp://login-callback/';
 
   static bool get isConfigured =>

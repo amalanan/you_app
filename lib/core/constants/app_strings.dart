@@ -67,8 +67,10 @@ abstract final class AppStrings {
   static const goodAfternoon = 'Good afternoon';
   static const goodEvening = 'Good evening';
   static const yourJourney = 'Your journey';
+
   static String dayNumber(int n) => AppLocale.isArabic ? 'اليوم $n' : 'Day $n';
   static const todaysScenario = "TODAY'S SCENARIO";
+
   static String minutes(int n) => AppLocale.isArabic ? '$n دقيقة' : '$n min';
   static const exploreScenario = 'Explore Scenario';
   static const yourGrowth = 'YOUR GROWTH';
@@ -89,7 +91,9 @@ abstract final class AppStrings {
   static const filterChallenges = 'Challenges';
   static const filterChange = 'Change';
   static const scenarioLabel = 'SCENARIO';
-  static String stepOf(int step) => AppLocale.isArabic ? '$step من 3' : '$step of 3';
+
+  static String stepOf(int step) =>
+      AppLocale.isArabic ? '$step من 3' : '$step of 3';
   static const whatWouldYouDo = 'What would you most likely do?';
   static const continueLabel = 'Continue';
   static const howConfident = 'How confident are you in your choice?';
@@ -174,21 +178,25 @@ abstract final class AppStrings {
       'Complete a few scenarios or add a situation, and your insights will appear here.';
 
   // The 3 insight sentences are built from your own numbers.
-  static String insightImprovement(String skill) => AppLocale.isArabic
-      ? 'ارتفعت درجة $skill لديك خلال تأمّلاتك الأخيرة.'
-      : 'Your $skill score rose over your recent reflections.';
+  static String insightImprovement(String skill) =>
+      AppLocale.isArabic
+          ? 'ارتفعت درجة $skill لديك خلال تأمّلاتك الأخيرة.'
+          : 'Your $skill score rose over your recent reflections.';
 
-  static String insightPatternMatter(String matter) => AppLocale.isArabic
-      ? 'عندما تقررين، غالباً ما تضعين $matter أولاً.'
-      : 'When you decide, you often put $matter first.';
+  static String insightPatternMatter(String matter) =>
+      AppLocale.isArabic
+          ? 'عندما تقررين، غالباً ما تضعين $matter أولاً.'
+          : 'When you decide, you often put $matter first.';
 
-  static String insightPatternFeeling(String feeling) => AppLocale.isArabic
-      ? 'تتكرر مشاعر «$feeling» كثيراً في المواقف التي تصفينها.'
-      : '$feeling shows up often in the situations you describe.';
+  static String insightPatternFeeling(String feeling) =>
+      AppLocale.isArabic
+          ? 'تتكرر مشاعر «$feeling» كثيراً في المواقف التي تصفينها.'
+          : '$feeling shows up often in the situations you describe.';
 
-  static String insightExplore(String skill) => AppLocale.isArabic
-      ? 'الأقل اهتماماً حتى الآن: $skill. خطوة صغيرة هناك قد تفيدك.'
-      : 'Least attention so far: $skill. A small step there could help.';
+  static String insightExplore(String skill) =>
+      AppLocale.isArabic
+          ? 'الأقل اهتماماً حتى الآن: $skill. خطوة صغيرة هناك قد تفيدك.'
+          : 'Least attention so far: $skill. A small step there could help.';
   static const myGrowth = 'My Growth';
   static const growthSubtitle = 'How are your changes over time?';
   static const strongestSide = 'Your strongest side';
@@ -249,6 +257,7 @@ abstract final class AppStrings {
   static const contactUs = 'Contact Us';
   static const faqTitle = 'Frequently asked questions';
   static const aboutTagline = 'A simple app for a deeper you.';
+
   static String versionLabel(String v) =>
       AppLocale.isArabic ? 'الإصدار $v' : 'Version $v';
   static const successTitle = 'Well done!';
@@ -289,10 +298,14 @@ abstract final class AppStrings {
   static const resendEmail = 'Resend email';
   static const emailResent = 'Email sent again';
   static const backToLogin = 'Back to log in';
-  static String checkEmailSubtitle(String email) => AppLocale.isArabic
-      ? 'أرسلنا رابط التأكيد إلى $email. افتحيه من هذا الهاتف وستدخلين التطبيق مباشرة.'
-      : 'We sent a confirmation link to $email. Open it on this phone and you will come straight into the app.';
-  static String resendEmailIn(int seconds) => AppLocale.isArabic
-      ? 'إعادة إرسال الإيميل بعد $seconds ث'
-      : 'Resend email in ${seconds}s';
+
+  static String checkEmailSubtitle(String email) =>
+      AppLocale.isArabic
+          ? 'أرسلنا رابط التأكيد إلى $email. افتحيه من هذا الهاتف وستدخلين التطبيق مباشرة.'
+          : 'We sent a confirmation link to $email. Open it on this phone and you will come straight into the app.';
+
+  static String resendEmailIn(int seconds) =>
+      AppLocale.isArabic
+          ? 'إعادة إرسال الإيميل بعد $seconds ث'
+          : 'Resend email in ${seconds}s';
 }

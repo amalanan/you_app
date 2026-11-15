@@ -54,21 +54,28 @@ class ScenarioCard extends StatelessWidget {
                   children: [
                     Text(
                       scenario.title,
-                      style: context.text.bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w600),
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       scenario.summary,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: context.text.bodySmall
-                          ?.copyWith(color: context.mutedText, height: 1.4),
+                      style: context.text.bodySmall?.copyWith(
+                        color: context.mutedText,
+                        height: 1.4,
+                      ),
                     ),
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        Icon(Icons.access_time, size: 13, color: context.mutedText),
+                        Icon(
+                          Icons.access_time,
+                          size: 13,
+                          color: context.mutedText,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           AppStrings.minutes(scenario.minutes),

@@ -44,23 +44,25 @@ class _MountainPainter extends CustomPainter {
     drawCloud(w * 0.84, h * 0.5, h * 0.09);
 
     // back mountain
-    final back = Path()
-      ..moveTo(w * 0.42, h)
-      ..lineTo(w * 0.62, h * 0.4)
-      ..lineTo(w * 0.69, h * 0.48)
-      ..lineTo(w * 0.76, h * 0.36)
-      ..lineTo(w * 0.98, h)
-      ..close();
+    final back =
+        Path()
+          ..moveTo(w * 0.42, h)
+          ..lineTo(w * 0.62, h * 0.4)
+          ..lineTo(w * 0.69, h * 0.48)
+          ..lineTo(w * 0.76, h * 0.36)
+          ..lineTo(w * 0.98, h)
+          ..close();
     canvas.drawPath(back, Paint()..color = AppColors.secondary.withAlpha(140));
 
     // main mountain
-    final main = Path()
-      ..moveTo(w * 0.14, h)
-      ..lineTo(w * 0.42, h * 0.3)
-      ..lineTo(w * 0.48, h * 0.38)
-      ..lineTo(w * 0.55, h * 0.32)
-      ..lineTo(w * 0.82, h)
-      ..close();
+    final main =
+        Path()
+          ..moveTo(w * 0.14, h)
+          ..lineTo(w * 0.42, h * 0.3)
+          ..lineTo(w * 0.48, h * 0.38)
+          ..lineTo(w * 0.55, h * 0.32)
+          ..lineTo(w * 0.82, h)
+          ..close();
     canvas.drawPath(
       main,
       Paint()
@@ -82,13 +84,14 @@ class _MountainPainter extends CustomPainter {
         ..strokeWidth = 2.5
         ..strokeCap = StrokeCap.round,
     );
-    final flag = Path()
-      ..moveTo(top.dx, top.dy)
-      ..lineTo(top.dx + w * 0.1, top.dy)
-      ..lineTo(top.dx + w * 0.085, top.dy + h * 0.075)
-      ..lineTo(top.dx + w * 0.1, top.dy + h * 0.15)
-      ..lineTo(top.dx, top.dy + h * 0.15)
-      ..close();
+    final flag =
+        Path()
+          ..moveTo(top.dx, top.dy)
+          ..lineTo(top.dx + w * 0.1, top.dy)
+          ..lineTo(top.dx + w * 0.085, top.dy + h * 0.075)
+          ..lineTo(top.dx + w * 0.1, top.dy + h * 0.15)
+          ..lineTo(top.dx, top.dy + h * 0.15)
+          ..close();
     canvas.drawPath(flag, Paint()..color = AppColors.primary);
 
     // leaves
@@ -97,7 +100,14 @@ class _MountainPainter extends CustomPainter {
       canvas.save();
       canvas.translate(cx, h);
       canvas.rotate(angle);
-      canvas.drawOval(Rect.fromCenter(center: Offset(0, -h * 0.1), width: w * 0.03, height: h * 0.22), leaf);
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(0, -h * 0.1),
+          width: w * 0.03,
+          height: h * 0.22,
+        ),
+        leaf,
+      );
       canvas.restore();
     }
 

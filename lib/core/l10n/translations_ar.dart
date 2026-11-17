@@ -1495,4 +1495,8 @@ const Map<String, String> arabicTexts = {
   'تم تحديث كلمة المرور',
   'Choose a password different from the old one':
   'اختر كلمة مرور مختلفة عن القديمة',
+  'Please describe what happened using words':
+  'يرجى وصف ما حدث باستخدام الكلمات',
+  'Please enter a meaningful description':
+  'يرجى كتابة وصف واضح لما حدث',
 };

@@ -308,4 +308,9 @@ abstract final class AppStrings {
       AppLocale.isArabic
           ? 'إعادة إرسال الإيميل بعد $seconds ث'
           : 'Resend email in ${seconds}s';
+  static const situationNumbersOnly =
+      'Please describe what happened using words';
+
+  static const situationInvalidText =
+      'Please enter a meaningful description';
 }

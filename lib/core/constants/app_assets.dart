@@ -13,5 +13,5 @@ abstract final class AppAssets {
   static const onboarding2 = '$_images/onboarding_2.png';
   static const onboarding3 = '$_images/onboarding_3.png';
 
-// static const emptyState = '$_svgs/empty_state.svg';
+  // static const emptyState = '$_svgs/empty_state.svg';
 }

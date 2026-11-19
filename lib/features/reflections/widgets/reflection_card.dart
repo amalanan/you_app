@@ -58,12 +58,14 @@ class ReflectionCard extends StatelessWidget {
     final lang = AppLocale.isArabic ? 'ar' : 'en';
     final isScenario = entry.isScenario;
 
-    final tag = isScenario
-        ? AppStrings.reflectionScenario
-        : (entry.type?.label ?? AppStrings.other);
-    final icon = isScenario
-        ? Icons.lightbulb_outline
-        : (entry.type?.icon ?? Icons.edit_outlined);
+    final tag =
+        isScenario
+            ? AppStrings.reflectionScenario
+            : (entry.type?.label ?? AppStrings.other);
+    final icon =
+        isScenario
+            ? Icons.lightbulb_outline
+            : (entry.type?.icon ?? Icons.edit_outlined);
     final color = isScenario ? AppColors.primary : AppColors.secondary;
     final (title, body) = _texts(lang, tag);
 
@@ -86,12 +88,20 @@ class ReflectionCard extends StatelessWidget {
                   Container(
                     width: 22,
                     height: 22,
-                    decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+                    decoration: BoxDecoration(
+                      color: color,
+                      shape: BoxShape.circle,
+                    ),
                     child: Icon(icon, size: 13, color: AppColors.white),
                   ),
                   const SizedBox(width: AppSizes.sm),
                   Expanded(
-                    child: Text(tag, maxLines: 1, overflow: TextOverflow.ellipsis, style: muted),
+                    child: Text(
+                      tag,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: muted,
+                    ),
                   ),
                   const SizedBox(width: AppSizes.sm),
                   Text(_dateLabel(context, entry.createdAt), style: muted),
@@ -102,7 +112,9 @@ class ReflectionCard extends StatelessWidget {
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                style: context.text.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               if (body != null) ...[
                 const SizedBox(height: 4),
@@ -110,7 +122,9 @@ class ReflectionCard extends StatelessWidget {
                   body,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+                  style: context.text.bodyMedium?.copyWith(
+                    color: context.mutedText,
+                  ),
                 ),
               ],
             ],

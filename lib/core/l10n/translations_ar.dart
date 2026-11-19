@@ -1499,4 +1499,5 @@ const Map<String, String> arabicTexts = {
   'يرجى وصف ما حدث باستخدام الكلمات',
   'Please enter a meaningful description':
   'يرجى كتابة وصف واضح لما حدث',
+  'Scenario': 'سيناريو',
 };

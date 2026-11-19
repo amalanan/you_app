@@ -167,7 +167,8 @@ abstract final class AppStrings {
   static const statReflections = 'Reflections';
   static const statSituations = 'Situations';
   static const statScenarios = 'Scenarios';
-
+// My Reflections
+  static const reflectionScenario = 'Scenario';
   // Insights / My Growth
   static const insightsTitle = 'Your Insights';
   static const insightImprovementTitle = 'Biggest improvement';
@@ -313,4 +314,5 @@ abstract final class AppStrings {
 
   static const situationInvalidText =
       'Please enter a meaningful description';
+
 }

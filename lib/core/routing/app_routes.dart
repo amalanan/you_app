@@ -11,10 +11,12 @@ abstract final class AppRoutes {
   static const journey = '/journey';
   static const insights = '/insights';
   static const profile = '/profile';
+  static const myReflections = '$journey/reflections';
 
   // Inside the tabs (bottom nav stays visible)
   static const scenarios = '/home/scenarios';
   static const growth = '/insights/growth';
+
   static String growthDetail(String type) => '/insights/growth/$type';
   static const profileNotifications = '/profile/notifications';
   static const profileAppearance = '/profile/appearance';
@@ -37,4 +39,5 @@ abstract final class AppRoutes {
   static const scenarioConfidence = '/scenario/confidence';
   static const scenarioReflection = '/scenario/reflection';
   static const scenarioResult = '/scenario/result';
+  static const reflectionDetail = '$myReflections/detail';
 }

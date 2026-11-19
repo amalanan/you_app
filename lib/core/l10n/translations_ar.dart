@@ -1500,4 +1500,13 @@ const Map<String, String> arabicTexts = {
   'Please enter a meaningful description':
   'يرجى كتابة وصف واضح لما حدث',
   'Scenario': 'سيناريو',
+  'My Reflections':
+  'تأمّلاتي',
+  'No reflections yet':
+  'لا توجد تأمّلات بعد',
+  'Add a situation or complete a scenario and it will be saved here for you to revisit.':
+  'أضف موقفاً أو أكمل سيناريو وسيُحفظ هنا لتعود إليه لاحقاً.',
+  'Couldn\'t load more reflections':
+  'تعذّر تحميل المزيد من التأمّلات',
+  'Reflection': 'التأمّل',
 };

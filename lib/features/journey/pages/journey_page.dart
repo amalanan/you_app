@@ -16,7 +16,9 @@ import '../data/journey_repository.dart';
 import '../models/journey_data.dart';
 import '../widgets/journey_timeline.dart';
 import '../widgets/stat_card.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../core/routing/app_routes.dart';
+import '../widgets/my_reflections_tile.dart';
 /// Journey tab: day counter, 3 stats and the activity timeline.
 class JourneyPage extends StatefulWidget {
   const JourneyPage({super.key});
@@ -124,6 +126,10 @@ class _JourneyPageState extends State<JourneyPage> {
               ),
             ],
           ),
+          if (data.reflections > 0) ...[
+            const SizedBox(height: AppSizes.md),
+            MyReflectionsTile(onTap: () => context.push(AppRoutes.myReflections)),
+          ],
           const SizedBox(height: AppSizes.xl),
           if (data.entries.isEmpty)
             Padding(

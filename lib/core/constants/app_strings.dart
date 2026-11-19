@@ -314,5 +314,11 @@ abstract final class AppStrings {
 
   static const situationInvalidText =
       'Please enter a meaningful description';
-
+  // My Reflections
+  static const myReflections = 'My Reflections';
+  static const reflectionsEmptyTitle = 'No reflections yet';
+  static const reflectionsEmptyBody =
+      'Add a situation or complete a scenario and it will be saved here for you to revisit.';
+  static const loadMoreFailed = "Couldn't load more reflections";
+  static const reflectionDetailTitle = 'Reflection';
 }

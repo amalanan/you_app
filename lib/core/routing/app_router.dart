@@ -40,6 +40,9 @@ import '../../features/splash/pages/splash_page.dart';
 import '../constants/app_strings.dart';
 import '../models/growth_type.dart';
 import 'app_routes.dart';
+import '../../features/reflections/pages/reflections_page.dart';
+import '../../features/reflections/models/reflection_entry.dart';
+import '../../features/reflections/pages/reflection_detail_page.dart';
 
 abstract final class AppRouter {
   /// The scenario steps share one [ScenarioFlowController] passed as `extra`.
@@ -69,7 +72,9 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.resetPassword,
         // the reset link signs her in; without a session there is nothing to reset
-        redirect: (_, __) => AuthRepository.instance.isLoggedIn ? null : AppRoutes.login,
+        redirect:
+            (_, __) =>
+                AuthRepository.instance.isLoggedIn ? null : AppRoutes.login,
         builder: (_, __) => const ResetPasswordPage(),
       ),
       GoRoute(
@@ -84,77 +89,139 @@ abstract final class AppRouter {
       StatefulShellRoute.indexedStack(
         builder: (_, __, shell) => MainShellPage(navigationShell: shell),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.home,
-              builder: (_, __) => const HomePage(),
-              routes: [
-                // full path: /home/scenarios
-                GoRoute(
-                  path: 'scenarios',
-                  builder: (_, state) => ScenariosPage(
-                    openScenarioId:
-                    state.extra is String ? state.extra as String : null,
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                builder: (_, __) => const HomePage(),
+                routes: [
+                  // full path: /home/scenarios
+                  GoRoute(
+                    path: 'scenarios',
+                    builder:
+                        (_, state) => ScenariosPage(
+                          openScenarioId:
+                              state.extra is String
+                                  ? state.extra as String
+                                  : null,
+                        ),
                   ),
-                ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: AppRoutes.journey, builder: (_, __) => const JourneyPage()),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.insights,
-              builder: (_, __) => const InsightsPage(),
-              routes: [
-                // /insights/growth
-                GoRoute(
-                  path: 'growth',
-                  builder: (_, __) => const GrowthPage(),
-                  routes: [
-                    // /insights/growth/learning, /insights/growth/consistency ...
-                    GoRoute(
-                      path: ':type',
-                      builder: (_, state) => GrowthDetailPage(
-                        type: GrowthType.values.asNameMap()[state.pathParameters['type']] ??
-                            GrowthType.learning,
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.journey,
+                builder: (_, __) => const JourneyPage(),
+                routes: [
+                  GoRoute(
+                    path: 'reflections',
+                    builder:
+                        (context, state) => ReflectionsPage(
+                          onOpenEntry: (entry) {
+                            context.push(
+                              AppRoutes.reflectionDetail,
+                              extra: entry,
+                            );
+                          },
+                        ),
+                    routes: [
+                      GoRoute(
+                        path: 'detail',
+                        redirect:
+                            (_, state) =>
+                                state.extra is ReflectionEntry
+                                    ? null
+                                    : AppRoutes.myReflections,
+                        builder:
+                            (_, state) => ReflectionDetailPage(
+                              entry: state.extra! as ReflectionEntry,
+                            ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.profile,
-              builder: (_, __) => const ProfilePage(),
-              routes: [
-                GoRoute(path: 'notifications', builder: (_, __) => const NotificationsPage()),
-                GoRoute(path: 'appearance', builder: (_, __) => const AppearancePage()),
-                GoRoute(path: 'language', builder: (_, __) => const LanguagePage()),
-                GoRoute(path: 'preferences', builder: (_, __) => const ReflectionPreferencesPage()),
-                GoRoute(path: 'privacy', builder: (_, __) => const PrivacyDataPage()),
-                GoRoute(path: 'help', builder: (_, __) => const HelpPage()),
-                GoRoute(
-                  path: 'terms',
-                  builder: (_, __) => const LegalPage(
-                    title: AppStrings.menuTerms,
-                    sections: termsSections,
+                    ],
                   ),
-                ),
-                GoRoute(
-                  path: 'privacy-policy',
-                  builder: (_, __) => const LegalPage(
-                    title: AppStrings.menuPrivacyPolicy,
-                    sections: privacyPolicySections,
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.insights,
+                builder: (_, __) => const InsightsPage(),
+                routes: [
+                  // /insights/growth
+                  GoRoute(
+                    path: 'growth',
+                    builder: (_, __) => const GrowthPage(),
+                    routes: [
+                      // /insights/growth/learning, /insights/growth/consistency ...
+                      GoRoute(
+                        path: ':type',
+                        builder:
+                            (_, state) => GrowthDetailPage(
+                              type:
+                                  GrowthType.values.asNameMap()[state
+                                      .pathParameters['type']] ??
+                                  GrowthType.learning,
+                            ),
+                      ),
+                    ],
                   ),
-                ),
-                GoRoute(path: 'about', builder: (_, __) => const AboutPage()),
-              ],
-            ),
-          ]),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.profile,
+                builder: (_, __) => const ProfilePage(),
+                routes: [
+                  GoRoute(
+                    path: 'notifications',
+                    builder: (_, __) => const NotificationsPage(),
+                  ),
+                  GoRoute(
+                    path: 'appearance',
+                    builder: (_, __) => const AppearancePage(),
+                  ),
+                  GoRoute(
+                    path: 'language',
+                    builder: (_, __) => const LanguagePage(),
+                  ),
+                  GoRoute(
+                    path: 'preferences',
+                    builder: (_, __) => const ReflectionPreferencesPage(),
+                  ),
+                  GoRoute(
+                    path: 'privacy',
+                    builder: (_, __) => const PrivacyDataPage(),
+                  ),
+                  GoRoute(path: 'help', builder: (_, __) => const HelpPage()),
+                  GoRoute(
+                    path: 'terms',
+                    builder:
+                        (_, __) => const LegalPage(
+                          title: AppStrings.menuTerms,
+                          sections: termsSections,
+                        ),
+                  ),
+                  GoRoute(
+                    path: 'privacy-policy',
+                    builder:
+                        (_, __) => const LegalPage(
+                          title: AppStrings.menuPrivacyPolicy,
+                          sections: privacyPolicySections,
+                        ),
+                  ),
+                  GoRoute(path: 'about', builder: (_, __) => const AboutPage()),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
 
@@ -174,17 +241,20 @@ abstract final class AppRouter {
       GoRoute(
         path: AppRoutes.situationFeelings,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationFeelingsPage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationFeelingsPage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationResponse,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationResponsePage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationResponsePage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationOutcome,
         redirect: _needsSituationFlow,
-        builder: (_, state) => SituationOutcomePage(flow: _situationFlow(state)),
+        builder:
+            (_, state) => SituationOutcomePage(flow: _situationFlow(state)),
       ),
       GoRoute(
         path: AppRoutes.situationSaved,

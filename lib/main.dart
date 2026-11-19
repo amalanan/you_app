@@ -29,7 +29,9 @@ import 'features/scenarios/data/supabase_scenario_repository.dart';
 import 'features/situations/data/mock_situation_repository.dart';
 import 'features/situations/data/situation_repository.dart';
 import 'features/situations/data/supabase_situation_repository.dart';
-
+import 'features/reflections/data/mock_reflection_repository.dart';
+import 'features/reflections/data/reflection_repository.dart';
+import 'features/reflections/data/supabase_reflection_repository.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.init();
@@ -47,6 +49,7 @@ Future<void> main() async {
     GrowthRepository.instance = SupabaseGrowthRepository();
     JourneyRepository.instance = SupabaseJourneyRepository();
     InsightsRepository.instance = SupabaseInsightsRepository();
+    ReflectionRepository.instance = SupabaseReflectionRepository();
   } else {
     AuthRepository.instance = await LocalAuthRepository.create();
     ScenarioRepository.instance = MockScenarioRepository();
@@ -55,7 +58,9 @@ Future<void> main() async {
     GrowthRepository.instance = MockGrowthRepository();
     JourneyRepository.instance = MockJourneyRepository();
     InsightsRepository.instance = MockInsightsRepository();
+    ReflectionRepository.instance = MockReflectionRepository();
   }
+
   ThemeController.instance = ThemeController();
   runApp(
     DevicePreview(

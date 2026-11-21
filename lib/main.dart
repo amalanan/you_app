@@ -32,6 +32,7 @@ import 'features/situations/data/supabase_situation_repository.dart';
 import 'features/reflections/data/mock_reflection_repository.dart';
 import 'features/reflections/data/reflection_repository.dart';
 import 'features/reflections/data/supabase_reflection_repository.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.init();

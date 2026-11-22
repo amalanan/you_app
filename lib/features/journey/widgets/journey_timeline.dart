@@ -47,7 +47,10 @@ class JourneyTimeline extends StatelessWidget {
                       ),
                       if (i != entries.length - 1)
                         Expanded(
-                          child: Container(width: 1.5, color: context.borderColor),
+                          child: Container(
+                            width: 1.5,
+                            color: context.borderColor,
+                          ),
                         ),
                     ],
                   ),
@@ -61,14 +64,16 @@ class JourneyTimeline extends StatelessWidget {
                       children: [
                         Text(
                           entries[i].dayLabel,
-                          style: context.text.bodyLarge
-                              ?.copyWith(fontWeight: FontWeight.w600),
+                          style: context.text.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: 2),
                         Text(
                           entries[i].text,
-                          style: context.text.bodyMedium
-                              ?.copyWith(color: context.mutedText),
+                          style: context.text.bodyMedium?.copyWith(
+                            color: context.mutedText,
+                          ),
                         ),
                       ],
                     ),

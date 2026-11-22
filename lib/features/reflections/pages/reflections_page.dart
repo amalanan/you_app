@@ -60,14 +60,23 @@ class _ReflectionsPageState extends State<ReflectionsPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.spa_outlined, size: 56, color: AppColors.secondary),
+            const Icon(
+              Icons.spa_outlined,
+              size: 56,
+              color: AppColors.secondary,
+            ),
             const SizedBox(height: AppSizes.md),
-            Text(AppStrings.reflectionsEmptyTitle, style: context.text.headlineMedium),
+            Text(
+              AppStrings.reflectionsEmptyTitle,
+              style: context.text.headlineMedium,
+            ),
             const SizedBox(height: AppSizes.sm),
             Text(
               AppStrings.reflectionsEmptyBody,
               textAlign: TextAlign.center,
-              style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+              style: context.text.bodyMedium?.copyWith(
+                color: context.mutedText,
+              ),
             ),
           ],
         ),
@@ -97,7 +106,10 @@ class _ReflectionsPageState extends State<ReflectionsPage> {
         child: SizedBox(
           width: 24,
           height: 24,
-          child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: AppColors.primary,
+          ),
         ),
       ),
     );

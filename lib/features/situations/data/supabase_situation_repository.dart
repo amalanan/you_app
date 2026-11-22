@@ -41,7 +41,9 @@ class SupabaseSituationRepository implements SituationRepository {
         [
           for (final g in (map['gains'] as List))
             GrowthGain(
-              GrowthType.values.byName((g as Map<String, dynamic>)['skill'] as String),
+              GrowthType.values.byName(
+                (g as Map<String, dynamic>)['skill'] as String,
+              ),
               g['points'] as int,
             ),
         ],

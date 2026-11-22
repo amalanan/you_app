@@ -27,16 +27,15 @@ class StatusView extends StatelessWidget {
     String message = AppStrings.successBody,
     String actionLabel = AppStrings.continueLabel,
     required VoidCallback onAction,
-  }) =>
-      StatusView(
-        key: key,
-        icon: Icons.check_circle,
-        iconColor: AppColors.primary,
-        title: title,
-        message: message,
-        actionLabel: actionLabel,
-        onAction: onAction,
-      );
+  }) => StatusView(
+    key: key,
+    icon: Icons.check_circle,
+    iconColor: AppColors.primary,
+    title: title,
+    message: message,
+    actionLabel: actionLabel,
+    onAction: onAction,
+  );
 
   factory StatusView.offline({Key? key, required VoidCallback onRetry}) =>
       StatusView(
@@ -53,16 +52,15 @@ class StatusView extends StatelessWidget {
     Key? key,
     required String message,
     required VoidCallback onRetry,
-  }) =>
-      StatusView(
-        key: key,
-        icon: Icons.error_outline,
-        iconColor: AppColors.error,
-        title: AppStrings.errorTitle,
-        message: message,
-        actionLabel: AppStrings.retry,
-        onAction: onRetry,
-      );
+  }) => StatusView(
+    key: key,
+    icon: Icons.error_outline,
+    iconColor: AppColors.error,
+    title: AppStrings.errorTitle,
+    message: message,
+    actionLabel: AppStrings.retry,
+    onAction: onRetry,
+  );
 
   final IconData icon;
   final Color iconColor;
@@ -83,12 +81,18 @@ class StatusView extends StatelessWidget {
             children: [
               Icon(icon, size: 72, color: iconColor),
               const SizedBox(height: AppSizes.lg),
-              Text(title, style: context.text.headlineMedium, textAlign: TextAlign.center),
+              Text(
+                title,
+                style: context.text.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: AppSizes.sm),
               Text(
                 message,
                 textAlign: TextAlign.center,
-                style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+                style: context.text.bodyMedium?.copyWith(
+                  color: context.mutedText,
+                ),
               ),
               const SizedBox(height: AppSizes.xl),
               AppButton(label: actionLabel, onPressed: onAction),

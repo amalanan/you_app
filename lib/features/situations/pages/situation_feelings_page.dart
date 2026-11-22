@@ -24,44 +24,54 @@ class SituationFeelingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: flow,
-      builder: (context, _) => FlowScaffold(
-        button: AppButton(
-          label: AppStrings.continueLabel,
-          onPressed: flow.hasFeelings
-              ? () => context.push(AppRoutes.situationResponse, extra: flow)
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.reflectOnIt,
-              style: context.text.headlineLarge?.copyWith(fontSize: context.rs(26)),
+      builder:
+          (context, _) => FlowScaffold(
+            button: AppButton(
+              label: AppStrings.continueLabel,
+              onPressed:
+                  flow.hasFeelings
+                      ? () =>
+                          context.push(AppRoutes.situationResponse, extra: flow)
+                      : null,
             ),
-            const SizedBox(height: AppSizes.xl),
-            Text(AppStrings.whatDidYouFeel, style: context.text.headlineMedium),
-            const SizedBox(height: 4),
-            Text(
-              AppStrings.selectAllThatApply,
-              style: context.text.bodySmall?.copyWith(color: context.mutedText),
-            ),
-            const SizedBox(height: AppSizes.md),
-            Wrap(
-              spacing: AppSizes.sm,
-              runSpacing: AppSizes.sm,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final f in Feeling.values)
-                  AppChip(
-                    label: f.label,
-                    tonal: true,
-                    selected: flow.feelings.contains(f),
-                    onTap: () => flow.toggleFeeling(f),
+                Text(
+                  AppStrings.reflectOnIt,
+                  style: context.text.headlineLarge?.copyWith(
+                    fontSize: context.rs(26),
                   ),
+                ),
+                const SizedBox(height: AppSizes.xl),
+                Text(
+                  AppStrings.whatDidYouFeel,
+                  style: context.text.headlineMedium,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  AppStrings.selectAllThatApply,
+                  style: context.text.bodySmall?.copyWith(
+                    color: context.mutedText,
+                  ),
+                ),
+                const SizedBox(height: AppSizes.md),
+                Wrap(
+                  spacing: AppSizes.sm,
+                  runSpacing: AppSizes.sm,
+                  children: [
+                    for (final f in Feeling.values)
+                      AppChip(
+                        label: f.label,
+                        tonal: true,
+                        selected: flow.feelings.contains(f),
+                        onTap: () => flow.toggleFeeling(f),
+                      ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

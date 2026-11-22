@@ -87,7 +87,11 @@ class AppBottomNav extends StatelessWidget {
 }
 
 class _NavTab extends StatelessWidget {
-  const _NavTab({required this.item, required this.selected, required this.onTap});
+  const _NavTab({
+    required this.item,
+    required this.selected,
+    required this.onTap,
+  });
 
   final AppBottomNavItem item;
   final bool selected;
@@ -97,20 +101,21 @@ class _NavTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = selected ? AppColors.primary : context.mutedText;
 
-    final Widget icon = item.asset != null
-        ? Image.asset(
-      item.asset!,
-      width: 24,
-      height: 24,
-      color: color,
-      fit: BoxFit.contain,
-      filterQuality: FilterQuality.high,
-    )
-        : Icon(
-      selected ? (item.selectedIcon ?? item.icon) : item.icon,
-      color: color,
-      size: 26,
-    );
+    final Widget icon =
+        item.asset != null
+            ? Image.asset(
+              item.asset!,
+              width: 24,
+              height: 24,
+              color: color,
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
+            )
+            : Icon(
+              selected ? (item.selectedIcon ?? item.icon) : item.icon,
+              color: color,
+              size: 26,
+            );
 
     return InkResponse(
       onTap: onTap,

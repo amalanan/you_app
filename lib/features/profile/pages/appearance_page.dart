@@ -26,32 +26,37 @@ class AppearancePage extends StatelessWidget {
       title: AppStrings.menuAppearance,
       child: ValueListenableBuilder<ThemeMode>(
         valueListenable: controller,
-        builder: (context, mode, _) => Column(
-          children: [
-            for (final (value, label) in _options) ...[
-              InkWell(
-                onTap: () => controller.setMode(value),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          label,
-                          style: context.text.bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w500),
-                        ),
+        builder:
+            (context, mode, _) => Column(
+              children: [
+                for (final (value, label) in _options) ...[
+                  InkWell(
+                    onTap: () => controller.setMode(value),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 4,
                       ),
-                      if (mode == value)
-                        const Icon(Icons.check, color: AppColors.primary),
-                    ],
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              label,
+                              style: context.text.bodyMedium?.copyWith(
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          if (mode == value)
+                            const Icon(Icons.check, color: AppColors.primary),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Divider(height: 1, color: context.borderColor),
-            ],
-          ],
-        ),
+                  Divider(height: 1, color: context.borderColor),
+                ],
+              ],
+            ),
       ),
     );
   }

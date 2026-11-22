@@ -27,7 +27,8 @@ class LocalAuthRepository implements AuthRepository {
 
   String _key(String email) => email.trim().toLowerCase();
 
-  Future<void> _fakeDelay() => Future.delayed(const Duration(milliseconds: 600));
+  Future<void> _fakeDelay() =>
+      Future.delayed(const Duration(milliseconds: 600));
 
   @override
   bool get isLoggedIn => _prefs.getString(_sessionKey) != null;

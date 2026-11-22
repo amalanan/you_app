@@ -30,14 +30,16 @@ class GrowthRow extends StatelessWidget {
                 Expanded(
                   child: Text(
                     item.type.label,
-                    style: context.text.bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w500),
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Text(
                   item.hasData ? '${item.score}' : '—',
-                  style: context.text.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  style: context.text.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),
@@ -46,13 +48,14 @@ class GrowthRow extends StatelessWidget {
               tween: Tween(begin: 0, end: item.hasData ? item.score / 100 : 0),
               duration: AppDurations.medium * 2,
               curve: Curves.easeOut,
-              builder: (_, value, __) => LinearProgressIndicator(
-                value: value,
-                minHeight: 6,
-                borderRadius: BorderRadius.circular(3),
-                color: AppColors.primary,
-                backgroundColor: context.borderColor,
-              ),
+              builder:
+                  (_, value, __) => LinearProgressIndicator(
+                    value: value,
+                    minHeight: 6,
+                    borderRadius: BorderRadius.circular(3),
+                    color: AppColors.primary,
+                    backgroundColor: context.borderColor,
+                  ),
             ),
           ],
         ),

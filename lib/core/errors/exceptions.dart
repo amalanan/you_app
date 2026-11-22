@@ -21,6 +21,7 @@ class AuthException implements Exception {
   final String message;
   final bool cancelled;
 }
+
 class EmailNotConfirmedException implements Exception {
   const EmailNotConfirmedException(this.email);
 

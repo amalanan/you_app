@@ -19,6 +19,7 @@ import '../widgets/stat_card.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/routing/app_routes.dart';
 import '../widgets/my_reflections_tile.dart';
+
 /// Journey tab: day counter, 3 stats and the activity timeline.
 class JourneyPage extends StatefulWidget {
   const JourneyPage({super.key});
@@ -100,35 +101,50 @@ class _JourneyPageState extends State<JourneyPage> {
           Center(
             child: Text(
               AppStrings.dayNumber(data.day),
-              style: context.text.headlineLarge?.copyWith(fontSize: context.rs(28)),
+              style: context.text.headlineLarge?.copyWith(
+                fontSize: context.rs(28),
+              ),
             ),
           ),
           const SizedBox(height: 4),
           Center(
             child: Text(
               AppStrings.daysOfReflection(data.day),
-              style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+              style: context.text.bodyMedium?.copyWith(
+                color: context.mutedText,
+              ),
             ),
           ),
           const SizedBox(height: AppSizes.lg),
           Row(
             children: [
               Expanded(
-                child: StatCard(label: AppStrings.statReflections, value: data.reflections),
+                child: StatCard(
+                  label: AppStrings.statReflections,
+                  value: data.reflections,
+                ),
               ),
               const SizedBox(width: AppSizes.md),
               Expanded(
-                child: StatCard(label: AppStrings.statSituations, value: data.situations),
+                child: StatCard(
+                  label: AppStrings.statSituations,
+                  value: data.situations,
+                ),
               ),
               const SizedBox(width: AppSizes.md),
               Expanded(
-                child: StatCard(label: AppStrings.statScenarios, value: data.scenarios),
+                child: StatCard(
+                  label: AppStrings.statScenarios,
+                  value: data.scenarios,
+                ),
               ),
             ],
           ),
           if (data.reflections > 0) ...[
             const SizedBox(height: AppSizes.md),
-            MyReflectionsTile(onTap: () => context.push(AppRoutes.myReflections)),
+            MyReflectionsTile(
+              onTap: () => context.push(AppRoutes.myReflections),
+            ),
           ],
           const SizedBox(height: AppSizes.xl),
           if (data.entries.isEmpty)
@@ -136,14 +152,23 @@ class _JourneyPageState extends State<JourneyPage> {
               padding: const EdgeInsets.symmetric(vertical: AppSizes.xl),
               child: Column(
                 children: [
-                  const Icon(Icons.spa_outlined, size: 56, color: AppColors.secondary),
+                  const Icon(
+                    Icons.spa_outlined,
+                    size: 56,
+                    color: AppColors.secondary,
+                  ),
                   const SizedBox(height: AppSizes.md),
-                  Text(AppStrings.journeyEmptyTitle, style: context.text.headlineMedium),
+                  Text(
+                    AppStrings.journeyEmptyTitle,
+                    style: context.text.headlineMedium,
+                  ),
                   const SizedBox(height: AppSizes.sm),
                   Text(
                     AppStrings.journeyEmptyBody,
                     textAlign: TextAlign.center,
-                    style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+                    style: context.text.bodyMedium?.copyWith(
+                      color: context.mutedText,
+                    ),
                   ),
                 ],
               ),

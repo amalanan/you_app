@@ -35,10 +35,12 @@ class ScenarioFlowController extends ChangeNotifier {
   String get insight => _result?.insight ?? selectedOption?.insight ?? '';
 
   List<GrowthGain> get gains {
-    final source = _result?.gains ?? selectedOption?.gains ?? const <GrowthGain>[];
-    final list = [...source]
-      ..removeWhere((g) => g.points <= 0)
-      ..sort((a, b) => b.points.compareTo(a.points));
+    final source =
+        _result?.gains ?? selectedOption?.gains ?? const <GrowthGain>[];
+    final list =
+        [...source]
+          ..removeWhere((g) => g.points <= 0)
+          ..sort((a, b) => b.points.compareTo(a.points));
     return list;
   }
 

@@ -11,7 +11,10 @@ class SituationInsight {
 
   /// The server answers with CODES; here each code becomes its text.
   /// (The Text widget shows the Arabic version when the app is Arabic.)
-  factory SituationInsight.fromCodes(List<String> codes, List<GrowthGain> gains) {
+  factory SituationInsight.fromCodes(
+    List<String> codes,
+    List<GrowthGain> gains,
+  ) {
     return SituationInsight(
       notices: [
         for (final code in codes)
@@ -24,17 +27,19 @@ class SituationInsight {
 
 const _noticeTexts = <String, String>{
   'mixed_feelings':
-  'You felt pulled in more than one direction, which is common when something matters to you.',
+      'You felt pulled in more than one direction, which is common when something matters to you.',
   'uncertainty':
-  'Uncertainty seems to have played an important role in how you experienced this.',
+      'Uncertainty seems to have played an important role in how you experienced this.',
   'positive': 'You approached this with energy and a fairly positive outlook.',
   'noticed_feelings':
-  'You noticed your feelings in this moment, which is a good first step in understanding it.',
-  'reflected': 'You also showed a strong tendency to reflect after an experience.',
-  'writing_helps': 'Writing this down is already a way of understanding it better.',
+      'You noticed your feelings in this moment, which is a good first step in understanding it.',
+  'reflected':
+      'You also showed a strong tendency to reflect after an experience.',
+  'writing_helps':
+      'Writing this down is already a way of understanding it better.',
   'very_sure': 'You felt very sure about how you responded.',
   'not_sure':
-  "You weren't very sure about your response, which is worth coming back to later.",
+      "You weren't very sure about your response, which is worth coming back to later.",
 };
 
 const _hardFeelings = {
@@ -72,14 +77,11 @@ SituationInsight localInsight({
     else if (hasHard)
       'uncertainty'
     else if (hasPositive)
-        'positive'
-      else
-        'noticed_feelings',
+      'positive'
+    else
+      'noticed_feelings',
     if (reflected) 'reflected' else 'writing_helps',
-    if (confidence >= 8)
-      'very_sure'
-    else if (confidence <= 3)
-      'not_sure',
+    if (confidence >= 8) 'very_sure' else if (confidence <= 3) 'not_sure',
   ];
 
   final points = <GrowthType, int>{
@@ -98,9 +100,8 @@ SituationInsight localInsight({
   };
   if (bonus != null) points.update(bonus, (v) => v + 1, ifAbsent: () => 1);
 
-  final gains = [
-    for (final e in points.entries) GrowthGain(e.key, e.value),
-  ]..sort((a, b) => b.points.compareTo(a.points));
+  final gains = [for (final e in points.entries) GrowthGain(e.key, e.value)]
+    ..sort((a, b) => b.points.compareTo(a.points));
 
   return SituationInsight.fromCodes(codes, gains);
 }

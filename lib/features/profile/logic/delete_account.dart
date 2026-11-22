@@ -14,21 +14,22 @@ import '../../auth/data/auth_repository.dart';
 Future<void> confirmAndDeleteAccount(BuildContext context) async {
   final confirmed = await showDialog<bool>(
     context: context,
-    builder: (ctx) => AlertDialog(
-      title: const Text(AppStrings.deleteAccountTitle),
-      content: const Text(AppStrings.deleteAccountBody),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, false),
-          child: const Text(AppStrings.cancel),
+    builder:
+        (ctx) => AlertDialog(
+          title: const Text(AppStrings.deleteAccountTitle),
+          content: const Text(AppStrings.deleteAccountBody),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text(AppStrings.cancel),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              style: TextButton.styleFrom(foregroundColor: AppColors.error),
+              child: const Text(AppStrings.delete),
+            ),
+          ],
         ),
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, true),
-          style: TextButton.styleFrom(foregroundColor: AppColors.error),
-          child: const Text(AppStrings.delete),
-        ),
-      ],
-    ),
   );
   if (confirmed != true || !context.mounted) return;
 

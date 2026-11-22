@@ -14,7 +14,8 @@ void listenForEmailLinkSignIn(GoRouter router) {
 
     // the reset link: Supabase says "password recovery" (or just "signed in",
     // in which case we know it from her request a moment ago)
-    final isRecovery = data.event == sb.AuthChangeEvent.passwordRecovery ||
+    final isRecovery =
+        data.event == sb.AuthChangeEvent.passwordRecovery ||
         (data.event == sb.AuthChangeEvent.signedIn &&
             AuthRepository.instance.isPasswordResetPending);
     if (isRecovery) {

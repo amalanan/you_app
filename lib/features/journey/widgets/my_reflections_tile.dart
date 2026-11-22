@@ -28,12 +28,17 @@ class MyReflectionsTile extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.md),
           child: Row(
             children: [
-              const Icon(Icons.auto_stories_outlined, color: AppColors.secondary),
+              const Icon(
+                Icons.auto_stories_outlined,
+                color: AppColors.secondary,
+              ),
               const SizedBox(width: AppSizes.md),
               Expanded(
                 child: Text(
                   AppStrings.myReflections,
-                  style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                  style: context.text.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Icon(

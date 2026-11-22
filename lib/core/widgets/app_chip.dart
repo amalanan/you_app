@@ -25,14 +25,16 @@ class AppChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: selected
-          ? AppColors.primary
-          : (tonal ? context.cardColor : context.colors.surface),
+      color:
+          selected
+              ? AppColors.primary
+              : (tonal ? context.cardColor : context.colors.surface),
       shape: StadiumBorder(
         side: BorderSide(
-          color: selected
-              ? AppColors.primary
-              : (tonal ? Colors.transparent : context.borderColor),
+          color:
+              selected
+                  ? AppColors.primary
+                  : (tonal ? Colors.transparent : context.borderColor),
         ),
       ),
       child: InkWell(

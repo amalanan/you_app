@@ -24,41 +24,46 @@ class SituationTypePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: flow,
-      builder: (context, _) => FlowScaffold(
-        button: AppButton(
-          label: AppStrings.continueLabel,
-          onPressed: flow.hasType
-              ? () => context.push(AppRoutes.situationFeelings, extra: flow)
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.situationTypeTitle,
-              style: context.text.headlineLarge
-                  ?.copyWith(fontSize: context.rs(26), height: 1.3),
+      builder:
+          (context, _) => FlowScaffold(
+            button: AppButton(
+              label: AppStrings.continueLabel,
+              onPressed:
+                  flow.hasType
+                      ? () =>
+                          context.push(AppRoutes.situationFeelings, extra: flow)
+                      : null,
             ),
-            const SizedBox(height: AppSizes.lg),
-            GridView.count(
-              crossAxisCount: 3,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: AppSizes.md,
-              crossAxisSpacing: AppSizes.md,
-              childAspectRatio: 1.05,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final t in SituationType.values)
-                  SituationTypeTile(
-                    type: t,
-                    selected: flow.type == t,
-                    onTap: () => flow.selectType(t),
+                Text(
+                  AppStrings.situationTypeTitle,
+                  style: context.text.headlineLarge?.copyWith(
+                    fontSize: context.rs(26),
+                    height: 1.3,
                   ),
+                ),
+                const SizedBox(height: AppSizes.lg),
+                GridView.count(
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  mainAxisSpacing: AppSizes.md,
+                  crossAxisSpacing: AppSizes.md,
+                  childAspectRatio: 1.05,
+                  children: [
+                    for (final t in SituationType.values)
+                      SituationTypeTile(
+                        type: t,
+                        selected: flow.type == t,
+                        onTap: () => flow.selectType(t),
+                      ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

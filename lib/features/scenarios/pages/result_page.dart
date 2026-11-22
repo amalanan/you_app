@@ -49,8 +49,10 @@ class ResultPage extends StatelessWidget {
                         const SizedBox(height: AppSizes.lg),
                         Text(
                           AppStrings.insightTitle,
-                          style: context.text.headlineLarge
-                              ?.copyWith(fontSize: context.rs(24), height: 1.3),
+                          style: context.text.headlineLarge?.copyWith(
+                            fontSize: context.rs(24),
+                            height: 1.3,
+                          ),
                         ),
                         const SizedBox(height: AppSizes.md),
                         Text(
@@ -63,8 +65,9 @@ class ResultPage extends StatelessWidget {
                         const SizedBox(height: AppSizes.lg),
                         Text(
                           AppStrings.growthFromScenario,
-                          style: context.text.bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w600),
+                          style: context.text.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: AppSizes.md),
                         for (final gain in flow.gains) ...[
@@ -76,7 +79,10 @@ class ResultPage extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(Icons.spa_outlined, color: context.mutedText),
+                              Icon(
+                                Icons.spa_outlined,
+                                color: context.mutedText,
+                              ),
                               const SizedBox(width: AppSizes.md),
                               Expanded(
                                 child: Text(

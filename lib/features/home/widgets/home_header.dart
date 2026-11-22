@@ -29,9 +29,8 @@ class HomeHeader extends StatelessWidget {
     final firstName = name.trim().split(' ').first;
     final greeting = tr(_greeting);
     final comma = AppLocale.isArabic ? '،' : ',';
-    final title = firstName.isEmpty
-        ? '$greeting 🌿'
-        : '$greeting$comma\n$firstName 🌿';
+    final title =
+        firstName.isEmpty ? '$greeting 🌿' : '$greeting$comma\n$firstName 🌿';
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,8 +38,10 @@ class HomeHeader extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: context.text.headlineLarge
-                ?.copyWith(fontSize: context.rs(26), height: 1.3),
+            style: context.text.headlineLarge?.copyWith(
+              fontSize: context.rs(26),
+              height: 1.3,
+            ),
           ),
         ),
         const SizedBox(width: 12),

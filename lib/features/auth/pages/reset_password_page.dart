@@ -61,61 +61,68 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           child: ResponsiveCenter(
             child: ListenableBuilder(
               listenable: _auth,
-              builder: (context, _) => SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.screenPadding,
-                  vertical: AppSizes.xl,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.resetPasswordTitle,
-                      style: context.text.headlineLarge
-                          ?.copyWith(fontSize: context.rs(28)),
+              builder:
+                  (context, _) => SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSizes.screenPadding,
+                      vertical: AppSizes.xl,
                     ),
-                    const SizedBox(height: AppSizes.xs),
-                    Text(
-                      AppStrings.resetPasswordSubtitle,
-                      style: context.text.bodyMedium
-                          ?.copyWith(color: context.mutedText),
-                    ),
-                    const SizedBox(height: AppSizes.xl),
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          AppTextField(
-                            label: AppStrings.newPassword,
-                            hint: AppStrings.passwordHint,
-                            controller: _password,
-                            isPassword: true,
-                            validator: Validators.password,
-                            textInputAction: TextInputAction.next,
-                            autofillHints: const [AutofillHints.newPassword],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.resetPasswordTitle,
+                          style: context.text.headlineLarge?.copyWith(
+                            fontSize: context.rs(28),
                           ),
-                          const SizedBox(height: AppSizes.md),
-                          AppTextField(
-                            label: AppStrings.confirmNewPassword,
-                            hint: AppStrings.passwordHint,
-                            controller: _confirm,
-                            isPassword: true,
-                            validator: Validators.confirmPassword(() => _password.text),
-                            textInputAction: TextInputAction.done,
-                            onSubmitted: (_) => _save(),
+                        ),
+                        const SizedBox(height: AppSizes.xs),
+                        Text(
+                          AppStrings.resetPasswordSubtitle,
+                          style: context.text.bodyMedium?.copyWith(
+                            color: context.mutedText,
                           ),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: AppSizes.xl),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              AppTextField(
+                                label: AppStrings.newPassword,
+                                hint: AppStrings.passwordHint,
+                                controller: _password,
+                                isPassword: true,
+                                validator: Validators.password,
+                                textInputAction: TextInputAction.next,
+                                autofillHints: const [
+                                  AutofillHints.newPassword,
+                                ],
+                              ),
+                              const SizedBox(height: AppSizes.md),
+                              AppTextField(
+                                label: AppStrings.confirmNewPassword,
+                                hint: AppStrings.passwordHint,
+                                controller: _confirm,
+                                isPassword: true,
+                                validator: Validators.confirmPassword(
+                                  () => _password.text,
+                                ),
+                                textInputAction: TextInputAction.done,
+                                onSubmitted: (_) => _save(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: AppSizes.xl),
+                        AppButton(
+                          label: AppStrings.savePassword,
+                          isLoading: _auth.isLoading,
+                          onPressed: _save,
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: AppSizes.xl),
-                    AppButton(
-                      label: AppStrings.savePassword,
-                      isLoading: _auth.isLoading,
-                      onPressed: _save,
-                    ),
-                  ],
-                ),
-              ),
+                  ),
             ),
           ),
         ),

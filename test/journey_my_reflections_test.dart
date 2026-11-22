@@ -26,7 +26,8 @@ class FakeReflections implements ReflectionRepository {
       whatHappened: 'Entry $i',
     ),
   );
-
+  @override
+  Future<void> deleteEntry(ReflectionEntry entry) async {}
   @override
   Future<List<ReflectionEntry>> getEntries({int limit = 20, int offset = 0}) async =>
       offset >= all.length ? [] : all.sublist(offset, math.min(offset + limit, all.length));

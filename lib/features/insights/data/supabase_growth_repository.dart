@@ -21,7 +21,9 @@ class SupabaseGrowthRepository implements GrowthRepository {
       return [
         for (final row in (result as List))
           GrowthScore(
-            GrowthType.values.byName((row as Map<String, dynamic>)['skill'] as String),
+            GrowthType.values.byName(
+              (row as Map<String, dynamic>)['skill'] as String,
+            ),
             row['score'] as int,
           ),
       ];
@@ -69,13 +71,33 @@ class SupabaseGrowthRepository implements GrowthRepository {
   }
 
   static const _monthsEn = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 
   static const _monthsAr = [
-    'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
-    'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر',
+    'يناير',
+    'فبراير',
+    'مارس',
+    'أبريل',
+    'مايو',
+    'يونيو',
+    'يوليو',
+    'أغسطس',
+    'سبتمبر',
+    'أكتوبر',
+    'نوفمبر',
+    'ديسمبر',
   ];
 
   Future<T> _guard<T>(Future<T> Function() action) async {

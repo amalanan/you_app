@@ -18,7 +18,7 @@ class LocalStorage {
   ThemeMode get themeMode {
     final saved = _prefs.getString(StorageKeys.themeMode);
     return ThemeMode.values.firstWhere(
-          (m) => m.name == saved,
+      (m) => m.name == saved,
       orElse: () => ThemeMode.system,
     );
   }
@@ -27,7 +27,8 @@ class LocalStorage {
       _prefs.setString(StorageKeys.themeMode, mode.name);
 
   // Onboarding
-  bool get onboardingSeen => _prefs.getBool(StorageKeys.onboardingSeen) ?? false;
+  bool get onboardingSeen =>
+      _prefs.getBool(StorageKeys.onboardingSeen) ?? false;
 
   Future<void> setOnboardingSeen(bool value) =>
       _prefs.setBool(StorageKeys.onboardingSeen, value);
@@ -41,7 +42,8 @@ class LocalStorage {
   // Simple text settings (language, reflection time...)
   String? getString(String key) => _prefs.getString(key);
 
-  Future<void> setString(String key, String value) => _prefs.setString(key, value);
+  Future<void> setString(String key, String value) =>
+      _prefs.setString(key, value);
 
   // Auth
   String? get token => _prefs.getString(StorageKeys.authToken);

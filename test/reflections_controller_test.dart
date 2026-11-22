@@ -27,6 +27,8 @@ class FakeRepo implements ReflectionRepository {
     if (offset >= all.length) return [];
     return all.sublist(offset, math.min(offset + limit, all.length));
   }
+  @override
+  Future<void> deleteEntry(ReflectionEntry entry) async {}
 }
 
 void main() {

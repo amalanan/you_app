@@ -97,11 +97,17 @@ class _GrowthPageState extends State<GrowthPage> {
     final failure = _failure;
     return SizedBox(
       height: 360,
-      child: _loading
-          ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
-          : failure is NetworkFailure
-          ? StatusView.offline(onRetry: _load)
-          : StatusView.error(message: failure?.message ?? '', onRetry: _load),
+      child:
+          _loading
+              ? const Center(
+                child: CircularProgressIndicator(color: AppColors.primary),
+              )
+              : failure is NetworkFailure
+              ? StatusView.offline(onRetry: _load)
+              : StatusView.error(
+                message: failure?.message ?? '',
+                onRetry: _load,
+              ),
     );
   }
 
@@ -135,7 +141,9 @@ class _SideCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               value,
-              style: context.text.headlineMedium?.copyWith(color: AppColors.primary),
+              style: context.text.headlineMedium?.copyWith(
+                color: AppColors.primary,
+              ),
             ),
           ],
         ),

@@ -103,8 +103,7 @@ class SituationResponsePage extends StatefulWidget {
   final SituationFlowController flow;
 
   @override
-  State<SituationResponsePage> createState() =>
-      _SituationResponsePageState();
+  State<SituationResponsePage> createState() => _SituationResponsePageState();
 }
 
 class _SituationResponsePageState extends State<SituationResponsePage> {
@@ -164,66 +163,67 @@ class _SituationResponsePageState extends State<SituationResponsePage> {
 
     return ListenableBuilder(
       listenable: flow,
-      builder: (context, _) => FlowScaffold(
-        button: AppButton(
-          label: AppStrings.continueLabel,
-          onPressed: _continue,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.whatDidYouDo,
-              style: context.text.bodyLarge?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
+      builder:
+          (context, _) => FlowScaffold(
+            button: AppButton(
+              label: AppStrings.continueLabel,
+              onPressed: _continue,
             ),
-            const SizedBox(height: AppSizes.sm),
-            AppTextField(
-              controller: _action,
-              hint: AppStrings.describeWhatYouDid,
-              minLines: 6,
-              maxLines: 8,
-              maxLength: 1000,
-              onChanged: (value) {
-                flow.setAction(value);
-                if (_errorMessage != null) {
-                  setState(() => _errorMessage = null);
-                }
-              },
-            ),
-            if (_errorMessage != null) ...[
-              const SizedBox(height: AppSizes.xs),
-              Text(
-                _errorMessage!,
-                style: context.text.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.error,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppStrings.whatDidYouDo,
+                  style: context.text.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            ],
-            const SizedBox(height: AppSizes.lg),
-            Text(
-              AppStrings.howConfidentResponse,
-              style: context.text.headlineMedium,
-            ),
-            const SizedBox(height: AppSizes.md),
-            Center(
-              child: Text(
-                '${flow.confidence}',
-                style: context.text.headlineLarge?.copyWith(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primary,
+                const SizedBox(height: AppSizes.sm),
+                AppTextField(
+                  controller: _action,
+                  hint: AppStrings.describeWhatYouDid,
+                  minLines: 6,
+                  maxLines: 8,
+                  maxLength: 1000,
+                  onChanged: (value) {
+                    flow.setAction(value);
+                    if (_errorMessage != null) {
+                      setState(() => _errorMessage = null);
+                    }
+                  },
                 ),
-              ),
+                if (_errorMessage != null) ...[
+                  const SizedBox(height: AppSizes.xs),
+                  Text(
+                    _errorMessage!,
+                    style: context.text.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: AppSizes.lg),
+                Text(
+                  AppStrings.howConfidentResponse,
+                  style: context.text.headlineMedium,
+                ),
+                const SizedBox(height: AppSizes.md),
+                Center(
+                  child: Text(
+                    '${flow.confidence}',
+                    style: context.text.headlineLarge?.copyWith(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ),
+                AppSlider(
+                  value: flow.confidence,
+                  onChanged: flow.setConfidence,
+                ),
+              ],
             ),
-            AppSlider(
-              value: flow.confidence,
-              onChanged: flow.setConfidence,
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

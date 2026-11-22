@@ -120,7 +120,8 @@ abstract final class AppStrings {
   // Situations (Add My Situation flow)
   static const other = 'Other';
   static const situationTitle = 'Something happened?';
-  static const situationSubtitle = 'Tell us about a moment you want to understand better.';
+  static const situationSubtitle =
+      'Tell us about a moment you want to understand better.';
   static const whatHappened = 'What happened?';
   static const describeWhatHappened = 'Describe what happened...';
   static const situationTypeTitle = 'What kind of situation was this?';
@@ -145,7 +146,8 @@ abstract final class AppStrings {
   static const feelCalm = 'Calm';
   static const whatDidYouDo = 'What did you do?';
   static const describeWhatYouDid = 'Describe what you did...';
-  static const howConfidentResponse = 'How confident were you about your response?';
+  static const howConfidentResponse =
+      'How confident were you about your response?';
   static const whatHappenedAfterward = 'What happened afterward?';
   static const describeWhatNext = 'Describe what happened next...';
   static const whatDidYouLearn = 'What did you learn?';
@@ -167,7 +169,7 @@ abstract final class AppStrings {
   static const statReflections = 'Reflections';
   static const statSituations = 'Situations';
   static const statScenarios = 'Scenarios';
-// My Reflections
+  // My Reflections
   static const reflectionScenario = 'Scenario';
   // Insights / My Growth
   static const insightsTitle = 'Your Insights';
@@ -226,7 +228,8 @@ abstract final class AppStrings {
   static const menuDeleteAccount = 'Delete Account';
   static const logOut = 'Log out';
   static const deleteAccountTitle = 'Delete account?';
-  static const deleteAccountBody = 'Your account and data will be removed permanently.';
+  static const deleteAccountBody =
+      'Your account and data will be removed permanently.';
   static const cancel = 'Cancel';
   static const delete = 'Delete';
   static const notifDaily = 'Daily reminders';
@@ -252,7 +255,8 @@ abstract final class AppStrings {
   static const prefTipsTitle = 'Show reflection tips';
   static const prefTipsBody = 'Short hints while you write your reflections.';
   static const privacyAnalytics = 'Share anonymous usage data';
-  static const privacyAnalyticsBody = 'Helps us improve the app. Your reflections are never shared.';
+  static const privacyAnalyticsBody =
+      'Helps us improve the app. Your reflections are never shared.';
   static const exportData = 'Export my data';
   static const languageSaved = 'Language saved';
   static const contactUs = 'Contact Us';
@@ -287,7 +291,8 @@ abstract final class AppStrings {
 
   // Reset password screen
   static const resetPasswordTitle = 'Reset password';
-  static const resetPasswordSubtitle = 'Choose a new password for your account.';
+  static const resetPasswordSubtitle =
+      'Choose a new password for your account.';
   static const newPassword = 'New password';
   static const confirmNewPassword = 'Confirm new password';
   static const savePassword = 'Save password';
@@ -312,8 +317,7 @@ abstract final class AppStrings {
   static const situationNumbersOnly =
       'Please describe what happened using words';
 
-  static const situationInvalidText =
-      'Please enter a meaningful description';
+  static const situationInvalidText = 'Please enter a meaningful description';
   // My Reflections
   static const myReflections = 'My Reflections';
   static const reflectionsEmptyTitle = 'No reflections yet';

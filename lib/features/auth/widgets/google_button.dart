@@ -5,7 +5,11 @@ import '../../../core/constants/app_strings.dart';
 import '../../../core/widgets/app_outlined_button.dart';
 
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({super.key, required this.onPressed, this.isLoading = false});
+  const GoogleButton({
+    super.key,
+    required this.onPressed,
+    this.isLoading = false,
+  });
 
   final VoidCallback onPressed;
   final bool isLoading;

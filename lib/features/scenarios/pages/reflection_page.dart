@@ -191,62 +191,58 @@ class _ReflectionPageState extends State<ReflectionPage> {
 
     return ListenableBuilder(
       listenable: flow,
-      builder: (context, _) => FlowScaffold(
-        stepText: AppStrings.stepOf(3),
-        button: AppButton(
-          label: AppStrings.completeScenario,
-          secondary: true,
-          isLoading: flow.isSubmitting,
-          onPressed: _checkerReady && !flow.isSubmitting
-              ? _complete
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.whyChoose,
-              style: context.text.headlineLarge,
+      builder:
+          (context, _) => FlowScaffold(
+            stepText: AppStrings.stepOf(3),
+            button: AppButton(
+              label: AppStrings.completeScenario,
+              secondary: true,
+              isLoading: flow.isSubmitting,
+              onPressed: _checkerReady && !flow.isSubmitting ? _complete : null,
             ),
-            const SizedBox(height: AppSizes.md),
-            AppTextField(
-              controller: _reason,
-              hint: AppStrings.reasonHint,
-              minLines: 6,
-              maxLines: 8,
-              maxLength: 500,
-              onChanged: _onReasonChanged,
-            ),
-            if (_errorMessage != null) ...[
-              const SizedBox(height: AppSizes.sm),
-              Text(
-                _errorMessage!,
-                style: context.text.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.error,
-                ),
-              ),
-            ],
-            const SizedBox(height: AppSizes.lg),
-            Text(
-              AppStrings.whatMattered,
-              style: context.text.headlineMedium,
-            ),
-            const SizedBox(height: AppSizes.md),
-            Wrap(
-              spacing: AppSizes.sm,
-              runSpacing: AppSizes.sm,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final m in matterOptions)
-                  AppChip(
-                    label: m,
-                    selected: flow.matter == m,
-                    onTap: () => flow.toggleMatter(m),
+                Text(AppStrings.whyChoose, style: context.text.headlineLarge),
+                const SizedBox(height: AppSizes.md),
+                AppTextField(
+                  controller: _reason,
+                  hint: AppStrings.reasonHint,
+                  minLines: 6,
+                  maxLines: 8,
+                  maxLength: 500,
+                  onChanged: _onReasonChanged,
+                ),
+                if (_errorMessage != null) ...[
+                  const SizedBox(height: AppSizes.sm),
+                  Text(
+                    _errorMessage!,
+                    style: context.text.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   ),
+                ],
+                const SizedBox(height: AppSizes.lg),
+                Text(
+                  AppStrings.whatMattered,
+                  style: context.text.headlineMedium,
+                ),
+                const SizedBox(height: AppSizes.md),
+                Wrap(
+                  spacing: AppSizes.sm,
+                  runSpacing: AppSizes.sm,
+                  children: [
+                    for (final m in matterOptions)
+                      AppChip(
+                        label: m,
+                        selected: flow.matter == m,
+                        onTap: () => flow.toggleMatter(m),
+                      ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

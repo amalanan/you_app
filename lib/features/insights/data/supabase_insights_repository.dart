@@ -33,11 +33,14 @@ class SupabaseInsightsRepository implements InsightsRepository {
           InsightItem(
             kind: InsightKind.pattern,
             title: AppStrings.insightPatternTitle,
-            body: pattern['kind'] == 'matter'
-                ? AppStrings.insightPatternMatter(tr(pattern['value'] as String))
-                : AppStrings.insightPatternFeeling(
-                    tr(_feelingLabel(pattern['value'] as String)),
-                  ),
+            body:
+                pattern['kind'] == 'matter'
+                    ? AppStrings.insightPatternMatter(
+                      tr(pattern['value'] as String),
+                    )
+                    : AppStrings.insightPatternFeeling(
+                      tr(_feelingLabel(pattern['value'] as String)),
+                    ),
           ),
         if (explore != null)
           InsightItem(
@@ -58,15 +61,15 @@ class SupabaseInsightsRepository implements InsightsRepository {
       tr(GrowthType.values.byName(code as String).label);
 
   static String _feelingLabel(String code) => switch (code) {
-        'excited' => AppStrings.feelExcited,
-        'nervous' => AppStrings.feelNervous,
-        'confident' => AppStrings.feelConfident,
-        'confused' => AppStrings.feelConfused,
-        'frustrated' => AppStrings.feelFrustrated,
-        'disappointed' => AppStrings.feelDisappointed,
-        'hopeful' => AppStrings.feelHopeful,
-        'overwhelmed' => AppStrings.feelOverwhelmed,
-        'calm' => AppStrings.feelCalm,
-        _ => code,
-      };
+    'excited' => AppStrings.feelExcited,
+    'nervous' => AppStrings.feelNervous,
+    'confident' => AppStrings.feelConfident,
+    'confused' => AppStrings.feelConfused,
+    'frustrated' => AppStrings.feelFrustrated,
+    'disappointed' => AppStrings.feelDisappointed,
+    'hopeful' => AppStrings.feelHopeful,
+    'overwhelmed' => AppStrings.feelOverwhelmed,
+    'calm' => AppStrings.feelCalm,
+    _ => code,
+  };
 }

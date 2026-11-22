@@ -108,16 +108,13 @@ class SituationOutcomePage extends StatefulWidget {
   final SituationFlowController flow;
 
   @override
-  State<SituationOutcomePage> createState() =>
-      _SituationOutcomePageState();
+  State<SituationOutcomePage> createState() => _SituationOutcomePageState();
 }
 
 class _SituationOutcomePageState extends State<SituationOutcomePage> {
-  late final _afterwards =
-  TextEditingController(text: widget.flow.afterwards);
+  late final _afterwards = TextEditingController(text: widget.flow.afterwards);
 
-  late final _lesson =
-  TextEditingController(text: widget.flow.lesson);
+  late final _lesson = TextEditingController(text: widget.flow.lesson);
 
   final _textChecker = SituationTextChecker();
 
@@ -151,20 +148,21 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
     final lesson = _lesson.text.trim();
 
     // Both fields are optional. Validate only non-empty values.
-    final afterwardsInvalid = afterwards.isNotEmpty &&
+    final afterwardsInvalid =
+        afterwards.isNotEmpty &&
         _checkerAvailable &&
         !_textChecker.isMeaningful(afterwards);
 
-    final lessonInvalid = lesson.isNotEmpty &&
+    final lessonInvalid =
+        lesson.isNotEmpty &&
         _checkerAvailable &&
         !_textChecker.isMeaningful(lesson);
 
     if (afterwardsInvalid || lessonInvalid) {
       setState(() {
         _afterwardsError =
-        afterwardsInvalid ? AppStrings.situationInvalidText : null;
-        _lessonError =
-        lessonInvalid ? AppStrings.situationInvalidText : null;
+            afterwardsInvalid ? AppStrings.situationInvalidText : null;
+        _lessonError = lessonInvalid ? AppStrings.situationInvalidText : null;
       });
       return;
     }
@@ -180,9 +178,7 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
     if (ok) {
       context.push(AppRoutes.situationSaved, extra: widget.flow);
     } else {
-      context.showSnack(
-        widget.flow.error ?? AppStrings.unknownError,
-      );
+      context.showSnack(widget.flow.error ?? AppStrings.unknownError);
     }
   }
 
@@ -196,9 +192,7 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
   @override
   Widget build(BuildContext context) {
     final flow = widget.flow;
-    final label = context.text.bodyLarge?.copyWith(
-      fontWeight: FontWeight.w600,
-    );
+    final label = context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600);
 
     return FlowScaffold(
       button: AppButton(
@@ -209,10 +203,7 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            AppStrings.whatHappenedAfterward,
-            style: label,
-          ),
+          Text(AppStrings.whatHappenedAfterward, style: label),
           const SizedBox(height: AppSizes.sm),
           AppTextField(
             controller: _afterwards,
@@ -237,10 +228,7 @@ class _SituationOutcomePageState extends State<SituationOutcomePage> {
             ),
           ],
           const SizedBox(height: AppSizes.lg),
-          Text(
-            AppStrings.whatDidYouLearn,
-            style: label,
-          ),
+          Text(AppStrings.whatDidYouLearn, style: label),
           const SizedBox(height: AppSizes.sm),
           AppTextField(
             controller: _lesson,

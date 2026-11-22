@@ -45,7 +45,9 @@ class AppSlider extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [for (var i = min; i <= max; i++) Text('$i', style: small)],
+            children: [
+              for (var i = min; i <= max; i++) Text('$i', style: small),
+            ],
           ),
         ),
         const SizedBox(height: AppSizes.md),
@@ -55,8 +57,16 @@ class AppSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _EndLabel(number: min, label: minLabel, crossAxis: CrossAxisAlignment.start),
-              _EndLabel(number: max, label: maxLabel, crossAxis: CrossAxisAlignment.end),
+              _EndLabel(
+                number: min,
+                label: minLabel,
+                crossAxis: CrossAxisAlignment.start,
+              ),
+              _EndLabel(
+                number: max,
+                label: maxLabel,
+                crossAxis: CrossAxisAlignment.end,
+              ),
             ],
           ),
         ),

@@ -127,8 +127,7 @@ class _AddSituationPageState extends State<AddSituationPage> {
 
   void _continue() {
     // Basic validation
-    final basicError =
-    Validators.situationDescription(_text.text);
+    final basicError = Validators.situationDescription(_text.text);
 
     if (basicError != null) {
       setState(() => _errorMessage = basicError);
@@ -165,54 +164,57 @@ class _AddSituationPageState extends State<AddSituationPage> {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: _flow,
-      builder: (context, _) => FlowScaffold(
-        button: AppButton(
-          label: AppStrings.continueLabel,
-          onPressed: _flow.hasWhatHappened && _checkerReady
-              ? _continue
-              : null,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.situationTitle,
-              style: context.text.headlineLarge
-                  ?.copyWith(fontSize: context.rs(28)),
+      builder:
+          (context, _) => FlowScaffold(
+            button: AppButton(
+              label: AppStrings.continueLabel,
+              onPressed:
+                  _flow.hasWhatHappened && _checkerReady ? _continue : null,
             ),
-            const SizedBox(height: AppSizes.sm),
-            Text(
-              AppStrings.situationSubtitle,
-              style: context.text.bodyMedium
-                  ?.copyWith(color: context.mutedText),
-            ),
-            const SizedBox(height: AppSizes.xl),
-            Text(
-              AppStrings.whatHappened,
-              style: context.text.bodyLarge
-                  ?.copyWith(fontWeight: FontWeight.w600),
-            ),
-            const SizedBox(height: AppSizes.sm),
-            AppTextField(
-              controller: _text,
-              hint: AppStrings.describeWhatHappened,
-              minLines: 8,
-              maxLines: 10,
-              maxLength: 1000,
-              onChanged: _onTextChanged,
-            ),
-            if (_errorMessage != null) ...[
-              const SizedBox(height: AppSizes.xs),
-              Text(
-                _errorMessage!,
-                style: context.text.bodySmall?.copyWith(
-                  color: Theme.of(context).colorScheme.error,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppStrings.situationTitle,
+                  style: context.text.headlineLarge?.copyWith(
+                    fontSize: context.rs(28),
+                  ),
                 ),
-              ),
-            ],
-          ],
-        ),
-      ),
+                const SizedBox(height: AppSizes.sm),
+                Text(
+                  AppStrings.situationSubtitle,
+                  style: context.text.bodyMedium?.copyWith(
+                    color: context.mutedText,
+                  ),
+                ),
+                const SizedBox(height: AppSizes.xl),
+                Text(
+                  AppStrings.whatHappened,
+                  style: context.text.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: AppSizes.sm),
+                AppTextField(
+                  controller: _text,
+                  hint: AppStrings.describeWhatHappened,
+                  minLines: 8,
+                  maxLines: 10,
+                  maxLength: 1000,
+                  onChanged: _onTextChanged,
+                ),
+                if (_errorMessage != null) ...[
+                  const SizedBox(height: AppSizes.xs),
+                  Text(
+                    _errorMessage!,
+                    style: context.text.bodySmall?.copyWith(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
     );
   }
 }

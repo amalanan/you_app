@@ -29,9 +29,8 @@ class OptionTile extends StatelessWidget {
     return AnimatedContainer(
       duration: AppDurations.short,
       decoration: BoxDecoration(
-        color: selected
-            ? AppColors.primary.withAlpha(22)
-            : context.colors.surface,
+        color:
+            selected ? AppColors.primary.withAlpha(22) : context.colors.surface,
         borderRadius: radius,
         border: Border.all(
           color: selected ? AppColors.primary : context.borderColor,

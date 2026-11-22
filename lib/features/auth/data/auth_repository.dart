@@ -45,8 +45,11 @@ int journeyDayFrom(DateTime? memberSince) {
   if (memberSince == null) return 1;
   final start = memberSince.toUtc();
   final now = DateTime.now().toUtc();
-  final days = DateTime.utc(now.year, now.month, now.day)
-      .difference(DateTime.utc(start.year, start.month, start.day))
-      .inDays;
+  final days =
+      DateTime.utc(
+        now.year,
+        now.month,
+        now.day,
+      ).difference(DateTime.utc(start.year, start.month, start.day)).inDays;
   return days < 0 ? 1 : days + 1;
 }

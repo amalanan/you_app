@@ -35,8 +35,9 @@ class JourneyProgressSection extends StatelessWidget {
                 children: [
                   Text(
                     AppStrings.dayNumber(journey.day),
-                    style: context.text.bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w500),
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 6),
                   Row(
@@ -48,7 +49,8 @@ class JourneyProgressSection extends StatelessWidget {
                         height: 8,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: done ? AppColors.secondary : context.borderColor,
+                          color:
+                              done ? AppColors.secondary : context.borderColor,
                         ),
                       );
                     }),

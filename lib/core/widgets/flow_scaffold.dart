@@ -52,15 +52,19 @@ class FlowScaffold extends StatelessWidget {
                           label!,
                           style: context.text.bodySmall?.copyWith(
                             fontWeight: FontWeight.w600,
-                            letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
+                            letterSpacing:
+                                AppLocale.isArabic
+                                    ? 0
+                                    : 0.8, // spacing breaks Arabic letters
                           ),
                         ),
                       const Spacer(),
                       if (stepText != null)
                         Text(
                           stepText!,
-                          style: context.text.bodySmall
-                              ?.copyWith(color: context.mutedText),
+                          style: context.text.bodySmall?.copyWith(
+                            color: context.mutedText,
+                          ),
                         ),
                     ],
                   ),

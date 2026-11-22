@@ -43,7 +43,8 @@ class MainShellPage extends StatelessWidget {
           items: _items,
           currentIndex: index,
           // tapping the current tab again goes back to that tab's first page
-          onTap: (i) => navigationShell.goBranch(i, initialLocation: i == index),
+          onTap:
+              (i) => navigationShell.goBranch(i, initialLocation: i == index),
           onAddTap: () => context.push(AppRoutes.addSituation),
         ),
       ),

@@ -14,16 +14,16 @@ class InsightCard extends StatelessWidget {
   final InsightItem item;
 
   Color _background(BuildContext context) => switch (item.kind) {
-        InsightKind.improvement => AppColors.logoPurple.withAlpha(36),
-        InsightKind.pattern => context.cardColor,
-        InsightKind.explore => AppColors.blush.withAlpha(70),
-      };
+    InsightKind.improvement => AppColors.logoPurple.withAlpha(36),
+    InsightKind.pattern => context.cardColor,
+    InsightKind.explore => AppColors.blush.withAlpha(70),
+  };
 
   IconData get _icon => switch (item.kind) {
-        InsightKind.improvement => Icons.trending_up,
-        InsightKind.pattern => Icons.insights,
-        InsightKind.explore => Icons.explore_outlined,
-      };
+    InsightKind.improvement => Icons.trending_up,
+    InsightKind.pattern => Icons.insights,
+    InsightKind.explore => Icons.explore_outlined,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +42,17 @@ class InsightCard extends StatelessWidget {
               children: [
                 Text(
                   item.title,
-                  style: context.text.bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  style: context.text.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: AppSizes.sm),
                 Text(
                   item.body,
-                  style: context.text.bodyMedium
-                      ?.copyWith(color: context.mutedText, height: 1.6),
+                  style: context.text.bodyMedium?.copyWith(
+                    color: context.mutedText,
+                    height: 1.6,
+                  ),
                 ),
               ],
             ),

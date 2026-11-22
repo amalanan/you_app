@@ -24,41 +24,45 @@ class ConfidencePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: flow,
-      builder: (context, _) => FlowScaffold(
-        stepText: AppStrings.stepOf(2),
-        button: AppButton(
-          label: AppStrings.continueLabel,
-          onPressed: () => context.push(AppRoutes.scenarioReflection, extra: flow),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              AppStrings.howConfident,
-              style: context.text.headlineLarge
-                  ?.copyWith(fontSize: context.rs(26), height: 1.3),
+      builder:
+          (context, _) => FlowScaffold(
+            stepText: AppStrings.stepOf(2),
+            button: AppButton(
+              label: AppStrings.continueLabel,
+              onPressed:
+                  () => context.push(AppRoutes.scenarioReflection, extra: flow),
             ),
-            const SizedBox(height: AppSizes.xxl),
-            Center(
-              child: Text(
-                '${flow.confidence}',
-                style: context.text.displayLarge?.copyWith(
-                  fontSize: context.rs(60),
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primary,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppStrings.howConfident,
+                  style: context.text.headlineLarge?.copyWith(
+                    fontSize: context.rs(26),
+                    height: 1.3,
+                  ),
                 ),
-              ),
+                const SizedBox(height: AppSizes.xxl),
+                Center(
+                  child: Text(
+                    '${flow.confidence}',
+                    style: context.text.displayLarge?.copyWith(
+                      fontSize: context.rs(60),
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppSizes.lg),
+                AppSlider(
+                  value: flow.confidence,
+                  onChanged: flow.setConfidence,
+                  minLabel: AppStrings.notConfident,
+                  maxLabel: AppStrings.veryConfident,
+                ),
+              ],
             ),
-            const SizedBox(height: AppSizes.lg),
-            AppSlider(
-              value: flow.confidence,
-              onChanged: flow.setConfidence,
-              minLabel: AppStrings.notConfident,
-              maxLabel: AppStrings.veryConfident,
-            ),
-          ],
-        ),
-      ),
+          ),
     );
   }
 }

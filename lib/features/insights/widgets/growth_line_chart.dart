@@ -17,14 +17,14 @@ class GrowthLineChart extends StatelessWidget {
 
   // Charts keep the same left-to-right direction in Arabic.
   @override
-  Widget build(BuildContext context) => Directionality(
-        textDirection: TextDirection.ltr,
-        child: _chart(context),
-      );
+  Widget build(BuildContext context) =>
+      Directionality(textDirection: TextDirection.ltr, child: _chart(context));
 
   Widget _chart(BuildContext context) {
-    final labelStyle = context.text.bodySmall
-        ?.copyWith(fontSize: 11, color: context.mutedText);
+    final labelStyle = context.text.bodySmall?.copyWith(
+      fontSize: 11,
+      color: context.mutedText,
+    );
 
     return LayoutBuilder(
       builder: (context, c) {
@@ -56,7 +56,9 @@ class GrowthLineChart extends StatelessWidget {
                     Positioned(
                       left: x(i) - 20,
                       width: 40,
-                      child: Center(child: Text(points[i].label, style: labelStyle)),
+                      child: Center(
+                        child: Text(points[i].label, style: labelStyle),
+                      ),
                     ),
                 ],
               ),
@@ -91,8 +93,12 @@ class _ChartPainter extends CustomPainter {
     final n = values.length;
 
     Offset at(int i) {
-      final dx = n == 1 ? size.width / 2 : pad + i * (size.width - 2 * pad) / (n - 1);
-      final dy = size.height - ((values[i] - minV) / range) * (size.height - 2 * pad) - pad;
+      final dx =
+          n == 1 ? size.width / 2 : pad + i * (size.width - 2 * pad) / (n - 1);
+      final dy =
+          size.height -
+          ((values[i] - minV) / range) * (size.height - 2 * pad) -
+          pad;
       return Offset(dx, dy);
     }
 
@@ -127,5 +133,7 @@ class _ChartPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ChartPainter old) =>
-      old.values != values || old.lineColor != lineColor || old.baseColor != baseColor;
+      old.values != values ||
+      old.lineColor != lineColor ||
+      old.baseColor != baseColor;
 }

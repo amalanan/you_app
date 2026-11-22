@@ -21,7 +21,10 @@ class PrivacyDataPage extends StatefulWidget {
 
 class _PrivacyDataPageState extends State<PrivacyDataPage> {
   final _storage = LocalStorage.instance;
-  late bool _analytics = _storage.getBool(StorageKeys.analytics, defaultValue: false);
+  late bool _analytics = _storage.getBool(
+    StorageKeys.analytics,
+    defaultValue: false,
+  );
 
   void _setAnalytics(bool value) {
     setState(() => _analytics = value);
@@ -45,14 +48,17 @@ class _PrivacyDataPageState extends State<PrivacyDataPage> {
                   children: [
                     Text(
                       AppStrings.privacyAnalytics,
-                      style: context.text.bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       AppStrings.privacyAnalyticsBody,
-                      style: context.text.bodySmall
-                          ?.copyWith(color: context.mutedText, height: 1.4),
+                      style: context.text.bodySmall?.copyWith(
+                        color: context.mutedText,
+                        height: 1.4,
+                      ),
                     ),
                   ],
                 ),

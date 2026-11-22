@@ -28,13 +28,17 @@ class LegalPage extends StatelessWidget {
           for (final s in sections) ...[
             Text(
               s.heading,
-              style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+              style: context.text.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 6),
             Text(
               s.body,
-              style: context.text.bodyMedium
-                  ?.copyWith(color: context.mutedText, height: 1.6),
+              style: context.text.bodyMedium?.copyWith(
+                color: context.mutedText,
+                height: 1.6,
+              ),
             ),
             const SizedBox(height: 20),
           ],

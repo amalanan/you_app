@@ -38,13 +38,15 @@ class HelpPage extends StatelessWidget {
                     children: [
                       Text(
                         AppStrings.contactUs,
-                        style: context.text.bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w600),
+                        style: context.text.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Text(
                         supportEmail,
-                        style: context.text.bodySmall
-                            ?.copyWith(color: context.mutedText),
+                        style: context.text.bodySmall?.copyWith(
+                          color: context.mutedText,
+                        ),
                       ),
                     ],
                   ),
@@ -68,14 +70,17 @@ class HelpPage extends StatelessWidget {
                     expandedCrossAxisAlignment: CrossAxisAlignment.start,
                     title: Text(
                       item.question,
-                      style: context.text.bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     children: [
                       Text(
                         item.answer,
-                        style: context.text.bodySmall
-                            ?.copyWith(color: context.mutedText, height: 1.5),
+                        style: context.text.bodySmall?.copyWith(
+                          color: context.mutedText,
+                          height: 1.5,
+                        ),
                       ),
                     ],
                   ),

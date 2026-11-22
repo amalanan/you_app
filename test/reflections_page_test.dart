@@ -27,7 +27,8 @@ class FakeRepo implements ReflectionRepository {
   Object? error;
   Completer<void>? gate; // when set, getEntries waits for it
   int calls = 0;
-
+  @override
+  Future<void> deleteEntry(ReflectionEntry entry) async {}
   @override
   Future<List<ReflectionEntry>> getEntries({int limit = 20, int offset = 0}) async {
     calls++;

@@ -24,7 +24,9 @@ class GainRow extends StatelessWidget {
         Expanded(
           child: Text(
             gain.type.label,
-            style: context.text.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+            style: context.text.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         Container(

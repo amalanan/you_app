@@ -34,13 +34,14 @@ class _PlantPainter extends CustomPainter {
 
     // sparkles
     void sparkle(double x, double y, double r) {
-      final p = Path()
-        ..moveTo(x, y - r)
-        ..quadraticBezierTo(x, y, x + r, y)
-        ..quadraticBezierTo(x, y, x, y + r)
-        ..quadraticBezierTo(x, y, x - r, y)
-        ..quadraticBezierTo(x, y, x, y - r)
-        ..close();
+      final p =
+          Path()
+            ..moveTo(x, y - r)
+            ..quadraticBezierTo(x, y, x + r, y)
+            ..quadraticBezierTo(x, y, x, y + r)
+            ..quadraticBezierTo(x, y, x - r, y)
+            ..quadraticBezierTo(x, y, x, y - r)
+            ..close();
       canvas.drawPath(p, Paint()..color = AppColors.logoPurple.withAlpha(150));
     }
 
@@ -65,11 +66,12 @@ class _PlantPainter extends CustomPainter {
       canvas.save();
       canvas.translate(base.dx, base.dy);
       canvas.rotate(angle);
-      final p = Path()
-        ..moveTo(0, 0)
-        ..quadraticBezierTo(wd, -len * 0.5, 0, -len)
-        ..quadraticBezierTo(-wd, -len * 0.5, 0, 0)
-        ..close();
+      final p =
+          Path()
+            ..moveTo(0, 0)
+            ..quadraticBezierTo(wd, -len * 0.5, 0, -len)
+            ..quadraticBezierTo(-wd, -len * 0.5, 0, 0)
+            ..close();
       canvas.drawPath(p, Paint()..color = c);
       canvas.restore();
     }
@@ -85,12 +87,13 @@ class _PlantPainter extends CustomPainter {
     // pot
     final potW = h * 0.5;
     final potTop = h * 0.66;
-    final pot = Path()
-      ..moveTo(cx - potW / 2, potTop)
-      ..lineTo(cx + potW / 2, potTop)
-      ..lineTo(cx + potW * 0.38, h * 0.97)
-      ..quadraticBezierTo(cx, h * 1.0, cx - potW * 0.38, h * 0.97)
-      ..close();
+    final pot =
+        Path()
+          ..moveTo(cx - potW / 2, potTop)
+          ..lineTo(cx + potW / 2, potTop)
+          ..lineTo(cx + potW * 0.38, h * 0.97)
+          ..quadraticBezierTo(cx, h * 1.0, cx - potW * 0.38, h * 0.97)
+          ..close();
     canvas.drawPath(pot, Paint()..color = const Color(0xFF6F6A8E));
     canvas.drawRRect(
       RRect.fromRectAndRadius(

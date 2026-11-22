@@ -41,7 +41,10 @@ class AppSegmented extends StatelessWidget {
                   duration: AppDurations.short,
                   padding: const EdgeInsets.symmetric(vertical: 11),
                   decoration: BoxDecoration(
-                    color: i == selectedIndex ? AppColors.primary : Colors.transparent,
+                    color:
+                        i == selectedIndex
+                            ? AppColors.primary
+                            : Colors.transparent,
                     borderRadius: radius,
                   ),
                   child: Center(
@@ -49,9 +52,10 @@ class AppSegmented extends StatelessWidget {
                       labels[i],
                       style: context.text.bodySmall?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: i == selectedIndex
-                            ? AppColors.white
-                            : context.colors.onSurface,
+                        color:
+                            i == selectedIndex
+                                ? AppColors.white
+                                : context.colors.onSurface,
                       ),
                     ),
                   ),

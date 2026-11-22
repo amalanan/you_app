@@ -31,7 +31,10 @@ class GrowthSection extends StatelessWidget {
                 AppStrings.yourGrowth,
                 style: context.text.bodySmall?.copyWith(
                   fontWeight: FontWeight.w600,
-                  letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
+                  letterSpacing:
+                      AppLocale.isArabic
+                          ? 0
+                          : 0.8, // spacing breaks Arabic letters
                 ),
               ),
             ),
@@ -77,21 +80,26 @@ class _GrowthRow extends StatelessWidget {
             children: [
               Text(
                 type.label,
-                style: context.text.bodyMedium
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: context.text.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
               ),
               const SizedBox(height: 8),
               TweenAnimationBuilder<double>(
-                tween: Tween(begin: 0, end: item.hasData ? item.score / 100 : 0),
+                tween: Tween(
+                  begin: 0,
+                  end: item.hasData ? item.score / 100 : 0,
+                ),
                 duration: AppDurations.medium * 2,
                 curve: Curves.easeOut,
-                builder: (_, value, __) => LinearProgressIndicator(
-                  value: value,
-                  minHeight: 5,
-                  borderRadius: BorderRadius.circular(3),
-                  color: type.barColor,
-                  backgroundColor: context.borderColor,
-                ),
+                builder:
+                    (_, value, __) => LinearProgressIndicator(
+                      value: value,
+                      minHeight: 5,
+                      borderRadius: BorderRadius.circular(3),
+                      color: type.barColor,
+                      backgroundColor: context.borderColor,
+                    ),
               ),
             ],
           ),

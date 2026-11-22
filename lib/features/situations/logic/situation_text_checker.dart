@@ -65,8 +65,10 @@ class SituationTextChecker {
 
     if (value.isEmpty) return false;
 
-    final letters = value
-        .replaceAll(RegExp('[^a-zA-Z\\u0621-\\u064A\\u066E-\\u06D3]'), '');
+    final letters = value.replaceAll(
+      RegExp('[^a-zA-Z\\u0621-\\u064A\\u066E-\\u06D3]'),
+      '',
+    );
 
     if (letters.isEmpty) return false;
 
@@ -119,16 +121,21 @@ class SituationTextChecker {
   }
 
   bool _hasRepeatedWords(String text) {
-    final words = text
-        .split(RegExp(r'\s+'))
-        .where((word) => RegExp(_letterPattern).hasMatch(word))
-        .toList();
+    final words =
+        text
+            .split(RegExp(r'\s+'))
+            .where((word) => RegExp(_letterPattern).hasMatch(word))
+            .toList();
 
     if (words.length < 4) return false;
 
-    final normalized = words.map((word) {
-      return word.replaceAll(RegExp(r'[^\w\u0621-\u064A\u066E-\u06D3]'), '');
-    }).toList();
+    final normalized =
+        words.map((word) {
+          return word.replaceAll(
+            RegExp(r'[^\w\u0621-\u064A\u066E-\u06D3]'),
+            '',
+          );
+        }).toList();
 
     return normalized.toSet().length == 1;
   }

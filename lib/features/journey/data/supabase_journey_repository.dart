@@ -41,14 +41,16 @@ class SupabaseJourneyRepository implements JourneyRepository {
 
     return JourneyEntry(
       // Today / Yesterday / Day 9 ...
-      dayLabel: daysAgo == 0
-          ? AppStrings.today
-          : daysAgo == 1
+      dayLabel:
+          daysAgo == 0
+              ? AppStrings.today
+              : daysAgo == 1
               ? AppStrings.yesterday
               : AppStrings.dayNumber(e['day_number'] as int),
-      text: isScenario
-          ? AppStrings.journeyCompletedScenario
-          : AppStrings.journeyAddedSituation,
+      text:
+          isScenario
+              ? AppStrings.journeyCompletedScenario
+              : AppStrings.journeyAddedSituation,
       type: isScenario ? JourneyEntryType.scenario : JourneyEntryType.situation,
     );
   }

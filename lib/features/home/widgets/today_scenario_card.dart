@@ -28,7 +28,8 @@ class TodayScenarioCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       padding: const EdgeInsets.all(AppSizes.lg),
-      onTap: () => context.push(AppRoutes.scenarios), // the whole card = the list
+      onTap:
+          () => context.push(AppRoutes.scenarios), // the whole card = the list
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +40,10 @@ class TodayScenarioCard extends StatelessWidget {
                   AppStrings.todaysScenario,
                   style: context.text.bodySmall?.copyWith(
                     fontWeight: FontWeight.w600,
-                    letterSpacing: AppLocale.isArabic ? 0 : 0.8, // spacing breaks Arabic letters
+                    letterSpacing:
+                        AppLocale.isArabic
+                            ? 0
+                            : 0.8, // spacing breaks Arabic letters
                   ),
                 ),
               ),
@@ -58,7 +62,9 @@ class TodayScenarioCard extends StatelessWidget {
               const SizedBox(width: 6),
               Text(
                 AppStrings.minutes(scenario.minutes),
-                style: context.text.bodySmall?.copyWith(color: context.mutedText),
+                style: context.text.bodySmall?.copyWith(
+                  color: context.mutedText,
+                ),
               ),
             ],
           ),

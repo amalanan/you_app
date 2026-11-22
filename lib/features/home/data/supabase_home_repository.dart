@@ -37,13 +37,14 @@ class SupabaseHomeRepository implements HomeRepository {
           day: map['day'] as int,
           completedSteps: math.min(map['active_days'] as int, 14),
         ),
-        scenario: today == null
-            ? null
-            : TodayScenario(
-          id: today['id'] as String,
-          text: _text(today['situation']),
-          minutes: today['minutes'] as int,
-        ),
+        scenario:
+            today == null
+                ? null
+                : TodayScenario(
+                  id: today['id'] as String,
+                  text: _text(today['situation']),
+                  minutes: today['minutes'] as int,
+                ),
         growth: [
           for (final skill in _homeSkills)
             GrowthScore(skill, scores[skill.name] ?? GrowthScore.startScore),

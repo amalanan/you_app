@@ -57,7 +57,9 @@ class _AppTextFieldState extends State<AppTextField> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(height: 6),
         ],
@@ -66,7 +68,8 @@ class _AppTextFieldState extends State<AppTextField> {
           validator: widget.validator,
           enabled: widget.enabled,
           obscureText: _obscure,
-          keyboardType: widget.keyboardType ??
+          keyboardType:
+              widget.keyboardType ??
               (widget.maxLines != 1 ? TextInputType.multiline : null),
           textInputAction: widget.textInputAction,
           autofillHints: widget.autofillHints,
@@ -80,17 +83,18 @@ class _AppTextFieldState extends State<AppTextField> {
           decoration: InputDecoration(
             hintText: widget.hint == null ? null : tr(widget.hint!),
             alignLabelWithHint: true,
-            suffixIcon: widget.isPassword
-                ? IconButton(
-              icon: Icon(
-                _obscure
-                    ? Icons.visibility_outlined
-                    : Icons.visibility_off_outlined,
-                size: 20,
-              ),
-              onPressed: () => setState(() => _obscure = !_obscure),
-            )
-                : null,
+            suffixIcon:
+                widget.isPassword
+                    ? IconButton(
+                      icon: Icon(
+                        _obscure
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off_outlined,
+                        size: 20,
+                      ),
+                      onPressed: () => setState(() => _obscure = !_obscure),
+                    )
+                    : null,
           ),
         ),
       ],

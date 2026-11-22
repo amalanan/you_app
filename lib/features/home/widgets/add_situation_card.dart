@@ -25,7 +25,11 @@ class AddSituationCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.spa_outlined, color: AppColors.primary, size: 28),
+              const Icon(
+                Icons.spa_outlined,
+                color: AppColors.primary,
+                size: 28,
+              ),
               const SizedBox(width: AppSizes.md),
               Expanded(
                 child: Column(
@@ -33,14 +37,16 @@ class AddSituationCard extends StatelessWidget {
                   children: [
                     Text(
                       AppStrings.somethingHappened,
-                      style: context.text.bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.w600),
+                      style: context.text.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       AppStrings.captureMoment,
-                      style: context.text.bodySmall
-                          ?.copyWith(color: context.mutedText),
+                      style: context.text.bodySmall?.copyWith(
+                        color: context.mutedText,
+                      ),
                     ),
                   ],
                 ),

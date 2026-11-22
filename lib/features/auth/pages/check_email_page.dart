@@ -78,46 +78,52 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
         child: ResponsiveCenter(
           child: ListenableBuilder(
             listenable: _auth,
-            builder: (context, _) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.mark_email_unread_outlined,
-                    size: 72,
-                    color: AppColors.primary,
+            builder:
+                (context, _) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.screenPadding,
                   ),
-                  const SizedBox(height: AppSizes.lg),
-                  Text(
-                    AppStrings.checkEmailTitle,
-                    textAlign: TextAlign.center,
-                    style: context.text.headlineLarge,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.mark_email_unread_outlined,
+                        size: 72,
+                        color: AppColors.primary,
+                      ),
+                      const SizedBox(height: AppSizes.lg),
+                      Text(
+                        AppStrings.checkEmailTitle,
+                        textAlign: TextAlign.center,
+                        style: context.text.headlineLarge,
+                      ),
+                      const SizedBox(height: AppSizes.sm),
+                      Text(
+                        AppStrings.checkEmailSubtitle(widget.email),
+                        textAlign: TextAlign.center,
+                        style: context.text.bodyMedium?.copyWith(
+                          color: context.mutedText,
+                          height: 1.6,
+                        ),
+                      ),
+                      const SizedBox(height: AppSizes.xl),
+                      AppButton(
+                        label:
+                            _seconds > 0
+                                ? AppStrings.resendEmailIn(_seconds)
+                                : AppStrings.resendEmail,
+                        secondary: true,
+                        isLoading: _auth.isLoading,
+                        onPressed: _seconds > 0 ? null : _resend,
+                      ),
+                      const SizedBox(height: AppSizes.sm),
+                      TextButton(
+                        onPressed: () => context.go(AppRoutes.login),
+                        child: const Text(AppStrings.backToLogin),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: AppSizes.sm),
-                  Text(
-                    AppStrings.checkEmailSubtitle(widget.email),
-                    textAlign: TextAlign.center,
-                    style: context.text.bodyMedium
-                        ?.copyWith(color: context.mutedText, height: 1.6),
-                  ),
-                  const SizedBox(height: AppSizes.xl),
-                  AppButton(
-                    label: _seconds > 0
-                        ? AppStrings.resendEmailIn(_seconds)
-                        : AppStrings.resendEmail,
-                    secondary: true,
-                    isLoading: _auth.isLoading,
-                    onPressed: _seconds > 0 ? null : _resend,
-                  ),
-                  const SizedBox(height: AppSizes.sm),
-                  TextButton(
-                    onPressed: () => context.go(AppRoutes.login),
-                    child: const Text(AppStrings.backToLogin),
-                  ),
-                ],
-              ),
-            ),
+                ),
           ),
         ),
       ),

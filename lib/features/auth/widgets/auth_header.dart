@@ -23,14 +23,15 @@ class AuthHeader extends StatelessWidget {
           height: 56,
           child: Align(
             alignment: AlignmentDirectional.centerStart,
-            child: context.canPop()
-                ? IconButton(
-              onPressed: () => context.pop(),
-              padding: EdgeInsets.zero,
-              alignment: AlignmentDirectional.centerStart,
-              icon: const Icon(Icons.arrow_back),
-            )
-                : null,
+            child:
+                context.canPop()
+                    ? IconButton(
+                      onPressed: () => context.pop(),
+                      padding: EdgeInsets.zero,
+                      alignment: AlignmentDirectional.centerStart,
+                      icon: const Icon(Icons.arrow_back),
+                    )
+                    : null,
           ),
         ),
         SizedBox(height: context.rs(AppSizes.sm)),

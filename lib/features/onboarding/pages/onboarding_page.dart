@@ -89,7 +89,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   controller: _controller,
                   itemCount: onboardingItems.length,
                   onPageChanged: (i) => setState(() => _index = i),
-                  itemBuilder: (_, i) => OnboardingSlide(item: onboardingItems[i]),
+                  itemBuilder:
+                      (_, i) => OnboardingSlide(item: onboardingItems[i]),
                 ),
               ),
               Center(
@@ -108,14 +109,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         ),
                         const SizedBox(height: AppSizes.md),
                         AppButton(
-                          label: _isLast ? AppStrings.startJourney : AppStrings.next,
-                          secondary: !_isLast, // purple, then green on the last page
+                          label:
+                              _isLast
+                                  ? AppStrings.startJourney
+                                  : AppStrings.next,
+                          secondary:
+                              !_isLast, // purple, then green on the last page
                           onPressed: _next,
                         ),
                         TextButton(
                           onPressed: _finish,
                           style: TextButton.styleFrom(
-                            foregroundColor: Theme.of(context).colorScheme.onSurface,
+                            foregroundColor:
+                                Theme.of(context).colorScheme.onSurface,
                           ),
                           child: const Text(AppStrings.skip),
                         ),

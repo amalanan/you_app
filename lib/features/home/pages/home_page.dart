@@ -81,10 +81,7 @@ class _HomePageState extends State<HomePage> {
       final failure = _failure;
       return failure is NetworkFailure
           ? StatusView.offline(onRetry: _load)
-          : StatusView.error(
-        message: failure?.message ?? '',
-        onRetry: _load,
-      );
+          : StatusView.error(message: failure?.message ?? '', onRetry: _load);
     }
 
     final name = AuthRepository.instance.currentName ?? '';
@@ -109,10 +106,11 @@ class _HomePageState extends State<HomePage> {
             TodayScenarioCard(
               scenario: scenario,
               // the button opens today's scenario; the card itself opens the list
-              onStart: () => context.push(
-                AppRoutes.scenarios,
-                extra: scenario.id.isEmpty ? null : scenario.id,
-              ),
+              onStart:
+                  () => context.push(
+                    AppRoutes.scenarios,
+                    extra: scenario.id.isEmpty ? null : scenario.id,
+                  ),
             ),
             const SizedBox(height: AppSizes.xl),
           ],

@@ -52,29 +52,34 @@ class SituationSavedPage extends StatelessWidget {
                         const SizedBox(height: AppSizes.lg),
                         Text(
                           AppStrings.reflectionSaved,
-                          style: context.text.headlineLarge
-                              ?.copyWith(fontSize: context.rs(24)),
+                          style: context.text.headlineLarge?.copyWith(
+                            fontSize: context.rs(24),
+                          ),
                         ),
                         const SizedBox(height: AppSizes.lg),
                         Text(
                           AppStrings.whatWeNoticed,
-                          style: context.text.bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w600),
+                          style: context.text.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: AppSizes.sm),
                         for (final line in insight.notices) ...[
                           Text(
                             line,
-                            style: context.text.bodyMedium
-                                ?.copyWith(color: context.mutedText, height: 1.6),
+                            style: context.text.bodyMedium?.copyWith(
+                              color: context.mutedText,
+                              height: 1.6,
+                            ),
                           ),
                           const SizedBox(height: AppSizes.sm),
                         ],
                         const SizedBox(height: AppSizes.md),
                         Text(
                           AppStrings.growthFromReflection,
-                          style: context.text.bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w600),
+                          style: context.text.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: AppSizes.md),
                         for (final gain in insight.gains) ...[

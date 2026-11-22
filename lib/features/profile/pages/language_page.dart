@@ -46,14 +46,18 @@ class _LanguagePageState extends State<LanguagePage> {
             InkWell(
               onTap: () => setState(() => _selected = code),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16,
+                  horizontal: 4,
+                ),
                 child: Row(
                   children: [
                     Expanded(
                       child: Text(
                         name,
-                        style: context.text.bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w500),
+                        style: context.text.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     if (_selected == code)

@@ -4,10 +4,10 @@ enum GrowthRange { week, month, quarter }
 
 extension GrowthRangeX on GrowthRange {
   String get label => switch (this) {
-        GrowthRange.week => AppStrings.range7,
-        GrowthRange.month => AppStrings.range30,
-        GrowthRange.quarter => AppStrings.range3m,
-      };
+    GrowthRange.week => AppStrings.range7,
+    GrowthRange.month => AppStrings.range30,
+    GrowthRange.quarter => AppStrings.range3m,
+  };
 }
 
 class GrowthPoint {
@@ -38,7 +38,11 @@ class GrowthDetail {
 enum InsightKind { improvement, pattern, explore }
 
 class InsightItem {
-  const InsightItem({required this.kind, required this.title, required this.body});
+  const InsightItem({
+    required this.kind,
+    required this.title,
+    required this.body,
+  });
 
   final InsightKind kind;
   final String title;

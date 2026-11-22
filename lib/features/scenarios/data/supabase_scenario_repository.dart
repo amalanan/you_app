@@ -68,12 +68,14 @@ class SupabaseScenarioRepository implements ScenarioRepository {
   }
 
   static List<GrowthGain> _gains(dynamic json) => [
-        for (final g in (json as List))
-          GrowthGain(
-            GrowthType.values.byName((g as Map<String, dynamic>)['skill'] as String),
-            g['points'] as int,
-          ),
-      ];
+    for (final g in (json as List))
+      GrowthGain(
+        GrowthType.values.byName(
+          (g as Map<String, dynamic>)['skill'] as String,
+        ),
+        g['points'] as int,
+      ),
+  ];
 
   static Scenario _scenario(Map<String, dynamic> row) {
     final options = [

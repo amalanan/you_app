@@ -47,8 +47,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 Expanded(
                   child: Text(
                     label,
-                    style: context.text.bodyMedium
-                        ?.copyWith(fontWeight: FontWeight.w500),
+                    style: context.text.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 Switch(value: _values[key]!, onChanged: (v) => _toggle(key, v)),

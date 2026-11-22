@@ -80,14 +80,16 @@ class _ScenariosPageState extends State<ScenariosPage> {
     });
   }
 
-  List<Scenario> get _visible => _all.where((s) {
-    final matchesFilter = _filter == null || s.category == _filter;
-    final q = _query.trim().toLowerCase();
-    final matchesQuery = q.isEmpty ||
-        s.title.toLowerCase().contains(q) ||
-        s.summary.toLowerCase().contains(q);
-    return matchesFilter && matchesQuery;
-  }).toList();
+  List<Scenario> get _visible =>
+      _all.where((s) {
+        final matchesFilter = _filter == null || s.category == _filter;
+        final q = _query.trim().toLowerCase();
+        final matchesQuery =
+            q.isEmpty ||
+            s.title.toLowerCase().contains(q) ||
+            s.summary.toLowerCase().contains(q);
+        return matchesFilter && matchesQuery;
+      }).toList();
 
   void _open(Scenario scenario) {
     context.push(
@@ -132,10 +134,9 @@ class _ScenariosPageState extends State<ScenariosPage> {
       ),
       itemCount: items.length,
       separatorBuilder: (_, __) => const SizedBox(height: AppSizes.md),
-      itemBuilder: (_, i) => ScenarioCard(
-        scenario: items[i],
-        onTap: () => _open(items[i]),
-      ),
+      itemBuilder:
+          (_, i) =>
+              ScenarioCard(scenario: items[i], onTap: () => _open(items[i])),
     );
   }
 
@@ -160,19 +161,21 @@ class _ScenariosPageState extends State<ScenariosPage> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: _searching
-                          ? TextField(
-                        autofocus: true,
-                        onChanged: (v) => setState(() => _query = v),
-                        decoration: InputDecoration(
-                          hintText: tr(AppStrings.searchScenarios),
-                        ),
-                      )
-                          : Text(
-                        AppStrings.exploreScenarios,
-                        style: context.text.headlineLarge
-                            ?.copyWith(fontSize: context.rs(24)),
-                      ),
+                      child:
+                          _searching
+                              ? TextField(
+                                autofocus: true,
+                                onChanged: (v) => setState(() => _query = v),
+                                decoration: InputDecoration(
+                                  hintText: tr(AppStrings.searchScenarios),
+                                ),
+                              )
+                              : Text(
+                                AppStrings.exploreScenarios,
+                                style: context.text.headlineLarge?.copyWith(
+                                  fontSize: context.rs(24),
+                                ),
+                              ),
                     ),
                     IconButton(
                       onPressed: _toggleSearch,
@@ -183,7 +186,9 @@ class _ScenariosPageState extends State<ScenariosPage> {
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: AppSizes.screenPadding),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSizes.screenPadding,
+                ),
                 child: Row(
                   children: [
                     AppChip(

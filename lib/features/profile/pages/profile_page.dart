@@ -109,8 +109,10 @@ class ProfilePage extends StatelessWidget {
                   backgroundColor: AppColors.blush,
                   child: Text(
                     name.isEmpty ? '?' : name[0].toUpperCase(),
-                    style: context.text.headlineLarge
-                        ?.copyWith(fontSize: 32, color: AppColors.lightText),
+                    style: context.text.headlineLarge?.copyWith(
+                      fontSize: 32,
+                      color: AppColors.lightText,
+                    ),
                   ),
                 ),
               ),
@@ -121,7 +123,9 @@ class ProfilePage extends StatelessWidget {
               Center(
                 child: Text(
                   AppStrings.dayOfJourney(journeyDayFrom(auth.memberSince)),
-                  style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+                  style: context.text.bodyMedium?.copyWith(
+                    color: context.mutedText,
+                  ),
                 ),
               ),
               const SizedBox(height: AppSizes.lg),
@@ -139,8 +143,9 @@ class ProfilePage extends StatelessWidget {
                     Expanded(
                       child: Text(
                         AppStrings.logOut,
-                        style: context.text.bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w500),
+                        style: context.text.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                     Icon(Icons.chevron_right, color: context.mutedText),

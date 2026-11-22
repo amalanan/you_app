@@ -22,7 +22,8 @@ class ReflectionsController extends ChangeNotifier {
   final List<ReflectionEntry> _entries = [];
   final Set<String> _keys = {};
   int _nextOffset = 0;
-  int _generation = 0; // bumped on every first-page load, so late answers are dropped
+  int _generation =
+      0; // bumped on every first-page load, so late answers are dropped
 
   bool _started = false;
   bool _loaded = false;
@@ -77,8 +78,10 @@ class ReflectionsController extends ChangeNotifier {
     // A reload keeps as many rows as are already on screen.
     final limit = math.max(pageSize, _entries.length);
     try {
-      final page = await ReflectionRepository.instance
-          .getEntries(limit: limit, offset: 0);
+      final page = await ReflectionRepository.instance.getEntries(
+        limit: limit,
+        offset: 0,
+      );
       if (_disposed) return;
       _entries.clear();
       _keys.clear();
@@ -116,8 +119,10 @@ class ReflectionsController extends ChangeNotifier {
     _isLoadingMore = true;
     _notify();
     try {
-      final page = await ReflectionRepository.instance
-          .getEntries(limit: pageSize, offset: _nextOffset);
+      final page = await ReflectionRepository.instance.getEntries(
+        limit: pageSize,
+        offset: _nextOffset,
+      );
       if (_disposed || generation != _generation) return;
       _addNew(page);
       _nextOffset += page.length;

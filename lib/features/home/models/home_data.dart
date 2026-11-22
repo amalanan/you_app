@@ -33,6 +33,7 @@ class HomeData {
   });
 
   final JourneyProgress journey;
+
   /// null when there are no scenarios at all.
   final TodayScenario? scenario;
   final List<GrowthScore> growth;

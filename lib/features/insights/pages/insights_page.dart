@@ -98,7 +98,9 @@ class _InsightsPageState extends State<InsightsPage> {
         children: [
           Text(
             AppStrings.insightsTitle,
-            style: context.text.headlineLarge?.copyWith(fontSize: context.rs(26)),
+            style: context.text.headlineLarge?.copyWith(
+              fontSize: context.rs(26),
+            ),
           ),
           const SizedBox(height: AppSizes.lg),
           if (items.isEmpty)
@@ -106,14 +108,23 @@ class _InsightsPageState extends State<InsightsPage> {
               padding: const EdgeInsets.symmetric(vertical: AppSizes.xl),
               child: Column(
                 children: [
-                  const Icon(Icons.insights, size: 56, color: AppColors.secondary),
+                  const Icon(
+                    Icons.insights,
+                    size: 56,
+                    color: AppColors.secondary,
+                  ),
                   const SizedBox(height: AppSizes.md),
-                  Text(AppStrings.insightsEmptyTitle, style: context.text.headlineMedium),
+                  Text(
+                    AppStrings.insightsEmptyTitle,
+                    style: context.text.headlineMedium,
+                  ),
                   const SizedBox(height: AppSizes.sm),
                   Text(
                     AppStrings.insightsEmptyBody,
                     textAlign: TextAlign.center,
-                    style: context.text.bodyMedium?.copyWith(color: context.mutedText),
+                    style: context.text.bodyMedium?.copyWith(
+                      color: context.mutedText,
+                    ),
                   ),
                 ],
               ),

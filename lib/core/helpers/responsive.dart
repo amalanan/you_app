@@ -22,7 +22,10 @@ extension ResponsiveX on BuildContext {
   /// Scales a value from the design (390 wide) to the current screen,
   /// limited between 320 and 480 so nothing gets tiny or huge.
   double rs(double value) {
-    final w = math.min(math.max(screenWidth, 320.0), Breakpoints.maxContentWidth);
+    final w = math.min(
+      math.max(screenWidth, 320.0),
+      Breakpoints.maxContentWidth,
+    );
     return value * (w / Breakpoints.designWidth);
   }
 }

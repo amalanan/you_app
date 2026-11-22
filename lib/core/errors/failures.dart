@@ -12,7 +12,7 @@ class NetworkFailure extends Failure {
 
 class ServerFailure extends Failure {
   const ServerFailure([String? message, this.statusCode])
-      : super(message ?? AppStrings.serverError);
+    : super(message ?? AppStrings.serverError);
   final int? statusCode;
 }
 

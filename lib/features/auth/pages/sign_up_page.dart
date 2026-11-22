@@ -58,7 +58,10 @@ class _SignUpPageState extends State<SignUpPage> {
     if (ok) {
       final pending = _auth.pendingEmail;
       if (pending != null) {
-        context.push(AppRoutes.checkEmail, extra: pending); // "Check your email"
+        context.push(
+          AppRoutes.checkEmail,
+          extra: pending,
+        ); // "Check your email"
       } else {
         context.go(AppRoutes.home);
       }
@@ -84,102 +87,108 @@ class _SignUpPageState extends State<SignUpPage> {
           child: ResponsiveCenter(
             child: ListenableBuilder(
               listenable: _auth,
-              builder: (context, _) => CustomScrollView(
-                slivers: [
-                  SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSizes.screenPadding,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const AuthHeader(
-                            title: AppStrings.startYourJourney,
-                            subtitle: AppStrings.createYourAccount,
+              builder:
+                  (context, _) => CustomScrollView(
+                    slivers: [
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.screenPadding,
                           ),
-                          const SizedBox(height: AppSizes.xl),
-                          Form(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                AppTextField(
-                                  label: AppStrings.name,
-                                  hint: AppStrings.nameHint,
-                                  controller: _name,
-                                  validator: Validators.required,
-                                  keyboardType: TextInputType.name,
-                                  textInputAction: TextInputAction.next,
-                                  autofillHints: const [AutofillHints.name],
-                                ),
-                                const SizedBox(height: AppSizes.md),
-                                AppTextField(
-                                  label: AppStrings.email,
-                                  hint: AppStrings.emailHint,
-                                  controller: _email,
-                                  validator: Validators.email,
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  autofillHints: const [AutofillHints.email],
-                                ),
-                                const SizedBox(height: AppSizes.md),
-                                AppTextField(
-                                  label: AppStrings.password,
-                                  hint: AppStrings.passwordHint,
-                                  controller: _password,
-                                  isPassword: true,
-                                  validator: Validators.password,
-                                  textInputAction: TextInputAction.next,
-                                  autofillHints: const [AutofillHints.newPassword],
-                                ),
-                                const SizedBox(height: AppSizes.md),
-                                AppTextField(
-                                  label: AppStrings.confirmPassword,
-                                  hint: AppStrings.passwordHint,
-                                  controller: _confirm,
-                                  isPassword: true,
-                                  validator: Validators.confirmPassword(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const AuthHeader(
+                                title: AppStrings.startYourJourney,
+                                subtitle: AppStrings.createYourAccount,
+                              ),
+                              const SizedBox(height: AppSizes.xl),
+                              Form(
+                                key: _formKey,
+                                child: Column(
+                                  children: [
+                                    AppTextField(
+                                      label: AppStrings.name,
+                                      hint: AppStrings.nameHint,
+                                      controller: _name,
+                                      validator: Validators.required,
+                                      keyboardType: TextInputType.name,
+                                      textInputAction: TextInputAction.next,
+                                      autofillHints: const [AutofillHints.name],
+                                    ),
+                                    const SizedBox(height: AppSizes.md),
+                                    AppTextField(
+                                      label: AppStrings.email,
+                                      hint: AppStrings.emailHint,
+                                      controller: _email,
+                                      validator: Validators.email,
+                                      keyboardType: TextInputType.emailAddress,
+                                      textInputAction: TextInputAction.next,
+                                      autofillHints: const [
+                                        AutofillHints.email,
+                                      ],
+                                    ),
+                                    const SizedBox(height: AppSizes.md),
+                                    AppTextField(
+                                      label: AppStrings.password,
+                                      hint: AppStrings.passwordHint,
+                                      controller: _password,
+                                      isPassword: true,
+                                      validator: Validators.password,
+                                      textInputAction: TextInputAction.next,
+                                      autofillHints: const [
+                                        AutofillHints.newPassword,
+                                      ],
+                                    ),
+                                    const SizedBox(height: AppSizes.md),
+                                    AppTextField(
+                                      label: AppStrings.confirmPassword,
+                                      hint: AppStrings.passwordHint,
+                                      controller: _confirm,
+                                      isPassword: true,
+                                      validator: Validators.confirmPassword(
                                         () => _password.text,
-                                  ),
-                                  textInputAction: TextInputAction.done,
-                                  onSubmitted: (_) => _submit(),
+                                      ),
+                                      textInputAction: TextInputAction.done,
+                                      onSubmitted: (_) => _submit(),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              const SizedBox(height: AppSizes.md),
+                              TermsCheckbox(
+                                value: _agreed,
+                                showError: _showTermsError && !_agreed,
+                                onChanged:
+                                    (v) => setState(() {
+                                      _agreed = v;
+                                      _showTermsError = false;
+                                    }),
+                              ),
+                              const SizedBox(height: AppSizes.lg),
+                              AppButton(
+                                label: AppStrings.createAccount,
+                                secondary: true, // purple, as in the design
+                                isLoading: _auth.isLoading,
+                                onPressed: _submit,
+                              ),
+                              const Spacer(),
+                              const SizedBox(height: AppSizes.lg),
+                              Center(
+                                child: AuthPrompt(
+                                  text: AppStrings.haveAccount,
+                                  action: AppStrings.logInLink,
+                                  onTap: _goToLogin,
+                                ),
+                              ),
+                              const SizedBox(height: AppSizes.sm),
+                            ],
                           ),
-                          const SizedBox(height: AppSizes.md),
-                          TermsCheckbox(
-                            value: _agreed,
-                            showError: _showTermsError && !_agreed,
-                            onChanged: (v) => setState(() {
-                              _agreed = v;
-                              _showTermsError = false;
-                            }),
-                          ),
-                          const SizedBox(height: AppSizes.lg),
-                          AppButton(
-                            label: AppStrings.createAccount,
-                            secondary: true, // purple, as in the design
-                            isLoading: _auth.isLoading,
-                            onPressed: _submit,
-                          ),
-                          const Spacer(),
-                          const SizedBox(height: AppSizes.lg),
-                          Center(
-                            child: AuthPrompt(
-                              text: AppStrings.haveAccount,
-                              action: AppStrings.logInLink,
-                              onTap: _goToLogin,
-                            ),
-                          ),
-                          const SizedBox(height: AppSizes.sm),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
             ),
           ),
         ),

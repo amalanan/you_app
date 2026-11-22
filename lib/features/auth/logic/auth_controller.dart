@@ -32,8 +32,7 @@ class AuthController extends ChangeNotifier {
     required String name,
     required String email,
     required String password,
-  }) =>
-      _run(() => _repo.signUp(name: name, email: email, password: password));
+  }) => _run(() => _repo.signUp(name: name, email: email, password: password));
 
   Future<bool> updatePassword(String newPassword) =>
       _run(() => _repo.updatePassword(newPassword));
@@ -66,7 +65,9 @@ class AuthController extends ChangeNotifier {
       final failure = ErrorHandler.handle(e);
       _isLoading = false;
       _errorMessage =
-      (failure is AuthFailure && failure.cancelled) ? null : failure.message;
+          (failure is AuthFailure && failure.cancelled)
+              ? null
+              : failure.message;
       _notify();
       return false;
     }

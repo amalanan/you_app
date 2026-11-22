@@ -1,4 +1,3 @@
-
 import '../../situations/models/situation_models.dart';
 
 enum ReflectionKind { situation, scenario }
@@ -24,9 +23,9 @@ class LocalizedValue {
   /// The requested language, then English, then Arabic, then anything else.
   String resolve(String languageCode) =>
       _values[languageCode] ??
-          _values['en'] ??
-          _values['ar'] ??
-          _values.values.first;
+      _values['en'] ??
+      _values['ar'] ??
+      _values.values.first;
 }
 
 /// One row of the reflection_entries view: a situation or a scenario answer.
@@ -81,9 +80,10 @@ class ReflectionEntry {
 
   factory ReflectionEntry.fromMap(Map<String, dynamic> map) {
     return ReflectionEntry(
-      kind: map['kind'] == 'scenario'
-          ? ReflectionKind.scenario
-          : ReflectionKind.situation,
+      kind:
+          map['kind'] == 'scenario'
+              ? ReflectionKind.scenario
+              : ReflectionKind.situation,
       id: map['id'] as String,
       createdAt: DateTime.parse(map['created_at'] as String).toLocal(),
       confidence: (map['confidence'] as num?)?.toInt(),

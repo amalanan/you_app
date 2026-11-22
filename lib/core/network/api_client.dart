@@ -6,14 +6,14 @@ import '../storage/local_storage.dart';
 
 class ApiClient {
   ApiClient()
-      : dio = Dio(
-    BaseOptions(
-      baseUrl: ApiEndpoints.baseUrl,
-      connectTimeout: const Duration(seconds: 15),
-      receiveTimeout: const Duration(seconds: 15),
-      headers: {'Accept': 'application/json'},
-    ),
-  ) {
+    : dio = Dio(
+        BaseOptions(
+          baseUrl: ApiEndpoints.baseUrl,
+          connectTimeout: const Duration(seconds: 15),
+          receiveTimeout: const Duration(seconds: 15),
+          headers: {'Accept': 'application/json'},
+        ),
+      ) {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
@@ -24,7 +24,9 @@ class ApiClient {
       ),
     );
     if (kDebugMode) {
-      dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
+      dio.interceptors.add(
+        LogInterceptor(requestBody: true, responseBody: true),
+      );
     }
   }
 

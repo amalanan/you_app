@@ -19,7 +19,8 @@ class SupabaseAuthRepository implements AuthRepository {
   bool get isLoggedIn => _auth.currentSession != null;
 
   @override
-  String? get currentName => _auth.currentUser?.userMetadata?['name'] as String?;
+  String? get currentName =>
+      _auth.currentUser?.userMetadata?['name'] as String?;
 
   @override
   String? get currentEmail => _auth.currentUser?.email;
@@ -51,6 +52,7 @@ class SupabaseAuthRepository implements AuthRepository {
       }
     });
   }
+
   @override
   Future<void> signUp({
     required String name,
@@ -61,8 +63,11 @@ class SupabaseAuthRepository implements AuthRepository {
       final res = await _auth.signUp(
         email: email.trim(),
         password: password,
-        data: {'name': name.trim()}, // saved in profiles by the database trigger
-        emailRedirectTo: SupabaseConfig.authRedirectUrl, // the link opens the app
+        data: {
+          'name': name.trim(),
+        }, // saved in profiles by the database trigger
+        emailRedirectTo:
+            SupabaseConfig.authRedirectUrl, // the link opens the app
       );
       // "Confirm email" is ON in Supabase: the account exists, but she must tap the
       // link in the email first (it opens the app and signs her in).
@@ -108,9 +113,12 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   bool get isPasswordResetPending {
-    final saved = LocalStorage.instance.getString(StorageKeys.passwordResetRequestedAt);
+    final saved = LocalStorage.instance.getString(
+      StorageKeys.passwordResetRequestedAt,
+    );
     final at = saved == null ? null : DateTime.tryParse(saved);
-    return at != null && DateTime.now().difference(at) < const Duration(hours: 1);
+    return at != null &&
+        DateTime.now().difference(at) < const Duration(hours: 1);
   }
 
   @override
@@ -159,16 +167,21 @@ class SupabaseAuthRepository implements AuthRepository {
     final m = e.message.toLowerCase();
     if (m.contains('invalid login')) return AppStrings.wrongCredentials;
     if (m.contains('different from the old')) return AppStrings.samePassword;
-    if (m.contains('already registered') || m.contains('already been registered')) {
+    if (m.contains('already registered') ||
+        m.contains('already been registered')) {
       return AppStrings.emailInUse;
     }
-    if (m.contains('password') && m.contains('characters')) return AppStrings.shortPassword;
+    if (m.contains('password') && m.contains('characters'))
+      return AppStrings.shortPassword;
     if (m.contains('not confirmed')) return AppStrings.checkEmailToConfirm;
     if (m.contains('security purposes')) return AppStrings.tooManyRequests;
-    if (m.contains('rate limit') || m.contains('too many') || e.statusCode == '429') {
+    if (m.contains('rate limit') ||
+        m.contains('too many') ||
+        e.statusCode == '429') {
       return AppStrings.tooManyRequests;
     }
-    if (m.contains('valid email') || m.contains('invalid email')) return AppStrings.invalidEmail;
+    if (m.contains('valid email') || m.contains('invalid email'))
+      return AppStrings.invalidEmail;
     return AppStrings.unknownError;
   }
 }

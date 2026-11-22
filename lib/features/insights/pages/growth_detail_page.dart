@@ -48,8 +48,12 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
       _failure = null;
     });
     try {
-      final detail = await GrowthRepository.instance.fetchDetail(widget.type, range);
-      if (!mounted || range != _range) return; // the user already changed the range
+      final detail = await GrowthRepository.instance.fetchDetail(
+        widget.type,
+        range,
+      );
+      if (!mounted || range != _range)
+        return; // the user already changed the range
       setState(() {
         _detail = detail;
         _loading = false;
@@ -74,15 +78,18 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
       final failure = _failure!;
       return SizedBox(
         height: 320,
-        child: failure is NetworkFailure
-            ? StatusView.offline(onRetry: _load)
-            : StatusView.error(message: failure.message, onRetry: _load),
+        child:
+            failure is NetworkFailure
+                ? StatusView.offline(onRetry: _load)
+                : StatusView.error(message: failure.message, onRetry: _load),
       );
     }
     if (detail == null) {
       return const SizedBox(
         height: 320,
-        child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        child: Center(
+          child: CircularProgressIndicator(color: AppColors.primary),
+        ),
       );
     }
     // while another range loads, the previous numbers stay (a little faded)
@@ -109,7 +116,9 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
               ),
               Text(
                 AppStrings.currentScore,
-                style: context.text.bodySmall?.copyWith(color: context.mutedText),
+                style: context.text.bodySmall?.copyWith(
+                  color: context.mutedText,
+                ),
               ),
             ],
           ),
@@ -141,13 +150,17 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
               children: [
                 Text(
                   AppStrings.whatDoesItMean,
-                  style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                  style: context.text.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 const SizedBox(height: AppSizes.sm),
                 Text(
                   detail.meaning,
-                  style: context.text.bodyMedium
-                      ?.copyWith(color: context.mutedText, height: 1.6),
+                  style: context.text.bodyMedium?.copyWith(
+                    color: context.mutedText,
+                    height: 1.6,
+                  ),
                 ),
               ],
             ),
@@ -158,7 +171,9 @@ class _GrowthDetailPageState extends State<GrowthDetailPage> {
           const SizedBox(height: AppSizes.lg),
           Text(
             AppStrings.fromRecentExperiences,
-            style: context.text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+            style: context.text.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: AppSizes.md),
           for (final text in detail.experiences) ...[
@@ -203,7 +218,8 @@ class _Stat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: end ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          end ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         Text(value, style: context.text.headlineLarge),
         Text(

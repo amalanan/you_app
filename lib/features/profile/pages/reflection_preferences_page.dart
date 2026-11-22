@@ -28,7 +28,8 @@ class _ReflectionPreferencesPageState extends State<ReflectionPreferencesPage> {
   ];
 
   final _storage = LocalStorage.instance;
-  late String _time = _storage.getString(StorageKeys.reflectionTime) ?? 'anytime';
+  late String _time =
+      _storage.getString(StorageKeys.reflectionTime) ?? 'anytime';
   late bool _tips = _storage.getBool(StorageKeys.reflectionTips);
 
   void _setTime(String value) {
@@ -72,14 +73,16 @@ class _ReflectionPreferencesPageState extends State<ReflectionPreferencesPage> {
                   children: [
                     Text(
                       AppStrings.prefTipsTitle,
-                      style: context.text.bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                      style: context.text.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     const SizedBox(height: 2),
                     Text(
                       AppStrings.prefTipsBody,
-                      style: context.text.bodySmall
-                          ?.copyWith(color: context.mutedText),
+                      style: context.text.bodySmall?.copyWith(
+                        color: context.mutedText,
+                      ),
                     ),
                   ],
                 ),

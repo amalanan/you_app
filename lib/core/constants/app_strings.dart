@@ -29,7 +29,86 @@ abstract final class AppStrings {
   static const emailHint = 'you@example.com';
   static const password = 'Password';
   static const passwordHint = '••••••••';
+  static String dayNumber(int n) => switch (AppLocale.languageCode) {
+    'ar' => 'اليوم $n',
+    'tr' => 'Gün $n',
+    _ => 'Day $n',
+  };
 
+  static String minutes(int n) => switch (AppLocale.languageCode) {
+    'ar' => '$n دقيقة',
+    'tr' => '$n dk',
+    _ => '$n min',
+  };
+
+  static String stepOf(int step) => switch (AppLocale.languageCode) {
+    'ar' => '$step من 3',
+    'tr' => '$step / 3',
+    _ => '$step of 3',
+  };
+
+  static String daysOfReflection(int n) => switch (AppLocale.languageCode) {
+    'ar' => '$n يوماً من التأمّل',
+    'tr' => '$n günlük yansıma',
+    _ => '$n days of reflection',
+  };
+
+  static String insightImprovement(String skill) =>
+      switch (AppLocale.languageCode) {
+        'ar' => 'ارتفعت درجة $skill لديك خلال تأمّلاتك الأخيرة.',
+        'tr' => '$skill puanın son yansımalarında yükseldi.',
+        _ => 'Your $skill score rose over your recent reflections.',
+      };
+
+  static String insightPatternMatter(String matter) =>
+      switch (AppLocale.languageCode) {
+        'ar' => 'عندما تقررين، غالباً ما تضعين $matter أولاً.',
+        'tr' => 'Karar verirken sıklıkla ilk sıraya şunu koyuyorsun: $matter.',
+        _ => 'When you decide, you often put $matter first.',
+      };
+
+  static String insightPatternFeeling(String feeling) =>
+      switch (AppLocale.languageCode) {
+        'ar' => 'تتكرر مشاعر «$feeling» كثيراً في المواقف التي تصفينها.',
+        'tr' => '«$feeling» hissi, anlattığın durumlarda sık sık ortaya çıkıyor.',
+        _ => '$feeling shows up often in the situations you describe.',
+      };
+
+  static String insightExplore(String skill) =>
+      switch (AppLocale.languageCode) {
+        'ar' => 'الأقل اهتماماً حتى الآن: $skill. خطوة صغيرة هناك قد تفيدك.',
+        'tr' =>
+        'Şimdiye kadar en az ilgi gören alan: $skill. Orada atacağın küçük bir adım işe yarayabilir.',
+        _ => 'Least attention so far: $skill. A small step there could help.',
+      };
+
+  static String dayOfJourney(int n) => switch (AppLocale.languageCode) {
+    'ar' => 'اليوم $n من رحلتك',
+    'tr' => 'Yolculuğunun $n. günü',
+    _ => 'Day $n of your journey',
+  };
+
+  static String versionLabel(String v) => switch (AppLocale.languageCode) {
+    'ar' => 'الإصدار $v',
+    'tr' => 'Sürüm $v',
+    _ => 'Version $v',
+  };
+
+  static String checkEmailSubtitle(String email) =>
+      switch (AppLocale.languageCode) {
+        'ar' =>
+        'أرسلنا رابط التأكيد إلى $email. افتحيه من هذا الهاتف وستدخلين التطبيق مباشرة.',
+        'tr' =>
+        'Onay bağlantısını $email adresine gönderdik. Bu telefondan açarsan doğrudan uygulamaya girersin.',
+        _ =>
+        'We sent a confirmation link to $email. Open it on this phone and you will come straight into the app.',
+      };
+
+  static String resendEmailIn(int seconds) => switch (AppLocale.languageCode) {
+    'ar' => 'إعادة إرسال الإيميل بعد $seconds ث',
+    'tr' => 'E-postayı $seconds sn sonra tekrar gönder',
+    _ => 'Resend email in ${seconds}s',
+  };
   // Auth: login
   static const welcomeBack = 'Welcome back 👋';
   static const continueJourney = 'Continue your journey';
@@ -68,10 +147,8 @@ abstract final class AppStrings {
   static const goodEvening = 'Good evening';
   static const yourJourney = 'Your journey';
 
-  static String dayNumber(int n) => AppLocale.isArabic ? 'اليوم $n' : 'Day $n';
   static const todaysScenario = "TODAY'S SCENARIO";
 
-  static String minutes(int n) => AppLocale.isArabic ? '$n دقيقة' : '$n min';
   static const exploreScenario = 'Explore Scenario';
   static const yourGrowth = 'YOUR GROWTH';
   static const seeProgress = 'See progress';
@@ -92,8 +169,6 @@ abstract final class AppStrings {
   static const filterChange = 'Change';
   static const scenarioLabel = 'SCENARIO';
 
-  static String stepOf(int step) =>
-      AppLocale.isArabic ? '$step من 3' : '$step of 3';
   static const whatWouldYouDo = 'What would you most likely do?';
   static const continueLabel = 'Continue';
   static const howConfident = 'How confident are you in your choice?';
@@ -157,8 +232,6 @@ abstract final class AppStrings {
   static const growthFromReflection = 'Your growth from this reflection';
 
   // Journey
-  static String daysOfReflection(int n) =>
-      AppLocale.isArabic ? '$n يوماً من التأمّل' : '$n days of reflection';
   static const today = 'Today';
   static const yesterday = 'Yesterday';
   static const journeyAddedSituation = 'Added a new situation';
@@ -181,25 +254,6 @@ abstract final class AppStrings {
       'Complete a few scenarios or add a situation, and your insights will appear here.';
 
   // The 3 insight sentences are built from your own numbers.
-  static String insightImprovement(String skill) =>
-      AppLocale.isArabic
-          ? 'ارتفعت درجة $skill لديك خلال تأمّلاتك الأخيرة.'
-          : 'Your $skill score rose over your recent reflections.';
-
-  static String insightPatternMatter(String matter) =>
-      AppLocale.isArabic
-          ? 'عندما تقررين، غالباً ما تضعين $matter أولاً.'
-          : 'When you decide, you often put $matter first.';
-
-  static String insightPatternFeeling(String feeling) =>
-      AppLocale.isArabic
-          ? 'تتكرر مشاعر «$feeling» كثيراً في المواقف التي تصفينها.'
-          : '$feeling shows up often in the situations you describe.';
-
-  static String insightExplore(String skill) =>
-      AppLocale.isArabic
-          ? 'الأقل اهتماماً حتى الآن: $skill. خطوة صغيرة هناك قد تفيدك.'
-          : 'Least attention so far: $skill. A small step there could help.';
   static const myGrowth = 'My Growth';
   static const growthSubtitle = 'How are your changes over time?';
   static const strongestSide = 'Your strongest side';
@@ -217,8 +271,6 @@ abstract final class AppStrings {
   static const fromRecentExperiences = 'From your recent experiences';
 
   // Profile
-  static String dayOfJourney(int n) =>
-      AppLocale.isArabic ? 'اليوم $n من رحلتك' : 'Day $n of your journey';
   static const menuReflectionPrefs = 'Reflection Preferences';
   static const menuNotifications = 'Notifications';
   static const menuAppearance = 'Appearance';
@@ -263,8 +315,6 @@ abstract final class AppStrings {
   static const faqTitle = 'Frequently asked questions';
   static const aboutTagline = 'A simple app for a deeper you.';
 
-  static String versionLabel(String v) =>
-      AppLocale.isArabic ? 'الإصدار $v' : 'Version $v';
   static const successTitle = 'Well done!';
   static const successBody = 'Your progress matters.';
   static const offlineTitle = 'No internet connection';
@@ -305,18 +355,13 @@ abstract final class AppStrings {
   static const emailResent = 'Email sent again';
   static const backToLogin = 'Back to log in';
 
-  static String checkEmailSubtitle(String email) =>
-      AppLocale.isArabic
-          ? 'أرسلنا رابط التأكيد إلى $email. افتحيه من هذا الهاتف وستدخلين التطبيق مباشرة.'
-          : 'We sent a confirmation link to $email. Open it on this phone and you will come straight into the app.';
-
-  static String resendEmailIn(int seconds) =>
-      AppLocale.isArabic
-          ? 'إعادة إرسال الإيميل بعد $seconds ث'
-          : 'Resend email in ${seconds}s';
   static const situationNumbersOnly =
       'Please describe what happened using words';
-
+  static const deleteReflectionTitle = 'Delete reflection?';
+  static const deleteReflectionBody =
+      'Are you sure you want to delete this reflection? This action cannot be undone.';
+  static const deleteReflectionFailed =
+      'Could not delete the reflection. Please try again.';
   static const situationInvalidText = 'Please enter a meaningful description';
   // My Reflections
   static const myReflections = 'My Reflections';

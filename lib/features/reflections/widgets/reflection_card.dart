@@ -55,7 +55,7 @@ class ReflectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final lang = AppLocale.isArabic ? 'ar' : 'en';
+    final lang = AppLocale.languageCode;
     final isScenario = entry.isScenario;
 
     final tag =

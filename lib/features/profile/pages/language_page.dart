@@ -26,6 +26,7 @@ class _LanguagePageState extends State<LanguagePage> {
     (AppLocale.system, AppStrings.languageSystem),
     ('en', 'English'),
     ('ar', 'العربية'),
+    ('tr', 'Türkçe'),
   ];
 
   late String _selected = AppLocale.savedChoice;

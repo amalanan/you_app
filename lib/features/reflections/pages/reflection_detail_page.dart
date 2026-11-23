@@ -254,17 +254,16 @@ class _ReflectionDetailPageState extends State<ReflectionDetailPage> {
   static String _feelingLabel(Feeling feeling) => feeling.label;
 
   Future<void> _deleteReflection() async {
-    final isArabic = AppLocale.isArabic;
-
+    final translate = AppLocale.instance.tr;
     final confirmed = await showDialog<bool>(
       context: context,
       builder:
           (dialogContext) => AlertDialog(
-            title: Text(isArabic ? 'حذف الانعكاس؟' : 'Delete reflection?'),
+            title: Text(translate('Delete reflection?')),
             content: Text(
-              isArabic
-                  ? 'هل أنت متأكد من حذف هذا الانعكاس؟ لا يمكن التراجع عن هذا الإجراء.'
-                  : 'Are you sure you want to delete this reflection? This action cannot be undone.',
+              translate(
+                'Are you sure you want to delete this reflection? This action cannot be undone.',
+              ),
             ),
             actions: [
               TextButton(
@@ -303,9 +302,7 @@ class _ReflectionDetailPageState extends State<ReflectionDetailPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            isArabic
-                ? 'تعذّر حذف الانعكاس. حاول مرة أخرى.'
-                : 'Could not delete the reflection. Please try again.',
+            translate('Could not delete the reflection. Please try again.'),
           ),
         ),
       );
@@ -314,7 +311,7 @@ class _ReflectionDetailPageState extends State<ReflectionDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final lang = AppLocale.isArabic ? 'ar' : 'en';
+    final lang = AppLocale.languageCode;
     final isScenario = entry.isScenario;
 
     final tag =

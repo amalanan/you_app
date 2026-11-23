@@ -60,7 +60,7 @@ class SupabaseHomeRepository implements HomeRepository {
   /// Texts are stored as {"en": "...", "ar": "..."}.
   static String _text(dynamic json) {
     final map = json as Map<String, dynamic>;
-    final lang = AppLocale.isArabic ? 'ar' : 'en';
+    final lang = AppLocale.languageCode;
     return (map[lang] ?? map['en'] ?? '') as String;
   }
 }

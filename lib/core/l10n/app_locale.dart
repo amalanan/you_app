@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../storage/local_storage.dart';
 import '../storage/storage_keys.dart';
 import 'translations_ar.dart';
+import 'translations_tr.dart';
 
 /// The language of the app: English ('en') or Arabic ('ar').
 ///
@@ -21,22 +22,33 @@ class AppLocale extends ValueNotifier<Locale> with WidgetsBindingObserver {
   /// Created on first use (after LocalStorage.init() in main).
   static final AppLocale instance = AppLocale._(_resolve(savedChoice));
 
-  static const supported = [Locale('en'), Locale('ar')];
-
   /// Value saved for "Language": 'system', 'en' or 'ar'.
   static const system = 'system';
 
   static String get savedChoice =>
       LocalStorage.instance.getString(StorageKeys.language) ?? system;
 
-  static Locale _resolve(String choice) {
-    if (choice == 'en' || choice == 'ar') return Locale(choice);
-    final device = ui.PlatformDispatcher.instance.locale.languageCode;
-    return Locale(device == 'ar' ? 'ar' : 'en');
-  }
 
   static bool get isArabic => instance.value.languageCode == 'ar';
 
+  static const supported = [Locale('en'), Locale('ar'), Locale('tr')];
+
+  static Locale _resolve(String choice) {
+    if (choice == 'en' || choice == 'ar' || choice == 'tr') return Locale(choice);
+    final device = ui.PlatformDispatcher.instance.locale.languageCode;
+    return Locale(device == 'ar' || device == 'tr' ? device : 'en');
+  }
+
+  static String get languageCode => instance.value.languageCode;
+  static bool get isTurkish => languageCode == 'tr';
+
+  String tr(String text) {
+    switch (AppLocale.languageCode) {
+      case 'ar': return arabicTexts[text] ?? text;
+      case 'tr': return turkishTexts[text] ?? text;
+      default: return text;
+    }
+  }
   /// The phone language changed while the app is open.
   @override
   void didChangeLocales(List<Locale>? locales) {
@@ -53,6 +65,5 @@ class AppLocale extends ValueNotifier<Locale> with WidgetsBindingObserver {
 /// Translates an English text of the app. English stays as it is.
 /// A text that has no Arabic pair yet is simply shown in English.
 String tr(String text) {
-  if (!AppLocale.isArabic) return text;
-  return arabicTexts[text] ?? text;
+  return AppLocale.instance.tr(text);
 }

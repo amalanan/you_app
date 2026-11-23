@@ -65,11 +65,27 @@ class SupabaseGrowthRepository implements GrowthRepository {
       case GrowthRange.month:
         return 'W${index + 1}';
       case GrowthRange.quarter:
-        final months = AppLocale.isArabic ? _monthsAr : _monthsEn;
-        return months[date.month - 1];
+        final months = switch (AppLocale.languageCode) {
+          'ar' => _monthsAr,
+          'tr' => _monthsTr,
+          _ => _monthsEn,
+        };        return months[date.month - 1];
     }
   }
-
+  static const _monthsTr = [
+    'Oca',
+    'Şub',
+    'Mar',
+    'Nis',
+    'May',
+    'Haz',
+    'Tem',
+    'Ağu',
+    'Eyl',
+    'Eki',
+    'Kas',
+    'Ara',
+  ];
   static const _monthsEn = [
     'Jan',
     'Feb',

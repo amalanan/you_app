@@ -30,11 +30,11 @@ class ProfilePage extends StatelessWidget {
     final name = auth.currentName ?? '';
 
     final items = <MenuTile>[
-      MenuTile(
-        icon: Icons.spa_outlined,
-        label: AppStrings.myGrowth,
-        onTap: () => context.go(AppRoutes.growth),
-      ),
+      // MenuTile(
+      //   icon: Icons.spa_outlined,
+      //   label: AppStrings.myGrowth,
+      //   onTap: () => context.go(AppRoutes.growth),
+      // ),
       MenuTile(
         icon: Icons.edit_note,
         label: AppStrings.menuReflectionPrefs,

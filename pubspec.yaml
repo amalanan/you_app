@@ -48,6 +48,8 @@ dependencies:
   # emoji_picker_flutter: ^1.3.3
   uuid:
   supabase_flutter: ^2.15.4
+  flutter_local_notifications: 19.5.0
+  timezone: ^0.10.1
 flutter_localizations:
     sdk: flutter
 dependency_overrides:
@@ -63,6 +65,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -131,3 +134,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21

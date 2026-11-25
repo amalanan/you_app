@@ -14,7 +14,7 @@ import '../../../core/helpers/responsive.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/storage/local_storage.dart';
 import '../../auth/data/auth_repository.dart';
-
+import '../../../core/notifications/notification_service.dart';
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -45,23 +45,40 @@ class _SplashPageState extends State<SplashPage>
 
     _controller.forward().whenComplete(_goNext);
   }
-
   void _goNext() {
     if (!mounted) return;
+
     final String route;
+
     if (!LocalStorage.instance.onboardingSeen) {
       route = AppRoutes.onboarding;
-    } else if (AuthRepository.instance.isLoggedIn) {
-      // opened from the reset link? then the new password comes first
-      route =
-          AuthRepository.instance.isPasswordResetPending
-              ? AppRoutes.resetPassword
-              : AppRoutes.home;
-    } else {
+    } else if (!AuthRepository.instance.isLoggedIn) {
       route = AppRoutes.login;
+    } else if (AuthRepository.instance.isPasswordResetPending) {
+      route = AppRoutes.resetPassword;
+    } else {
+      route = NotificationService.instance.takePendingRoute()
+          ?? AppRoutes.home;
     }
+
     context.go(route);
   }
+  // void _goNext() {
+  //   if (!mounted) return;
+  //   final String route;
+  //   if (!LocalStorage.instance.onboardingSeen) {
+  //     route = AppRoutes.onboarding;
+  //   } else if (AuthRepository.instance.isLoggedIn) {
+  //     // opened from the reset link? then the new password comes first
+  //     route =
+  //         AuthRepository.instance.isPasswordResetPending
+  //             ? AppRoutes.resetPassword
+  //             : AppRoutes.home;
+  //   } else {
+  //     route = AppRoutes.login;
+  //   }
+  //   context.go(route);
+  // }
 
   @override
   void dispose() {

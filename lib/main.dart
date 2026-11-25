@@ -32,11 +32,11 @@ import 'features/situations/data/supabase_situation_repository.dart';
 import 'features/reflections/data/mock_reflection_repository.dart';
 import 'features/reflections/data/reflection_repository.dart';
 import 'features/reflections/data/supabase_reflection_repository.dart';
-
+import 'core/notifications/notification_service.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.init();
-
+  await NotificationService.instance.initialize();
   if (SupabaseConfig.isConfigured) {
     await Supabase.initialize(
       url: SupabaseConfig.url,

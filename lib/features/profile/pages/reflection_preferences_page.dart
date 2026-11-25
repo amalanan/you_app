@@ -9,7 +9,7 @@ import '../../../core/storage/local_storage.dart';
 import '../../../core/storage/storage_keys.dart';
 import '../../../core/widgets/app_chip.dart';
 import '../../../core/widgets/sub_page.dart';
-
+import '../../../core/notifications/notification_service.dart';
 /// Reflection preferences. Saved on the device.
 /// TODO: the design has no screen for this yet, adjust it to yours.
 class ReflectionPreferencesPage extends StatefulWidget {
@@ -32,9 +32,14 @@ class _ReflectionPreferencesPageState extends State<ReflectionPreferencesPage> {
       _storage.getString(StorageKeys.reflectionTime) ?? 'anytime';
   late bool _tips = _storage.getBool(StorageKeys.reflectionTips);
 
-  void _setTime(String value) {
+  Future<void> _setTime(String value) async {
     setState(() => _time = value);
-    _storage.setString(StorageKeys.reflectionTime, value);
+
+    await _storage.setString(StorageKeys.reflectionTime, value);
+
+    if (LocalStorage.instance.getBool(StorageKeys.notifDaily)) {
+      await NotificationService.instance.scheduleDailyReminder();
+    }
   }
 
   void _setTips(bool value) {

@@ -147,8 +147,8 @@ class NotificationService {
         LocalStorage.instance.getString(StorageKeys.reflectionTime) ??
             'anytime';
 
-    final hour = reflectionTime == 'evening' ? 20 : 9;
-    final minute = reflectionTime == 'evening' ? 27 : 0;
+    final hour = reflectionTime == 'evening' ? 16 : 10;
+    final minute = reflectionTime == 'evening' ? 30 : 0;
 
     var scheduledDate = tz.TZDateTime(
       tz.local,
@@ -208,7 +208,7 @@ class NotificationService {
       now.year,
       now.month,
       now.day,
-      20,23,
+      16,30,
     );
     final pending = await _notifications.pendingNotificationRequests();
 

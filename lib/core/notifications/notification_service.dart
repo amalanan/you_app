@@ -148,7 +148,7 @@ class NotificationService {
             'anytime';
 
     final hour = reflectionTime == 'evening' ? 20 : 9;
-    final minute = reflectionTime == 'evening' ? 25 : 0;
+    final minute = reflectionTime == 'evening' ? 27 : 0;
 
     var scheduledDate = tz.TZDateTime(
       tz.local,

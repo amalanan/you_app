@@ -20,7 +20,6 @@ import 'features/insights/data/mock_insights_repository.dart';
 import 'features/insights/data/supabase_growth_repository.dart';
 import 'features/insights/data/supabase_insights_repository.dart';
 import 'features/journey/data/journey_repository.dart';
-import 'features/journey/data/mock_journey.dart';
 import 'features/journey/data/mock_journey_repository.dart';
 import 'features/journey/data/supabase_journey_repository.dart';
 import 'features/scenarios/data/mock_scenario_repository.dart';

@@ -10,6 +10,7 @@ import '../../../core/storage/storage_keys.dart';
 import '../../../core/widgets/app_chip.dart';
 import '../../../core/widgets/sub_page.dart';
 import '../../../core/notifications/notification_service.dart';
+
 /// Reflection preferences. Saved on the device.
 /// TODO: the design has no screen for this yet, adjust it to yours.
 class ReflectionPreferencesPage extends StatefulWidget {
